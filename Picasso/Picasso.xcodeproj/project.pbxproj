@@ -13,6 +13,8 @@
 		301C83932B046874005377D1 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83922B046874005377D1 /* CodableColor.swift */; };
 		301C83952B0468B7005377D1 /* CodableFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83942B0468B7005377D1 /* CodableFont.swift */; };
 		304F84F52B029294007080AB /* PicassoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F84F42B029294007080AB /* PicassoTests.swift */; };
+		3054A5192B05157500F006E6 /* TextExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A5182B05157500F006E6 /* TextExamples.swift */; };
+		3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A51A2B0515BB00F006E6 /* StackExamples.swift */; };
 		3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */; };
 		3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A28D2AFFDD66002F8FFD /* ContentView.swift */; };
 		3091A2902AFFDD68002F8FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3091A28F2AFFDD68002F8FFD /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		304F84ED2B02928B007080AB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		304F84F22B029294007080AB /* PicassoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicassoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F84F42B029294007080AB /* PicassoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoTests.swift; sourceTree = "<group>"; };
+		3054A5182B05157500F006E6 /* TextExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExamples.swift; sourceTree = "<group>"; };
+		3054A51A2B0515BB00F006E6 /* StackExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackExamples.swift; sourceTree = "<group>"; };
 		3091A2882AFFDD66002F8FFD /* Picasso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picasso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoApp.swift; sourceTree = "<group>"; };
 		3091A28D2AFFDD66002F8FFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,19 @@
 			path = PicassoTests;
 			sourceTree = "<group>";
 		};
+		3054A51C2B0515D800F006E6 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3091A29A2AFFDD95002F8FFD /* PCText.swift */,
+				3091A29C2B00882C002F8FFD /* PCStack.swift */,
+				3091A2A12B01B3C9002F8FFD /* Parser.swift */,
+				301C838B2B0460CC005377D1 /* Modifiers.swift */,
+				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
+				301C83912B04686A005377D1 /* Codable */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		3091A27F2AFFDD66002F8FFD = {
 			isa = PBXGroup;
 			children = (
@@ -112,14 +129,11 @@
 		3091A28A2AFFDD66002F8FFD /* Picasso */ = {
 			isa = PBXGroup;
 			children = (
+				3054A51C2B0515D800F006E6 /* Library */,
+				3054A5182B05157500F006E6 /* TextExamples.swift */,
+				3054A51A2B0515BB00F006E6 /* StackExamples.swift */,
 				3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */,
 				3091A28D2AFFDD66002F8FFD /* ContentView.swift */,
-				3091A29A2AFFDD95002F8FFD /* PCText.swift */,
-				3091A29C2B00882C002F8FFD /* PCStack.swift */,
-				3091A2A12B01B3C9002F8FFD /* Parser.swift */,
-				301C838B2B0460CC005377D1 /* Modifiers.swift */,
-				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
-				301C83912B04686A005377D1 /* Codable */,
 				3091A28F2AFFDD68002F8FFD /* Assets.xcassets */,
 				3091A2912AFFDD68002F8FFD /* Picasso.entitlements */,
 				3091A2922AFFDD68002F8FFD /* Preview Content */,
@@ -256,9 +270,11 @@
 				3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */,
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,
 				301C83932B046874005377D1 /* CodableColor.swift in Sources */,
+				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
+				3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
