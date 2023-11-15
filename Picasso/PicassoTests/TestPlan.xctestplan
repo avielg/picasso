@@ -12,7 +12,14 @@
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
-
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Picasso.xcodeproj",
+        "identifier" : "304F84F12B029294007080AB",
+        "name" : "PicassoTests"
+      }
+    }
   ],
   "version" : 1
 }

@@ -12,12 +12,30 @@ import SwiftUI
 @testable import Picasso
 
 struct EncodeExample {
+    static var modifier1: PCModifierData = try! FontModifier(
+        font: .system(.footnote, design: .monospaced, weight: .light)
+    ).jsonData().dictionary()
+
+    static var modifier2: PCModifierData = try! ForegroundColorModifier(foregroundColor: .orange)
+        .jsonData().dictionary()
+
+    static var modifier3 = try! FontModifier(font: .body)
+        .jsonData().dictionary()
+
+    static var modifier4 = try! ForegroundColorModifier(foregroundColor: .primary)
+        .jsonData().dictionary()
+
+
     static var text1: PCText {
-        PCText(text: "Check", font: .system(.footnote, design: .monospaced, weight: .light), foregroundColor: .orange)
+        PCText(text: "Check", modifiers: [modifier1, modifier2])
     }
 
     static var text2: PCText {
-        PCText(text: "Check Simple", font: .body, foregroundColor: .primary)
+        PCText(text: "Check Simple", modifiers: [modifier3, modifier4])
+    }
+
+    static var text3: PCText {
+        PCText(text: "Check Simple", modifiers: [])
     }
 
     static var stack1: PCStack {
@@ -53,18 +71,19 @@ final class PicassoTests: XCTestCase {
 
     func testEncode() throws {
         let data = try JSONEncoder().encode(EncodeExample.text1)
-    //    let json = String(data: data, encoding: .utf8) ?? "NA"
-    //    print(json)
+//        let json = String(data: data, encoding: .utf8) ?? "NA"
+//        print(json)
 
         let decoder = JSONDecoder()
         let jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
 
         let data2 = """
-    {"text":"Check","foregroundColor":"#000000","font":{"design":"monospaced","weight":"light","style":"footnote"}}
+    {"text":"Check","modifiers":[{"font":{"design":"monospaced","weight":"light","style":"footnote"}},{"foregroundColor":"#000000"}]}
     """.data(using: .utf8)!
 
         let jsonObj2 = try decoder.decode([String: AnyCodable].self, from: data2)
-        XCTAssertEqual(jsonObj, jsonObj2)
+        XCTAssertEqual(jsonObj, jsonObj2, "\nNot Equal:\n\n-> \(jsonObj.description)\n-> \(jsonObj2.description)")
+
     }
 
     func testDecode() throws {
@@ -102,7 +121,7 @@ final class PicassoTests: XCTestCase {
     }
 
     func testViews() throws {
-        for view in [EncodeExample.text1, EncodeExample.text2] {
+        for view in [EncodeExample.text1, EncodeExample.text2, EncodeExample.text3] {
             try test(view: view)
         }
         for view in [EncodeExample.stack1, EncodeExample.stack2, EncodeExample.stack3] {
@@ -118,7 +137,7 @@ final class PicassoTests: XCTestCase {
 
 }
 
-extension View where Self: Codable {
+extension Encodable {
     func jsonData() throws -> Data {
         try JSONEncoder().encode(self)
     }
@@ -127,5 +146,12 @@ extension View where Self: Codable {
 extension Data {
     func dictionary() throws -> [String: AnyCodable] {
         try JSONDecoder().decode([String: AnyCodable].self, from: self)
+    }
+}
+
+extension [String: AnyCodable] {
+    var description: String {
+        let data = try! JSONEncoder().encode(self)
+        return String(data: data, encoding: .utf8) ?? "NA"
     }
 }

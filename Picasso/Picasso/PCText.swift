@@ -70,17 +70,22 @@ struct PCText: View, Codable {
     }
 
     let text: String
-    let modifiersData: [PCModifierData]
+    let modifiers: [PCModifierData]
 
     var body: some View {
         Text(text)
-            .modifier(Parser.modifiers(from: modifiersData))
+            .modifier(Parser.modifiers(from: modifiers))
     }
-    
+
+    init(text: String, modifiers: [PCModifierData]) {
+        self.text = text
+        self.modifiers = modifiers
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         self.text = try container.decode(String.self, forKey: .text)
-        self.modifiersData = try container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
+        self.modifiers = try container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
     }
 }
 
