@@ -11,8 +11,10 @@ import AnyCodable
 let text_json1 = """
 {
   "_type": "Text",
-  "text": "Hello one",
-  "fontWeight": "bold"
+  "text": "Hello One",
+  "modifiers": [
+    { "_type": "font", "font": { "weight": "bold", "style": "title" } }
+  ]
 }
 """
 
@@ -20,7 +22,9 @@ let text_json2 = """
 {
   "_type": "Text",
   "text": "Hello two!",
-  "foregroundColor": "#A10D3C93"
+  "modifiers": [
+    { "_type": "foregroundColor", "foregroundColor": "#A10D3C93" },
+  ]
 }
 """
 
@@ -28,11 +32,10 @@ let text_json3 = """
 {
   "_type": "Text",
   "text": "Hello three",
-  "font": {
-    "style": "title2",
-    "weight": "ultralight"
-  },
-  "foregroundColor": "0x50a19a"
+  "modifiers": [
+    { "_type": "foregroundColor", "foregroundColor": "0x50a19a" },
+    { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } }
+  ]
 }
 """
 
@@ -40,12 +43,10 @@ let text_json4 = """
 {
   "_type": "Text",
   "text": "Hello four",
-  "font": {
-    "design": "serif",
-    "style": "caption"
-  },
-  "fontWeight": "black",
-  "foregroundColor": "orange"
+  "modifiers": [
+    { "_type": "foregroundColor", "foregroundColor": "orange" },
+    { "_type": "font", "font": { "style": "caption", "weight": "black", "design": "serif" } }
+  ]
 }
 """
 
@@ -63,39 +64,21 @@ func textExample() -> some View {
 
 struct PCText: View, Codable {
     enum Keys: CodingKey {
-        case text, font, fontWeight, foregroundColor
+        case text, modifiers
     }
 
     let text: String
-    let font: Font
-    let foregroundColor: Color
+    let modifiersData: [PCModifierData]
 
     var body: some View {
         Text(text)
-            .font(font)
-            .foregroundStyle(foregroundColor)
-    }
-
-    init(text: String, font: Font, foregroundColor: Color) {
-        self.text = text
-        self.font = font
-        self.foregroundColor = foregroundColor
+            .modifier(Parser.modifiers(from: modifiersData))
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         self.text = try container.decode(String.self, forKey: .text)
-
-        let font = try container.decodeIfPresent(Font.self, forKey: .font) ?? .body
-        let providedWeight = try container.decodeIfPresent(Font.Weight.self, forKey: .fontWeight)
-        
-        self.font = if let providedWeight {
-            font.weight(providedWeight)
-        } else {
-            font
-        }
-
-        self.foregroundColor = try container.decodeIfPresent(Color.self, forKey: .foregroundColor) ?? .primary
+        self.modifiersData = try container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
     }
 }
 
@@ -203,7 +186,6 @@ extension Font: Codable {
 
     private func modifier(from base: Any, weight: inout Font.Weight?, style: inout Font.TextStyle?, design: inout Font.Design?) -> Any? {
 
-
         var boxChildren = Mirror(reflecting: base).children
         while boxChildren.count == 1 {
             boxChildren = Mirror(reflecting: boxChildren.first!.value).children
@@ -252,8 +234,6 @@ extension Font: Codable {
         while let base = nextBase {
             nextBase = modifier(from: base, weight: &weightData, style: &styleData, design: &designData)
         }
-
-//        print(weightData, styleData, designData)
 
         var container = encoder.container(keyedBy: Keys.self)
         try container.encode(weightData ?? .regular, forKey: .weight)
