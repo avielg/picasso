@@ -8,13 +8,64 @@
 import AnyCodable
 import SwiftUI
 
+typealias PCModifierData = [String: AnyCodable]
+
+protocol PCModifier: ViewModifier, Codable {
+    static var name: String { get }
+}
+
+@resultBuilder
+struct ModifierBuilder {
+
+//    static func buildBlock() -> some PCModifier {
+//        EmptyModifier()
+//    }
+//
+//    static func buildBlock<A: PCModifier>(_ component: A) -> some PCModifier {
+//        component
+//    }
+
+    static func buildPartialBlock<F: PCModifier>(first: F) -> some PCModifier {
+        first
+    }
+
+    static func buildPartialBlock<B: PCModifier, C: PCModifier>(accumulated: B, next: C) -> some PCModifier {
+        _ConcatModifier(rhs: accumulated, lhs: next)
+    }
+
+//    static func buildFinalResult<R: PCModifier>(_ component: R) -> some PCModifier {
+//        component
+//    }
+
+    static func buildEither<DTrue: PCModifier, EFalse: PCModifier>(first component: DTrue) -> some PCModifier {
+        _ConditionalModifier<DTrue, EFalse>(.trueContent(component))
+    }
+
+    static func buildEither<DTrue: PCModifier, EFalse: PCModifier>(second component: EFalse) -> some PCModifier {
+        _ConditionalModifier<DTrue, EFalse>(.falseContent(component))
+    }
+
+
+
+//
+//    static func buildFinalResult<F: PCModifier>(_ component: F) -> some PCModifier {
+//        ConcatModifier(rhs: component, lhs: current)
+//    }
+//
+//    static func buildExpression<H: PCModifier>(_ expression: H) -> some PCModifier {
+//        ConcatModifier(rhs: expression, lhs: current)
+//    }
+//
+    static func buildOptional<I: PCModifier>(_ component: I?) -> some PCModifier {
+        _OptionalModifier(modifier: component)
+    }
+}
+
 ///
 /// These modifiers are only meant for ``ModifierBuilder`` but should never be encoded or decoded.
 ///
 
-typealias PCModifierData = [String: AnyCodable]
-
-struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: PCModifier {
+private struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: PCModifier {
     static var name: String { fatalError() }
 
     internal enum Storage {
@@ -68,7 +119,7 @@ struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: 
 }
 
 
-struct ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
+private struct _ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
     static var name: String { fatalError() }
 
     let rhs: A
@@ -79,7 +130,7 @@ struct ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
     }
 }
 
-struct OptionalModifier<A: PCModifier>: PCModifier {
+private struct _OptionalModifier<A: PCModifier>: PCModifier {
     static var name: String { fatalError() }
 
     let modifier: A?

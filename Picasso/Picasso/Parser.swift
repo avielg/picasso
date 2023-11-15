@@ -8,57 +8,6 @@
 import AnyCodable
 import SwiftUI
 
-protocol PCModifier: ViewModifier, Codable {
-    static var name: String { get }
-}
-
-@resultBuilder
-struct ModifierBuilder {
-
-//    static func buildBlock() -> some PCModifier {
-//        EmptyModifier()
-//    }
-//
-//    static func buildBlock<A: PCModifier>(_ component: A) -> some PCModifier {
-//        component
-//    }
-
-    static func buildPartialBlock<F: PCModifier>(first: F) -> some PCModifier {
-        first
-    }
-
-    static func buildPartialBlock<B: PCModifier, C: PCModifier>(accumulated: B, next: C) -> some PCModifier {
-        ConcatModifier(rhs: accumulated, lhs: next)
-    }
-
-//    static func buildFinalResult<R: PCModifier>(_ component: R) -> some PCModifier {
-//        component
-//    }
-
-    static func buildEither<DTrue: PCModifier, EFalse: PCModifier>(first component: DTrue) -> some PCModifier {
-        _ConditionalModifier<DTrue, EFalse>(.trueContent(component))
-    }
-
-    static func buildEither<DTrue: PCModifier, EFalse: PCModifier>(second component: EFalse) -> some PCModifier {
-        _ConditionalModifier<DTrue, EFalse>(.falseContent(component))
-    }
-
-
-
-//
-//    static func buildFinalResult<F: PCModifier>(_ component: F) -> some PCModifier {
-//        ConcatModifier(rhs: component, lhs: current)
-//    }
-//
-//    static func buildExpression<H: PCModifier>(_ expression: H) -> some PCModifier {
-//        ConcatModifier(rhs: expression, lhs: current)
-//    }
-//
-    static func buildOptional<I: PCModifier>(_ component: I?) -> some PCModifier {
-        OptionalModifier(modifier: component)
-    }
-}
-
 extension [PCModifierData] {
     subscript(_ key: String) -> PCModifierData? {
         first { $0["_type"]!.value as! String == key }
