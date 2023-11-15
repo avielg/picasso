@@ -155,6 +155,8 @@ extension Alignment: Codable {
     }
 }
 
-#Preview {
-    stackExample()
+struct PCStack_Previews: PreviewProvider {
+    static var previews: some View {
+        stackExample()
+    }
 }

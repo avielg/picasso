@@ -43,6 +43,8 @@ struct PCText: View, Codable {
     }
 }
 
-#Preview {
-    textExample()
+struct PCText_Previews: PreviewProvider {
+    static var previews: some View {
+        textExample()
+    }
 }
