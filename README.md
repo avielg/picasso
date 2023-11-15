@@ -1,3 +1,4 @@
+![image](https://github.com/avielg/picasso/actions/workflows/ios.yml/badge.svg) (currently using Xcode Cloud)
 # Picasso
 
 JSON → Native SwiftUI 🎉
