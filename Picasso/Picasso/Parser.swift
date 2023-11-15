@@ -8,7 +8,9 @@
 import AnyCodable
 import SwiftUI
 
-protocol PCModifier: ViewModifier, Codable {}
+protocol PCModifier: ViewModifier, Codable {
+    static var name: String { get }
+}
 
 @resultBuilder
 struct ModifierBuilder {
@@ -86,19 +88,19 @@ enum Parser {
 
     @ModifierBuilder
     static func modifiers(from dictionaries: [PCModifierData]) -> some PCModifier {
-        if let font = dictionaries["font"] {
+        if let font = dictionaries[FontModifier.name] {
             let data = try! JSONEncoder().encode(font)
             try! JSONDecoder().decode(FontModifier.self, from: data)
         }
-        if let foregroundColor = dictionaries["foregroundColor"] {
+        if let foregroundColor = dictionaries[ForegroundColorModifier.name] {
             let data = try! JSONEncoder().encode(foregroundColor)
             try! JSONDecoder().decode(ForegroundColorModifier.self, from: data)
         }
-        if let lineLimit = dictionaries["lineLimit"] {
+        if let lineLimit = dictionaries[LineLimitModifier.name] {
             let data = try! JSONEncoder().encode(lineLimit)
             try! JSONDecoder().decode(LineLimitModifier.self, from: data)
         }
-        if let lineLimit = dictionaries["alignment"] {
+        if let lineLimit = dictionaries[TextAlignModifier.name] {
             let data = try! JSONEncoder().encode(lineLimit)
             try! JSONDecoder().decode(TextAlignModifier.self, from: data)
         }

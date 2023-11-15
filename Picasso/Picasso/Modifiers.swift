@@ -9,6 +9,8 @@ import AnyCodable
 import SwiftUI
 
 struct FontModifier: PCModifier {
+    static var name: String { "font" }
+
     let font: Font
 
     func body(content: Content) -> some View {
@@ -17,6 +19,8 @@ struct FontModifier: PCModifier {
 }
 
 struct ForegroundColorModifier: PCModifier {
+    static var name: String { "foregroundColor"  }
+
     let foregroundColor: Color
 
     func body(content: Content) -> some View {
@@ -25,6 +29,8 @@ struct ForegroundColorModifier: PCModifier {
 }
 
 struct LineLimitModifier: PCModifier {
+    static var name: String { "lineLimit" }
+
     let range: ClosedRange<Int>
 
     func body(content: Content) -> some View {
@@ -33,6 +39,8 @@ struct LineLimitModifier: PCModifier {
 }
 
 struct TextAlignModifier: PCModifier {
+    static var name: String { "alignment" }
+    
     let alignment: TextAlignment
 
     func body(content: Content) -> some View {

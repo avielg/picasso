@@ -15,6 +15,8 @@ import SwiftUI
 typealias PCModifierData = [String: AnyCodable]
 
 struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: PCModifier {
+    static var name: String { fatalError() }
+
     internal enum Storage {
         case trueContent(TrueContent)
         case falseContent(FalseContent)
@@ -67,6 +69,8 @@ struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: 
 
 
 struct ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
+    static var name: String { fatalError() }
+
     let rhs: A
     let lhs: B
 
@@ -76,6 +80,8 @@ struct ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
 }
 
 struct OptionalModifier<A: PCModifier>: PCModifier {
+    static var name: String { fatalError() }
+
     let modifier: A?
 
     func body(content: Content) -> some View {
@@ -88,6 +94,8 @@ struct OptionalModifier<A: PCModifier>: PCModifier {
 }
 
 extension EmptyModifier: PCModifier {
+    static var name: String { fatalError() }
+    
     public func encode(to encoder: Encoder) throws {
         try "empty".encode(to: encoder)
     }
