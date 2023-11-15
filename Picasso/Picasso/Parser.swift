@@ -20,10 +20,6 @@ enum Parser {
         return _view(from: json, dictionary: dictionary)
     }
 
-    ///
-    /// # Option 1: ViewBuilder with all options in the type
-    ///
-    
     @ViewBuilder
     static func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) -> some View {
         switch _getTypeName(data: data, dictionary: dictionary) {
@@ -44,27 +40,4 @@ enum Parser {
 
         return jsonObj["_type"]!.value as! String
     }
-
-    ///
-    /// # Option 2: Erase with AnyView
-    ///
-
-//    static func _view(from data: Data) -> some View {
-//        let decoder = JSONDecoder()
-//        let jsonObj = try! decoder.decode([String: AnyDecodable].self, from: data)
-//
-//        let type = viewType(for: jsonObj["_type"]!.value as! String)
-//
-//        let view = try! JSONDecoder().decode(type, from: data) as! any View
-//        return AnyView(view)
-//    }
-//
-//    static func viewType(for typeName: String) -> Decodable.Type {
-//        switch typeName {
-//        case "Text": return PCText.self
-//        case "Stack": return PCStack.self
-//        default: fatalError()
-//        }
-//    }
-
 }
