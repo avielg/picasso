@@ -35,11 +35,11 @@ extension Font: Codable {
                 } else if ["design", "weight", "style"].contains(child.label) {
                     // noop - value for this is likely nil
                 } else {
-                    print(child.label, child.value)
+                    assertionFailure("Unknown child -> \(child.label ?? "No Label"): \(child.value)")
                 }
             }
-
-            if let modifierData = Mirror(reflecting: modifier).children.first {
+            
+            if let modifier, let modifierData = Mirror(reflecting: modifier).children.first {
                 let modifierValueData = Mirror(reflecting: modifierData.value).children.first!
                 if let weightValue = modifierValueData.value as? Font.Weight {
                     weight = weightValue
