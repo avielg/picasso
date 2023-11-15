@@ -23,3 +23,19 @@ struct ForegroundColorModifier: PCModifier {
         content.foregroundColor(foregroundColor)
     }
 }
+
+struct LineLimitModifier: PCModifier {
+    let range: ClosedRange<Int>
+
+    func body(content: Content) -> some View {
+        content.lineLimit(range)
+    }
+}
+
+struct TextAlignModifier: PCModifier {
+    let alignment: TextAlignment
+
+    func body(content: Content) -> some View {
+        content.multilineTextAlignment(alignment)
+    }
+}

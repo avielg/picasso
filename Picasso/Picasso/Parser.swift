@@ -94,6 +94,14 @@ enum Parser {
             let data = try! JSONEncoder().encode(foregroundColor)
             try! JSONDecoder().decode(ForegroundColorModifier.self, from: data)
         }
+        if let lineLimit = dictionaries["lineLimit"] {
+            let data = try! JSONEncoder().encode(lineLimit)
+            try! JSONDecoder().decode(LineLimitModifier.self, from: data)
+        }
+        if let lineLimit = dictionaries["alignment"] {
+            let data = try! JSONEncoder().encode(lineLimit)
+            try! JSONDecoder().decode(TextAlignModifier.self, from: data)
+        }
 
 
         //        switch name {
