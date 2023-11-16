@@ -64,7 +64,7 @@ enum Parser {
     }
 
     @ViewBuilder
-    static func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) -> some View {
+    static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) -> some View {
         switch _getTypeName(data: data, dictionary: dictionary) {
         case "Text": try! JSONDecoder().decode(PCText.self, from: data)
         case "Stack": try! JSONDecoder().decode(PCStack.self, from: data)

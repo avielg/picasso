@@ -8,15 +8,61 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            textExample()
-            stackExample()
+
+    let request: URLRequest = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!)
+
+    func label(_ title: String, subtitle: String) -> some View {
+        VStack(alignment: .leading) {
+            Text(title)
+            Text(subtitle)
+                .font(.footnote).foregroundStyle(Color.secondary)
         }
-        .padding()
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                NavigationLink {
+                    VStack {
+                        textExample()
+                        stackExample()
+                    }
+                    .padding()
+                } label: {
+                    Text("Local")
+                }
+
+                NavigationLink {
+                    AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                        .padding()
+                } label: {
+                    label("Remote", subtitle: "No Placeholder")
+                }
+
+                NavigationLink {
+                    AsyncPCView(urlRequest: request, placeholder: Color.red)
+                        .padding()
+                } label: {
+                    label("Remote", subtitle: "Red Placeholder")
+                }
+
+                NavigationLink {
+                    AsyncPCView(urlRequest: request, placeholder: ProgressView())
+                        .padding()
+                } label: {
+                    label("Remote", subtitle: "Progress View")
+                }
+
+                NavigationLink {
+                    AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                        .border(Color.blue)
+                        .padding()
+                } label: {
+                    label("Remote", subtitle: "With border")
+                }
+            }
+            .navigationTitle("Picasso Example")
+        }
     }
 }
 

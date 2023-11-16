@@ -1,0 +1,96 @@
+{
+    "_type": "Stack",
+    "layout": {
+        "axis": "VStack",
+        "spacing": 32
+    },
+    "views": [
+        {
+            "_type": "Text", "text": "Text Modifiers:",
+            "modifiers": [
+              { "_type": "font", "font": { "style": "title" } }
+            ]
+        },
+        {
+            "_type": "Stack",
+            "layout": {
+                "axis": "VStack",
+                "alignment": "leading"
+            },
+            "views": [
+                {
+                    "_type": "Text",
+                    "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
+                    "modifiers": [
+                        { "_type": "foregroundColor", "foregroundColor": "#A10D3C93" },
+                        { "_type": "lineLimit", "range": [1,3] },
+                        { "_type": "alignment", "alignment": "trailing" },
+                    ]
+                },
+                {
+                  "_type": "Text",
+                  "text": "Hello three",
+                  "modifiers": [
+                    { "_type": "foregroundColor", "foregroundColor": "0x50a19a" },
+                    { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } },
+                  ]
+                },
+                {
+                  "_type": "Text",
+                  "text": "Hello four",
+                  "modifiers": [
+                    { "_type": "foregroundColor", "foregroundColor": "orange" },
+                    { "_type": "font", "font": { "style": "caption", "weight": "black", "design": "serif" } }
+                  ]
+                }
+            ]
+        },
+        {
+            "_type": "Text", "text": "VStack:",
+            "modifiers": [
+              { "_type": "font", "font": { "style": "title" } }
+            ]
+        },
+        {
+            "_type": "Stack",
+            "layout": { "axis": "VStack", },
+            "views": [
+                { "_type": "Text", "text": "one" },
+                { "_type": "Text", "text": "two" },
+            ]
+        },
+        {
+            "_type": "Text", "text": "ZStack:",
+            "modifiers": [
+              { "_type": "font", "font": { "style": "title" } }
+            ]
+        },
+        {
+            "_type": "Stack",
+            "layout": {
+                "axis": "ZStack",
+                "alignment": "bottomTrailing"
+            },
+            "views": [
+                { "_type": "Text", "text": "one one one\none one one" },
+                { "_type": "Text", "text": "two", "foregroundColor": "red", "fontWeight": "black" },
+            ]
+        },
+        {
+            "_type": "Text", "text": "HStack:",
+            "modifiers": [
+              { "_type": "font", "font": { "style": "title" } }
+            ]
+        },
+        {
+            "_type": "Stack",
+            "layout": {
+                "axis": "HStack"
+            },
+            "views": [
+                { "_type": "Text", "text": "one" },
+                { "_type": "Text", "text": "two" },
+            ]
+        },
+    ]
+}
