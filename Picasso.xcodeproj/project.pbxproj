@@ -25,6 +25,9 @@
 		3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A2A12B01B3C9002F8FFD /* Parser.swift */; };
 		30F59C212B06D83A0092D7ED /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C202B06D83A0092D7ED /* Example.json */; };
 		30F59C232B06D8D50092D7ED /* PCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C222B06D8D50092D7ED /* PCView.swift */; };
+		30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C242B06DFCB0092D7ED /* PCScrollView.swift */; };
+		30F59C272B06E21A0092D7ED /* Example2.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C262B06E21A0092D7ED /* Example2.json */; };
+		30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		3091A2A12B01B3C9002F8FFD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		30F59C202B06D83A0092D7ED /* Example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
 		30F59C222B06D8D50092D7ED /* PCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCView.swift; sourceTree = "<group>"; };
+		30F59C242B06DFCB0092D7ED /* PCScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCScrollView.swift; sourceTree = "<group>"; };
+		30F59C262B06E21A0092D7ED /* Example2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example2.json; sourceTree = "<group>"; };
+		30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollviewExamples.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 			children = (
 				3091A29A2AFFDD95002F8FFD /* PCText.swift */,
 				3091A29C2B00882C002F8FFD /* PCStack.swift */,
+				30F59C242B06DFCB0092D7ED /* PCScrollView.swift */,
 				3091A2A12B01B3C9002F8FFD /* Parser.swift */,
 				301C838B2B0460CC005377D1 /* Modifiers.swift */,
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
@@ -135,9 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3054A51C2B0515D800F006E6 /* Library */,
-				3054A5182B05157500F006E6 /* TextExamples.swift */,
-				3054A51A2B0515BB00F006E6 /* StackExamples.swift */,
-				30F59C202B06D83A0092D7ED /* Example.json */,
+				30F59C282B06E2660092D7ED /* Examples */,
 				3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */,
 				3091A28D2AFFDD66002F8FFD /* ContentView.swift */,
 				3091A28F2AFFDD68002F8FFD /* Assets.xcassets */,
@@ -153,6 +158,34 @@
 				3091A2932AFFDD68002F8FFD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		30F59C282B06E2660092D7ED /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				30F59C292B06E26C0092D7ED /* Local */,
+				30F59C2A2B06E2710092D7ED /* Remote */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		30F59C292B06E26C0092D7ED /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				3054A5182B05157500F006E6 /* TextExamples.swift */,
+				3054A51A2B0515BB00F006E6 /* StackExamples.swift */,
+				30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		30F59C2A2B06E2710092D7ED /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				30F59C202B06D83A0092D7ED /* Example.json */,
+				30F59C262B06E21A0092D7ED /* Example2.json */,
+			);
+			path = Remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +284,7 @@
 			files = (
 				30F59C212B06D83A0092D7ED /* Example.json in Resources */,
 				3091A2942AFFDD68002F8FFD /* Preview Assets.xcassets in Resources */,
+				30F59C272B06E21A0092D7ED /* Example2.json in Resources */,
 				3091A2902AFFDD68002F8FFD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301C83902B04684C005377D1 /* CodableConformance.swift in Sources */,
+				30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */,
 				301C83952B0468B7005377D1 /* CodableFont.swift in Sources */,
 				3091A29B2AFFDD95002F8FFD /* PCText.swift in Sources */,
 				3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */,
@@ -280,6 +315,7 @@
 				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
 				30F59C232B06D8D50092D7ED /* PCView.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
+				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
 				3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */,

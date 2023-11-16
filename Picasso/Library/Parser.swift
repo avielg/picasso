@@ -68,6 +68,7 @@ enum Parser {
         switch _getTypeName(data: data, dictionary: dictionary) {
         case "Text": try! JSONDecoder().decode(PCText.self, from: data)
         case "Stack": try! JSONDecoder().decode(PCStack.self, from: data)
+        case "ScrollView": try! JSONDecoder().decode(PCScrollView.self, from: data)
         default: fatalError()
         }
     }

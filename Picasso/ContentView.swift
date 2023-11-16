@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let request: URLRequest = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!)
-
+    let request = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!)
+    let requestScrollView = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example2.json")!)
+    
     func label(_ title: String, subtitle: String) -> some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -22,43 +23,56 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                NavigationLink {
-                    VStack {
-                        textExample()
-                        stackExample()
+                Section {
+                    NavigationLink {
+                        VStack {
+                            textExample()
+                            stackExample()
+                        }
+                        .padding()
+                    } label: {
+                        Text("Local")
                     }
-                    .padding()
-                } label: {
-                    Text("Local")
                 }
 
-                NavigationLink {
-                    AsyncPCView(urlRequest: request, placeholder: Color.clear)
-                        .padding()
-                } label: {
-                    label("Remote", subtitle: "No Placeholder")
+                Section("Remote") {
+                    NavigationLink {
+                        AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                            .padding()
+                    } label: {
+                        label("Texts & Stacks", subtitle: "No Placeholder")
+                    }
+
+                    NavigationLink {
+                        AsyncPCView(urlRequest: request, placeholder: Color.red)
+                            .padding()
+                    } label: {
+                        label("Texts & Stacks", subtitle: "Red Placeholder")
+                    }
+
+                    NavigationLink {
+                        AsyncPCView(urlRequest: request, placeholder: ProgressView())
+                            .padding()
+                    } label: {
+                        label("Texts & Stacks", subtitle: "Progress View")
+                    }
+
+                    NavigationLink {
+                        AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                            .border(Color.blue)
+                            .padding()
+                    } label: {
+                        label("Texts & Stacks", subtitle: "With border")
+                    }
                 }
 
-                NavigationLink {
-                    AsyncPCView(urlRequest: request, placeholder: Color.red)
-                        .padding()
-                } label: {
-                    label("Remote", subtitle: "Red Placeholder")
-                }
 
-                NavigationLink {
-                    AsyncPCView(urlRequest: request, placeholder: ProgressView())
-                        .padding()
-                } label: {
-                    label("Remote", subtitle: "Progress View")
-                }
-
-                NavigationLink {
-                    AsyncPCView(urlRequest: request, placeholder: Color.clear)
-                        .border(Color.blue)
-                        .padding()
-                } label: {
-                    label("Remote", subtitle: "With border")
+                Section("Remote") {
+                    NavigationLink {
+                        AsyncPCView(urlRequest: requestScrollView, placeholder: Color.clear)
+                    } label: {
+                        label("ScrollView", subtitle: "No Placeholder")
+                    }
                 }
             }
             .navigationTitle("Picasso Example")

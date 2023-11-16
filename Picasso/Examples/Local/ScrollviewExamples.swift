@@ -1,0 +1,38 @@
+//
+//  ScrollviewExamples.swift
+//  Picasso
+//
+//  Created by Aviel Gross on 16.11.2023.
+//
+
+import Foundation
+
+let scrollview_example1 = """
+{
+    "_type": "ScrollView",
+    "views": [
+        {
+            "_type": "Text",
+            "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
+            "modifiers": [
+                { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } },
+                { "_type": "foregroundColor", "foregroundColor": "#A10D3C93" },
+                { "_type": "alignment", "alignment": "trailing" },
+            ]
+        },
+        {
+          "_type": "Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dolor id eros bibendum posuere. Nam vehicula, justo eget vulputate dignissim, diam felis tincidunt diam, ut sollicitudin magna tortor sit amet ex. Fusce ornare pulvinar diam ut tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse potenti. Vestibulum pharetra aliquam ipsum consectetur posuere. Curabitur a porttitor risus. Morbi ac mauris ut nunc fringilla ornare. Integer nec lacus ut est egestas rhoncus eu eget arcu. Praesent elementum ultricies efficitur. Maecenas velit odio, ultricies interdum est vel, bibendum hendrerit libero. Nullam pellentesque et arcu nec vulputate. Suspendisse ultricies quam felis, id venenatis quam tempus id. Nullam vel rhoncus mi. Donec ullamcorper condimentum faucibus.\\nAliquam elementum nulla felis, a venenatis urna aliquam sed. Curabitur posuere, sem id venenatis ornare, libero quam malesuada dolor, sit amet mollis libero neque eget mauris. Curabitur tempus dapibus diam, eu pretium turpis. Morbi faucibus neque dolor. Suspendisse odio massa, blandit a ipsum non, rhoncus aliquet mi. Aliquam et urna posuere, tempor erat id, mollis quam. Phasellus consequat sem nec elit posuere luctus. Maecenas elementum consequat nisl, ut commodo orci egestas nec. Pellentesque non vulputate odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus ullamcorper, neque et pellentesque faucibus, nunc dolor euismod lectus, a consectetur mi ante at leo. Curabitur fringilla arcu arcu. Morbi in tellus convallis, venenatis arcu ac, auctor est. Integer tempor eros risus, sed euismod arcu efficitur eget.\\nNam diam elit, fringilla ac lorem eget, pretium molestie urna. Fusce malesuada vel erat nec tincidunt. Maecenas eleifend sit amet leo et vehicula. Vestibulum nec sapien semper, semper nibh euismod, semper libero. Sed aliquet, enim sed commodo maximus, lorem ex imperdiet sem, a dapibus enim turpis et urna. Sed in sodales arcu, sagittis tincidunt ipsum. Nulla et elit diam. Mauris sit amet arcu laoreet, elementum libero efficitur, commodo turpis. Aenean interdum tincidunt libero in egestas. Praesent consequat mi id ex placerat, sed tristique justo semper. Nulla lectus erat, lacinia nec condimentum vel, ultricies vel libero. Cras a nisl tristique, dictum mi quis, accumsan turpis. Nullam elementum tellus a nulla cursus, nec mollis enim egestas.\\nPraesent vel velit leo. Curabitur vitae elit pretium metus vulputate hendrerit sed nec turpis. Maecenas sit amet finibus erat. Vivamus nunc arcu, vulputate a ullamcorper ac, sollicitudin at sapien. Quisque vel massa scelerisque, facilisis enim ac, suscipit velit. Morbi egestas elit sapien, posuere suscipit eros imperdiet eget. Suspendisse auctor neque id quam bibendum, imperdiet eleifend justo varius. In viverra tellus vitae interdum scelerisque. Nam mollis sagittis scelerisque. Phasellus mauris odio, mattis vitae justo in, dignissim mollis leo. Pellentesque vel elementum eros. In faucibus ipsum nec sapien suscipit, eu egestas velit ultrices. Morbi mi sapien, varius sed venenatis in, ullamcorper sit amet sapien. Morbi porta iaculis urna, nec hendrerit purus bibendum non. Mauris id enim nec nisi posuere mattis sit amet a massa. Quisque ut felis ipsum.\\nUt lacinia ligula lectus, a dignissim leo ultrices quis. Quisque non justo venenatis, tempus metus id, aliquet libero. Vivamus molestie purus leo, feugiat luctus sapien faucibus ac. Cras hendrerit, eros ut dapibus suscipit, lorem dolor condimentum turpis, quis ullamcorper purus tortor eget dolor. Fusce libero ipsum, sagittis id varius vel, vulputate non dolor. Ut tempor tincidunt ligula sit amet convallis. Vestibulum venenatis leo in tellus facilisis, interdum congue arcu consectetur. Mauris dui nibh, tempor eget facilisis sed, elementum sit amet massa.",
+          "modifiers": []
+        },
+        {
+          "_type": "Text",
+          "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
+          "modifiers": [
+            { "_type": "foregroundColor", "foregroundColor": "orange" },
+            { "_type": "font", "font": { "weight": "black", "design": "serif" } }
+          ]
+        }
+    ]
+}
+"""
