@@ -15,15 +15,72 @@ extension [PCModifierData] {
 }
 
 enum Parser {
+    private static func errorViewPayload(error: Error) -> String {
+        let escape: (String) -> String = {
+            $0
+                .replacingOccurrences(of: "\\\"", with: "\"")
+                .replacingOccurrences(of: "\"", with: "\\\"")
+                .replacingOccurrences(of: "\n", with: "\\n")
+        }
+
+        return """
+        {
+          "_type": "Stack",
+          "layout": {
+            "axis": "VStack",
+            "alignment": "leading"
+          },
+          "views": [
+            {
+              "_type": "Text",
+              "text": "\(error.title)",
+              "modifiers": [
+                { "_type": "font", "font": { "style": "callout", "weight": "bold" } },
+                { "_type": "foregroundColor", "foregroundColor": "red" }
+              ],
+            },
+            {
+              "_type": "Text",
+              "text": "\(escape(error.subtitle))",
+              "modifiers": [
+                { "_type": "font", "font": { "style": "callout", "weight": "regular" } },
+                { "_type": "foregroundColor", "foregroundColor": "red" }
+              ],
+            },
+            {
+              "_type": "Text",
+              "text": "\(escape(error.description))",
+              "modifiers": [
+                { "_type": "font", "font": { "style": "footnote" } },
+                { "_type": "foregroundColor", "foregroundColor": "red" }
+              ],
+            }
+          ]
+        }
+        """
+    }
+
     static func view(from json: String) -> some View {
-        let data = json.data(using: .utf8)!
-        return _view(from: data)
+        do {
+            let data = json.data(using: .utf8)!
+            return try _view(from: data)
+        } catch {
+            let json = errorViewPayload(error: error)
+            let data = json.data(using: .utf8)!
+            return try! _view(from: data)
+        }
     }
 
     static func view(from dictionary: [String: AnyCodable]) -> some View {
-        let encoder = JSONEncoder()
-        let json = try! encoder.encode(dictionary)
-        return _view(from: json, dictionary: dictionary)
+        do {
+            let encoder = JSONEncoder()
+            let json = try! encoder.encode(dictionary)
+            return try _view(from: json, dictionary: dictionary)
+        } catch {
+            let json = errorViewPayload(error: error)
+            let data = json.data(using: .utf8)!
+            return try! _view(from: data)
+        }
     }
 
 //    @ModifierBuilder
@@ -36,22 +93,22 @@ enum Parser {
 //    }
 
     @ModifierBuilder
-    static func modifiers(from dictionaries: [PCModifierData]) -> some PCModifier {
+    static func modifiers(from dictionaries: [PCModifierData]) throws -> some PCModifier {
         if let font = dictionaries[FontModifier.name] {
-            let data = try! JSONEncoder().encode(font)
-            try! JSONDecoder().decode(FontModifier.self, from: data)
+            let data = try JSONEncoder().encode(font)
+            try JSONDecoder().decode(FontModifier.self, from: data)
         }
         if let foregroundColor = dictionaries[ForegroundColorModifier.name] {
-            let data = try! JSONEncoder().encode(foregroundColor)
-            try! JSONDecoder().decode(ForegroundColorModifier.self, from: data)
+            let data = try JSONEncoder().encode(foregroundColor)
+            try JSONDecoder().decode(ForegroundColorModifier.self, from: data)
         }
         if let lineLimit = dictionaries[LineLimitModifier.name] {
-            let data = try! JSONEncoder().encode(lineLimit)
-            try! JSONDecoder().decode(LineLimitModifier.self, from: data)
+            let data = try JSONEncoder().encode(lineLimit)
+            try JSONDecoder().decode(LineLimitModifier.self, from: data)
         }
         if let lineLimit = dictionaries[TextAlignModifier.name] {
-            let data = try! JSONEncoder().encode(lineLimit)
-            try! JSONDecoder().decode(TextAlignModifier.self, from: data)
+            let data = try JSONEncoder().encode(lineLimit)
+            try JSONDecoder().decode(TextAlignModifier.self, from: data)
         }
 
 
@@ -64,22 +121,22 @@ enum Parser {
     }
 
     @ViewBuilder
-    static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) -> some View {
-        switch _getTypeName(data: data, dictionary: dictionary) {
-        case "Text": try! JSONDecoder().decode(PCText.self, from: data)
-        case "Stack": try! JSONDecoder().decode(PCStack.self, from: data)
-        case "ScrollView": try! JSONDecoder().decode(PCScrollView.self, from: data)
+    static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) throws -> some View {
+        switch try _getTypeName(data: data, dictionary: dictionary) {
+        case "Text": try JSONDecoder().decode(PCText.self, from: data)
+        case "Stack": try JSONDecoder().decode(PCStack.self, from: data)
+        case "ScrollView": try JSONDecoder().decode(PCScrollView.self, from: data)
         default: fatalError()
         }
     }
 
-    static private func _getTypeName(data: Data, dictionary: [String: AnyCodable]?) -> String {
+    static private func _getTypeName(data: Data, dictionary: [String: AnyCodable]?) throws -> String {
         let jsonObj: [String: AnyCodable]
         if let dictionary {
             jsonObj = dictionary
         } else {
             let decoder = JSONDecoder()
-            jsonObj = try! decoder.decode([String: AnyCodable].self, from: data)
+            jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
         }
 
         return jsonObj["_type"]!.value as! String

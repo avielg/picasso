@@ -23,23 +23,12 @@ struct PCText: View, Codable {
         case text, modifiers
     }
 
-    let text: String
-    let modifiers: [PCModifierData]
+    private let text: String
+    private let modifiers: [PCModifierData]?
 
     var body: some View {
         Text(text)
-            .modifier(Parser.modifiers(from: modifiers))
-    }
-
-    init(text: String, modifiers: [PCModifierData]) {
-        self.text = text
-        self.modifiers = modifiers
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Keys.self)
-        self.text = try container.decode(String.self, forKey: .text)
-        self.modifiers = try container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
+            .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }
 }
 

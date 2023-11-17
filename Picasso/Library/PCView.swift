@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PCView: View {
     let json: [String: AnyCodable]
-    
+
     var body: some View {
         Parser.view(from: json)
     }
@@ -21,10 +21,13 @@ struct AsyncPCView<Content: View>: View {
     let placeholder: Content
 
     @State var json: [String: AnyCodable]?
+    @State var error: Error?
 
     var body: some View {
         if let json {
             PCView(json: json)
+        } else if let error {
+            errorView(error)
         } else {
             placeholder
                 .task {
@@ -32,9 +35,59 @@ struct AsyncPCView<Content: View>: View {
                         let (data, _) = try await URLSession.shared.data(for: urlRequest)
                         json = try JSONDecoder().decode([String: AnyCodable].self, from: data)
                     } catch {
-                        assertionFailure()
+                        self.error = error
                     }
                 }
         }
+    }
+}
+
+extension Error {
+    var debugDump: String {
+        var value: String = ""
+        dump(self, to: &value)
+        return value
+    }
+
+    var title: String {
+        if let codableError = self as? CodableError {
+            switch codableError {
+            case .decodeError: return "Decode Error"
+            case .encodeError: return "Encode Error"
+            }
+        }
+        return "Error"
+    }
+
+    var subtitle: String {
+        if let codableError = self as? CodableError {
+            switch codableError {
+            case .decodeError(let value): return "\(value)"
+            case .encodeError(let value): return "\(value)"
+            }
+        }
+        return localizedDescription
+    }
+
+    var description: String {
+        if let codableError = self as? CodableError { return "" }
+        return debugDump
+    }
+}
+
+extension AsyncPCView {
+    func errorView(_ error: some Error) -> some View {
+        VStack(alignment: .leading) {
+            Text(error.title).bold()
+            Text(error.subtitle)
+            Text(error.description).font(.caption)
+        }
+        .foregroundStyle(Color.white)
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(Color(.systemRed))
+        }
+        .padding()
     }
 }

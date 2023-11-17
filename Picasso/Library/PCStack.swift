@@ -11,8 +11,8 @@ import AnyCodable
 func stackExample() -> some View {
     VStack {
         Text("STACK")
-        Parser.view(from: stack_json1)
-        Parser.view(from: stack_json2)
+        try! Parser.view(from: stack_json1)
+        try! Parser.view(from: stack_json2)
     }
 }
 
@@ -42,32 +42,37 @@ extension PCViewData: Identifiable {
 struct PCStack: View, Codable {
     private let layout: any Layout
     private let views: [PCViewData]
+    private let modifiers: [PCModifierData]
 
-    enum Keys: CodingKey { case layout, views }
+    enum Keys: CodingKey { case layout, views, modifiers }
 
     var body: some View {
         AnyLayout(layout) {
             ForEach(views) {
                 Parser.view(from: $0)
             }
+            .modifier(try! Parser.modifiers(from: modifiers))
         }
     }
 
-    init(layout: any Layout, views: [PCViewData]) {
+    init(layout: any Layout, views: [PCViewData], modifiers: [PCModifierData]) {
         self.layout = layout
         self.views = views
+        self.modifiers = modifiers
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
         try container.encode(views, forKey: .views)
         try container.encode(PCLayoutData.create(from: layout), forKey: .layout)
+        try container.encode(modifiers, forKey: .modifiers)
     }
 
     init(from decoder: Decoder) throws {
         let container = try! decoder.container(keyedBy: Keys.self)
         
         views = try! container.decode([PCViewData].self, forKey: .views)
+        modifiers = try! container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
 
         let layoutData = try! container.decode(PCLayoutData.self, forKey: .layout)
         let alignment = layoutData.alignment ?? .center
