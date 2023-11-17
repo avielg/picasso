@@ -11,8 +11,8 @@ import AnyCodable
 func stackExample() -> some View {
     VStack {
         Text("STACK")
-        try! Parser.view(from: stack_json1)
-        try! Parser.view(from: stack_json2)
+        Parser.view(from: stack_json1)
+        Parser.view(from: stack_json2)
     }
 }
 
