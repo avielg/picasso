@@ -42,39 +42,6 @@ struct AsyncPCView<Content: View>: View {
     }
 }
 
-extension Error {
-    var debugDump: String {
-        var value: String = ""
-        dump(self, to: &value)
-        return value
-    }
-
-    var title: String {
-        if let codableError = self as? CodableError {
-            switch codableError {
-            case .decodeError: return "Decode Error"
-            case .encodeError: return "Encode Error"
-            }
-        }
-        return "Error"
-    }
-
-    var subtitle: String {
-        if let codableError = self as? CodableError {
-            switch codableError {
-            case .decodeError(let value): return "\(value)"
-            case .encodeError(let value): return "\(value)"
-            }
-        }
-        return localizedDescription
-    }
-
-    var description: String {
-        if let codableError = self as? CodableError { return "" }
-        return debugDump
-    }
-}
-
 extension AsyncPCView {
     func errorView(_ error: some Error) -> some View {
         VStack(alignment: .leading) {

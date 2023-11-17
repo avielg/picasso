@@ -4,7 +4,8 @@
         {
             "_type": "Text", "text": "Modifiers on the Text views:",
             "modifiers": [
-              { "_type": "font", "font": { "style": "title" } }
+              { "_type": "font", "font": { "style": "title" } },
+              { "_type": "foregroundColor", "foregroundColor": "primary" },
             ]
         },
         {
@@ -43,12 +44,16 @@
         {
             "_type": "Text", "text": "Modifiers on the ScrollView:",
             "modifiers": [
-              { "_type": "font", "font": { "style": "title" } }
+              { "_type": "font", "font": { "style": "title" } },
+              { "_type": "foregroundColor", "foregroundColor": "primary" },
             ]
         },
         {
             "_type": "Stack",
-            "layout": { "axis": "vertical" },
+            "layout": {
+                "axis": "VStack",
+                "alignment": "leading"
+            },
             "views": [
                 {
                     "_type": "Text",

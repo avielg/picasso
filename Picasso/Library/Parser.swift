@@ -15,59 +15,14 @@ extension [PCModifierData] {
 }
 
 enum Parser {
-    private static func errorViewPayload(error: Error) -> String {
-        let escape: (String) -> String = {
-            $0
-                .replacingOccurrences(of: "\\\"", with: "\"")
-                .replacingOccurrences(of: "\"", with: "\\\"")
-                .replacingOccurrences(of: "\n", with: "\\n")
-        }
-
-        return """
-        {
-          "_type": "Stack",
-          "layout": {
-            "axis": "VStack",
-            "alignment": "leading"
-          },
-          "views": [
-            {
-              "_type": "Text",
-              "text": "\(error.title)",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "callout", "weight": "bold" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
-            },
-            {
-              "_type": "Text",
-              "text": "\(escape(error.subtitle))",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "callout", "weight": "regular" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
-            },
-            {
-              "_type": "Text",
-              "text": "\(escape(error.description))",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "footnote" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
-            }
-          ]
-        }
-        """
-    }
+    
 
     static func view(from json: String) -> some View {
         do {
             let data = json.data(using: .utf8)!
             return try _view(from: data)
         } catch {
-            let json = errorViewPayload(error: error)
-            let data = json.data(using: .utf8)!
-            return try! _view(from: data)
+            return try! _view(from: error.viewJSONData)
         }
     }
 
@@ -77,9 +32,7 @@ enum Parser {
             let json = try! encoder.encode(dictionary)
             return try _view(from: json, dictionary: dictionary)
         } catch {
-            let json = errorViewPayload(error: error)
-            let data = json.data(using: .utf8)!
-            return try! _view(from: data)
+            return try! _view(from: error.viewJSONData)
         }
     }
 

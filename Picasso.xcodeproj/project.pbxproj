@@ -28,6 +28,7 @@
 		30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C242B06DFCB0092D7ED /* PCScrollView.swift */; };
 		30F59C272B06E21A0092D7ED /* Example2.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C262B06E21A0092D7ED /* Example2.json */; };
 		30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */; };
+		30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2D2B07E2F10092D7ED /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		30F59C242B06DFCB0092D7ED /* PCScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCScrollView.swift; sourceTree = "<group>"; };
 		30F59C262B06E21A0092D7ED /* Example2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example2.json; sourceTree = "<group>"; };
 		30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollviewExamples.swift; sourceTree = "<group>"; };
+		30F59C2D2B07E2F10092D7ED /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
 				301C83912B04686A005377D1 /* Codable */,
 				30F59C222B06D8D50092D7ED /* PCView.swift */,
+				30F59C2D2B07E2F10092D7ED /* Errors.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */,
 				301C83952B0468B7005377D1 /* CodableFont.swift in Sources */,
 				3091A29B2AFFDD95002F8FFD /* PCText.swift in Sources */,
+				30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */,
 				3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */,
 				3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */,
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,
