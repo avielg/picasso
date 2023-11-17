@@ -11,7 +11,9 @@ struct ContentView: View {
 
     let request = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!)
     let requestScrollView = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example2.json")!)
-    
+    let requestErrorDecode = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorDecode.json")!)
+    let requestErrorCorrupt = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorCorrupt.json")!)
+
     func label(_ title: String, subtitle: String) -> some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -72,6 +74,20 @@ struct ContentView: View {
                         AsyncPCView(urlRequest: requestScrollView, placeholder: Color.clear)
                     } label: {
                         label("ScrollView", subtitle: "No Placeholder")
+                    }
+                }
+
+                Section("Error") {
+                    NavigationLink {
+                        AsyncPCView(urlRequest: requestErrorDecode, placeholder: Color.clear)
+                    } label: {
+                        label("Decode Issue", subtitle: "No Placeholder")
+                    }
+
+                    NavigationLink {
+                        AsyncPCView(urlRequest: requestErrorCorrupt, placeholder: Color.clear)
+                    } label: {
+                        label("Corrupted JSON", subtitle: "No Placeholder")
                     }
                 }
             }

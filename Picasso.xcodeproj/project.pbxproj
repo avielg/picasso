@@ -29,6 +29,7 @@
 		30F59C272B06E21A0092D7ED /* Example2.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C262B06E21A0092D7ED /* Example2.json */; };
 		30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */; };
 		30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2D2B07E2F10092D7ED /* Errors.swift */; };
+		30F59C302B07EB150092D7ED /* ExampleErrorDecode.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C2F2B07EB150092D7ED /* ExampleErrorDecode.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		30F59C262B06E21A0092D7ED /* Example2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example2.json; sourceTree = "<group>"; };
 		30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollviewExamples.swift; sourceTree = "<group>"; };
 		30F59C2D2B07E2F10092D7ED /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		30F59C2F2B07EB150092D7ED /* ExampleErrorDecode.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExampleErrorDecode.json; sourceTree = "<group>"; };
+		30F59C312B07EC0F0092D7ED /* ExampleErrorCorrupt.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExampleErrorCorrupt.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +188,9 @@
 		30F59C2A2B06E2710092D7ED /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				30F59C312B07EC0F0092D7ED /* ExampleErrorCorrupt.json */,
 				30F59C202B06D83A0092D7ED /* Example.json */,
+				30F59C2F2B07EB150092D7ED /* ExampleErrorDecode.json */,
 				30F59C262B06E21A0092D7ED /* Example2.json */,
 			);
 			path = Remote;
@@ -288,6 +293,7 @@
 				30F59C212B06D83A0092D7ED /* Example.json in Resources */,
 				3091A2942AFFDD68002F8FFD /* Preview Assets.xcassets in Resources */,
 				30F59C272B06E21A0092D7ED /* Example2.json in Resources */,
+				30F59C302B07EB150092D7ED /* ExampleErrorDecode.json in Resources */,
 				3091A2902AFFDD68002F8FFD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

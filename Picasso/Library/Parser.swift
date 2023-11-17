@@ -92,6 +92,9 @@ enum Parser {
             jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
         }
 
-        return jsonObj["_type"]!.value as! String
+        if let type = jsonObj["_type"]?.value as? String {
+            return type
+        }
+        throw CodableError.decodeError(value: "\(jsonObj)")
     }
 }
