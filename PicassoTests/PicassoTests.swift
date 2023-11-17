@@ -35,7 +35,7 @@ struct EncodeExample {
     }
 
     static var text3: PCText {
-        PCText(text: "Check Simple", modifiers: [])
+        PCText(text: "Check Simple")
     }
 
     static var stack1: PCStack {

@@ -30,6 +30,11 @@ struct PCText: View, Codable {
         Text(text)
             .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }
+
+    init(text: String, modifiers: [PCModifierData]? = nil) {
+        self.text = text
+        self.modifiers = modifiers
+    }
 }
 
 struct PCText_Previews: PreviewProvider {

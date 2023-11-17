@@ -20,7 +20,7 @@ struct PCScrollView: View, Codable {
         }
     }
 
-    init(views: [PCViewData], modifiers: [PCModifierData]) {
+    init(views: [PCViewData], modifiers: [PCModifierData]? = nil) {
         self.views = views
         self.modifiers = modifiers
     }

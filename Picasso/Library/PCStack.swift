@@ -42,7 +42,7 @@ extension PCViewData: Identifiable {
 struct PCStack: View, Codable {
     private let layout: any Layout
     private let views: [PCViewData]
-    private let modifiers: [PCModifierData]
+    private let modifiers: [PCModifierData]?
 
     enum Keys: CodingKey { case layout, views, modifiers }
 
@@ -51,11 +51,11 @@ struct PCStack: View, Codable {
             ForEach(views) {
                 Parser.view(from: $0)
             }
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(try! Parser.modifiers(from: modifiers ?? []))
         }
     }
 
-    init(layout: any Layout, views: [PCViewData], modifiers: [PCModifierData]) {
+    init(layout: any Layout, views: [PCViewData], modifiers: [PCModifierData]? = nil) {
         self.layout = layout
         self.views = views
         self.modifiers = modifiers
@@ -69,12 +69,12 @@ struct PCStack: View, Codable {
     }
 
     init(from decoder: Decoder) throws {
-        let container = try! decoder.container(keyedBy: Keys.self)
+        let container = try decoder.container(keyedBy: Keys.self)
         
-        views = try! container.decode([PCViewData].self, forKey: .views)
-        modifiers = try! container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
+        views = try container.decode([PCViewData].self, forKey: .views)
+        modifiers = try container.decodeIfPresent([PCModifierData].self, forKey: .modifiers) ?? []
 
-        let layoutData = try! container.decode(PCLayoutData.self, forKey: .layout)
+        let layoutData = try container.decode(PCLayoutData.self, forKey: .layout)
         let alignment = layoutData.alignment ?? .center
         switch layoutData.axis {
         case "VStack":
