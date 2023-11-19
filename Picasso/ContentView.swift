@@ -27,12 +27,15 @@ struct ContentView: View {
             Form {
                 Section {
                     NavigationLink {
-                        VStack {
-                            shapesExample()
-                            textExample()
-                            stackExample()
+                        ScrollView {
+                            VStack {
+                                imagesExample()
+                                shapesExample()
+                                textExample()
+                                stackExample()
+                            }
+                            .padding()
                         }
-                        .padding()
                     } label: {
                         Text("Local")
                     }

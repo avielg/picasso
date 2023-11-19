@@ -83,6 +83,7 @@ enum Parser {
         case "Stack": try JSONDecoder().decode(PCStack.self, from: data)
         case "ScrollView": try JSONDecoder().decode(PCScrollView.self, from: data)
         case "Shape": try JSONDecoder().decode(PCShapeView.self, from: data)
+        case "Image": try JSONDecoder().decode(PCAsyncImage.self, from: data)
         default: fatalError()
         }
     }
