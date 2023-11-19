@@ -47,3 +47,23 @@ struct TextAlignModifier: PCModifier {
         content.multilineTextAlignment(alignment)
     }
 }
+
+struct PaddingModifier: PCModifier {
+    static var name: String { "padding" }
+
+    let top: CGFloat?
+    let bottom: CGFloat?
+    let leading: CGFloat?
+    let trailing: CGFloat?
+
+    func body(content: Content) -> some View {
+        content.padding(
+            EdgeInsets(
+                top: top ?? 0,
+                leading: leading ?? 0,
+                bottom: bottom ?? 0,
+                trailing: trailing ?? 0
+            )
+        )
+    }
+}

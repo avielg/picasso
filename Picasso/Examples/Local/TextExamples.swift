@@ -12,7 +12,8 @@ let text_json1 = """
   "_type": "Text",
   "text": "Hello One",
   "modifiers": [
-    { "_type": "font", "font": { "weight": "bold", "style": "title" } }
+    { "_type": "font", "font": { "weight": "bold", "style": "title" } },
+    { "_type": "padding", "top": 30, "leading": 100 },
   ]
 }
 """

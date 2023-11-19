@@ -59,11 +59,14 @@ enum Parser {
             let data = try JSONEncoder().encode(lineLimit)
             try JSONDecoder().decode(LineLimitModifier.self, from: data)
         }
-        if let lineLimit = dictionaries[TextAlignModifier.name] {
-            let data = try JSONEncoder().encode(lineLimit)
+        if let textAlign = dictionaries[TextAlignModifier.name] {
+            let data = try JSONEncoder().encode(textAlign)
             try JSONDecoder().decode(TextAlignModifier.self, from: data)
         }
-
+        if let padding = dictionaries[PaddingModifier.name] {
+            let data = try JSONEncoder().encode(padding)
+            try JSONDecoder().decode(PaddingModifier.self, from: data)
+        }
 
         //        switch name {
         //        case "font": try! JSONDecoder().decode(FontModifier.self, from: data)
