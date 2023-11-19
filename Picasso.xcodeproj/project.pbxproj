@@ -30,6 +30,9 @@
 		30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */; };
 		30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C2D2B07E2F10092D7ED /* Errors.swift */; };
 		30F59C302B07EB150092D7ED /* ExampleErrorDecode.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C2F2B07EB150092D7ED /* ExampleErrorDecode.json */; };
+		30F59C3A2B0AABA00092D7ED /* PCShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C392B0AABA00092D7ED /* PCShape.swift */; };
+		30F59C3C2B0AC4370092D7ED /* ShapeExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C3B2B0AC4370092D7ED /* ShapeExamples.swift */; };
+		30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C3D2B0AC4830092D7ED /* CodableShapeStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		30F59C2D2B07E2F10092D7ED /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		30F59C2F2B07EB150092D7ED /* ExampleErrorDecode.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExampleErrorDecode.json; sourceTree = "<group>"; };
 		30F59C312B07EC0F0092D7ED /* ExampleErrorCorrupt.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExampleErrorCorrupt.json; sourceTree = "<group>"; };
+		30F59C392B0AABA00092D7ED /* PCShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCShape.swift; sourceTree = "<group>"; };
+		30F59C3B2B0AC4370092D7ED /* ShapeExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeExamples.swift; sourceTree = "<group>"; };
+		30F59C3D2B0AC4830092D7ED /* CodableShapeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableShapeStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 				301C838F2B04684C005377D1 /* CodableConformance.swift */,
 				301C83922B046874005377D1 /* CodableColor.swift */,
 				301C83942B0468B7005377D1 /* CodableFont.swift */,
+				30F59C3D2B0AC4830092D7ED /* CodableShapeStyle.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -116,6 +123,7 @@
 				3091A29A2AFFDD95002F8FFD /* PCText.swift */,
 				3091A29C2B00882C002F8FFD /* PCStack.swift */,
 				30F59C242B06DFCB0092D7ED /* PCScrollView.swift */,
+				30F59C392B0AABA00092D7ED /* PCShape.swift */,
 				3091A2A12B01B3C9002F8FFD /* Parser.swift */,
 				301C838B2B0460CC005377D1 /* Modifiers.swift */,
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
@@ -181,6 +189,7 @@
 				3054A5182B05157500F006E6 /* TextExamples.swift */,
 				3054A51A2B0515BB00F006E6 /* StackExamples.swift */,
 				30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */,
+				30F59C3B2B0AC4370092D7ED /* ShapeExamples.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -313,9 +322,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F59C3A2B0AABA00092D7ED /* PCShape.swift in Sources */,
 				301C83902B04684C005377D1 /* CodableConformance.swift in Sources */,
 				30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */,
 				301C83952B0468B7005377D1 /* CodableFont.swift in Sources */,
+				30F59C3C2B0AC4370092D7ED /* ShapeExamples.swift in Sources */,
 				3091A29B2AFFDD95002F8FFD /* PCText.swift in Sources */,
 				30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */,
 				3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */,
@@ -326,6 +337,7 @@
 				30F59C232B06D8D50092D7ED /* PCView.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
+				30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
 				3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */,

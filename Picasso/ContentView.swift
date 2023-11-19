@@ -28,6 +28,7 @@ struct ContentView: View {
                 Section {
                     NavigationLink {
                         VStack {
+                            shapesExample()
                             textExample()
                             stackExample()
                         }
