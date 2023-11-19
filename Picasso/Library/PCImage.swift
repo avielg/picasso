@@ -7,12 +7,24 @@
 
 import SwiftUI
 
+extension ContentMode: AllCasesProvider {}
+
 struct PCAsyncImage: View, Codable {
     let url: URL?
     let scale: CGFloat
 
+    let mode: ContentMode?
+
     var body: some View {
-        AsyncImage(url: url, scale: scale)
+        AsyncImage(url: url, scale: scale) { img in
+            if let mode {
+                img.resizable().aspectRatio(contentMode: mode)
+            } else {
+                img
+            }
+        } placeholder: {
+            Color.clear
+        }
     }
 }
 
@@ -40,5 +52,5 @@ func imagesExample() -> some View {
 }
 
 #Preview {
-    PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1)
+    imagesExample()
 }
