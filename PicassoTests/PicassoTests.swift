@@ -26,43 +26,39 @@ struct EncodeExample {
         .jsonData().dictionary()
 
 
-    static var text1: PCText {
-        PCText(text: "Check", modifiers: [modifier1, modifier2])
-    }
+    static var text1 = PCText(text: "Check", modifiers: [modifier1, modifier2])
 
-    static var text2: PCText {
-        PCText(text: "Check Simple", modifiers: [modifier3, modifier4])
-    }
+    static var text2 = PCText(text: "Check Simple", modifiers: [modifier3, modifier4])
 
-    static var text3: PCText {
-        PCText(text: "Check Simple")
-    }
+    static var text3 = PCText(text: "Check Simple")
 
-    static var stack1: PCStack {
+    static var stack1 =
         PCStack(layout: VStackLayout(alignment: .listRowSeparatorLeading, spacing: 20), views: [
             try! text1.jsonData().dictionary(),
             try! text2.jsonData().dictionary()
         ])
-    }
 
-    static var stack2: PCStack {
+    static var stack2 =
         PCStack(layout: HStackLayout(alignment: .firstTextBaseline), views: [
             try! text1.jsonData().dictionary(),
         ])
-    }
 
-    static var stack3: PCStack {
+    static var stack3 =
         PCStack(layout: ZStackLayout(alignment: .bottomTrailing), views: [
             try! text1.jsonData().dictionary(),
         ])
-    }
 
-    static var scrollview1: PCScrollView {
+    static var scrollview1 =
         PCScrollView(views: [
             try! text1.jsonData().dictionary(),
             try! text2.jsonData().dictionary()
         ])
-    }
+
+    static var image1 = 
+        PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill)
+    
+    static var image2 =
+        PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil)
 }
 
 
@@ -97,7 +93,9 @@ final class PicassoTests: XCTestCase {
         let viewJsons = [
             text_json1, text_json2, text_json3, text_json4,
             stack_json1, stack_json2,
-            scrollview_example1
+            scrollview_example1,
+            shape_json1,
+            image_json1, image_json2
         ]
         for json in viewJsons {
             XCTAssertNoThrow(Parser.view(from: json))
@@ -115,7 +113,7 @@ final class PicassoTests: XCTestCase {
         let jsonObjFromView = try dataFromView.dictionary()
 
         // Dictionary to Data
-        let dataFromJsonObj = try! encoder.encode(jsonObjFromView)
+        let dataFromJsonObj = try encoder.encode(jsonObjFromView)
 
         // Data to view
         let viewFromData = try decoder.decode(V.self, from: dataFromView)
@@ -136,6 +134,9 @@ final class PicassoTests: XCTestCase {
             try test(view: view)
         }
         for view in [EncodeExample.scrollview1] {
+            try test(view: view)
+        }
+        for view in [EncodeExample.image1, EncodeExample.image2] {
             try test(view: view)
         }
     }

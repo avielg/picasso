@@ -11,12 +11,12 @@ extension ContentMode: AllCasesProvider {}
 
 struct PCAsyncImage: View, Codable {
     let url: URL?
-    let scale: CGFloat
+    let scale: CGFloat?
 
     let mode: ContentMode?
 
     var body: some View {
-        AsyncImage(url: url, scale: scale) { img in
+        AsyncImage(url: url, scale: scale ?? 1) { img in
             if let mode {
                 img.resizable().aspectRatio(contentMode: mode)
             } else {
