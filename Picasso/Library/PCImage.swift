@@ -17,14 +17,17 @@ struct PCAsyncImage: View, Codable {
     private let modifiers: [PCModifierData]?
 
     var body: some View {
-        AsyncImage(url: url, scale: scale ?? 1) { img in
-            if let mode {
-                img.resizable().aspectRatio(contentMode: mode)
-            } else {
-                img
+        AsyncImage(url: url, scale: scale ?? 1, transaction: .init(animation: .default)) { phase in
+            switch phase {
+            case .success(let image):
+                if let mode {
+                    image.resizable().aspectRatio(contentMode: mode)
+                } else {
+                    image
+                }
+            default:
+                Color.clear
             }
-        } placeholder: {
-            Color.clear
         }
         .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }

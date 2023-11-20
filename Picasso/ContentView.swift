@@ -95,7 +95,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("Picasso Example")
+            .navigationTitle("Examples")
         }
     }
 }

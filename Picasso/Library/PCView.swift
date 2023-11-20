@@ -24,6 +24,12 @@ struct AsyncPCView<Content: View>: View {
     @State var error: Error?
 
     var body: some View {
+        content
+            .animation(.spring, value: json)
+    }
+
+    @ViewBuilder
+    var content: some View {
         if let json {
             PCView(json: json)
         } else if let error {

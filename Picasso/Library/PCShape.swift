@@ -26,7 +26,7 @@ struct PCShapeView: View, Codable {
 struct PCShape: Shape, Codable {
     
     enum ShapeType: Codable {
-        case rectangle(cornerRadius: CGFloat)
+        case rectangle(cornerRadius: CGFloat?)
         case circle
         case capsule(style: RoundedCornerStyle?)
     }
@@ -35,7 +35,7 @@ struct PCShape: Shape, Codable {
 
     func path(in rect: CGRect) -> Path {
         switch type {
-        case .rectangle(let cornerRadius): RoundedRectangle(cornerRadius: cornerRadius).path(in: rect)
+        case .rectangle(let cornerRadius): RoundedRectangle(cornerRadius: cornerRadius ?? 0).path(in: rect)
         case .circle: Circle().path(in: rect)
         case .capsule(let style): Capsule(style: style ?? .continuous).path(in: rect)
         }
