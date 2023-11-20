@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct PCShapeView: View, Codable {
-    let shape: PCShape
-    let fill: ShapePaint?
-    let stroke: ShapePaint?
-    let lineWidth: CGFloat?
+    private let shape: PCShape
+    private let fill: ShapePaint?
+    private let stroke: ShapePaint?
+    private let lineWidth: CGFloat?
+
+    private let modifiers: [PCModifierData]?
 
     var body: some View {
         shape
             .stroke(stroke?.content ?? AnyShapeStyle(Color.clear), lineWidth: lineWidth ?? 0)
             .background(shape.fill(fill?.content ?? AnyShapeStyle(Color.clear)))
+            .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }
 }
 
@@ -28,7 +31,7 @@ struct PCShape: Shape, Codable {
         case capsule(style: RoundedCornerStyle?)
     }
 
-    let type: ShapeType
+    private let type: ShapeType
 
     func path(in rect: CGRect) -> Path {
         switch type {

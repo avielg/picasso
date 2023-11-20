@@ -67,3 +67,23 @@ struct PaddingModifier: PCModifier {
         )
     }
 }
+
+struct FrameModifier: PCModifier {
+    static var name: String { "frame" }
+
+    let width: CGFloat?
+    let height: CGFloat?
+    let minWidth: CGFloat?
+    let idealWidth: CGFloat?
+    let maxWidth: CGFloat?
+    let minHeight: CGFloat?
+    let idealHeight: CGFloat?
+    let maxHeight: CGFloat?
+    let alignment: Alignment?
+
+    func body(content: Content) -> some View {
+        content
+            .frame(width: width, height: height, alignment: alignment ?? .center)
+            .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight, alignment: alignment ?? .center)
+    }
+}

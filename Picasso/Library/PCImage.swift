@@ -10,10 +10,11 @@ import SwiftUI
 extension ContentMode: AllCasesProvider {}
 
 struct PCAsyncImage: View, Codable {
-    let url: URL?
-    let scale: CGFloat?
+    private let url: URL?
+    private let scale: CGFloat?
+    private let mode: ContentMode?
 
-    let mode: ContentMode?
+    private let modifiers: [PCModifierData]?
 
     var body: some View {
         AsyncImage(url: url, scale: scale ?? 1) { img in
@@ -25,6 +26,7 @@ struct PCAsyncImage: View, Codable {
         } placeholder: {
             Color.clear
         }
+        .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }
 }
 

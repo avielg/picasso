@@ -67,6 +67,10 @@ enum Parser {
             let data = try JSONEncoder().encode(padding)
             try JSONDecoder().decode(PaddingModifier.self, from: data)
         }
+        if let frameModifier = dictionaries[FrameModifier.name] {
+            let data = try JSONEncoder().encode(frameModifier)
+            try JSONDecoder().decode(FrameModifier.self, from: data)
+        }
 
         //        switch name {
         //        case "font": try! JSONDecoder().decode(FontModifier.self, from: data)

@@ -17,14 +17,20 @@ let shape_json1 = """
       "shape": { "type": { "circle": { } } },
       "fill": { "color": { "value": "red" } },
       "stroke": { "color": { "value": "primary" } },
-      "lineWidth": 3
+      "lineWidth": 3,
+      "modifiers": [
+        { "_type": "frame", "height": 32 },
+      ],
     },
     {
       "_type": "Shape",
       "shape": { "type": { "rectangle": { "cornerRadius": 40 } } },
       "fill": { "color": { "value": "orange" } },
       "stroke": { "color": { "value": "teal" } },
-      "lineWidth": 3
+      "lineWidth": 3,
+      "modifiers": [
+        { "_type": "frame", "minHeight": 50 },
+      ],
     },
     {
       "_type": "Stack",
@@ -40,6 +46,9 @@ let shape_json1 = """
             ],
             "spread": { "linear": { "start": "leading", "end": "trailing" } }
           } },
+          "modifiers": [
+            { "_type": "frame", "width": 180 },
+          ],
         },
         {
           "_type": "Text",
