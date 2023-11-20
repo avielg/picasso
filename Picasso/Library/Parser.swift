@@ -67,9 +67,13 @@ enum Parser {
             let data = try encoder.encode(padding)
             try decoder.decode(PaddingModifier.self, from: data)
         }
-        if let frameModifier = dictionaries[FrameModifier.name] {
-            let data = try encoder.encode(frameModifier)
+        if let frame = dictionaries[FrameModifier.name] {
+            let data = try encoder.encode(frame)
             try decoder.decode(FrameModifier.self, from: data)
+        }
+        if let background = dictionaries[BackgroundModifier.name] {
+            let data = try encoder.encode(background)
+            try decoder.decode(BackgroundModifier.self, from: data)
         }
 
         //        switch name {

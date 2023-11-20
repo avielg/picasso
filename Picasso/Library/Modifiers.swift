@@ -87,3 +87,15 @@ struct FrameModifier: PCModifier {
             .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight, alignment: alignment ?? .center)
     }
 }
+
+struct BackgroundModifier: PCModifier {
+    static var name: String { "background" }
+
+    let content: PCViewData
+    let alignment: Alignment?
+
+    func body(content: Content) -> some View {
+        content.background(Parser.view(from: self.content), alignment: alignment ?? .center)
+    }
+
+}

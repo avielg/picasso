@@ -33,33 +33,30 @@ let shape_json1 = """
       ],
     },
     {
-      "_type": "Stack",
-      "layout": { "axis": "ZStack" },
-      "views": [
+      "_type": "Text",
+      "text": "Press Here!",
+      "modifiers": [
+        { "_type": "font", "font": { "weight": "bold", "style": "title" } },
+        { "_type": "foregroundColor", "foregroundColor": "#432b8b66" },
+        { "_type": "padding", "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
         {
-          "_type": "Shape",
-          "shape": { "type": { "capsule": { "style": "continuous" } } },
-          "fill": { "gradient": {
-            "gradient": [
-              { "color": "blue", "location": 0 },
-              { "color": "red", "location": 1 },
-            ],
-            "spread": { "linear": { "start": "leading", "end": "trailing" } }
-          } },
-          "modifiers": [
-            { "_type": "frame", "width": 180 },
-          ],
+          "_type": "background", 
+          "content": {
+            "_type": "Shape",
+            "shape": { "type": { "capsule": { "style": "continuous" } } },
+            "fill": { "gradient": {
+              "gradient": [
+                { "color": "blue", "location": 0 },
+                { "color": "red", "location": 1 },
+              ],
+              "spread": { "linear": { "start": "leading", "end": "trailing" } }
+            } },
+          },
         },
-        {
-          "_type": "Text",
-          "text": "Press Here!",
-          "modifiers": [
-            { "_type": "font", "font": { "weight": "bold", "style": "title" } },
-            { "_type": "foregroundColor", "foregroundColor": "#432b8b66" }
-          ]
-        },
-      ],
-    }
+      ]
+    },
   ],
 }
 """
+
+//        { "_type": "frame", "width": 180 },
