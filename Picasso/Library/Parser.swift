@@ -15,7 +15,8 @@ extension [PCModifierData] {
 }
 
 enum Parser {
-    
+    static let encoder = JSONEncoder()
+    static let decoder = JSONDecoder()
 
     static func view(from json: String) -> some View {
         do {
@@ -28,7 +29,6 @@ enum Parser {
 
     static func view(from dictionary: [String: AnyCodable]) -> some View {
         do {
-            let encoder = JSONEncoder()
             let json = try! encoder.encode(dictionary)
             return try _view(from: json, dictionary: dictionary)
         } catch {
@@ -48,34 +48,34 @@ enum Parser {
     @ModifierBuilder
     static func modifiers(from dictionaries: [PCModifierData]) throws -> some PCModifier {
         if let font = dictionaries[FontModifier.name] {
-            let data = try JSONEncoder().encode(font)
-            try JSONDecoder().decode(FontModifier.self, from: data)
+            let data = try encoder.encode(font)
+            try decoder.decode(FontModifier.self, from: data)
         }
         if let foregroundColor = dictionaries[ForegroundColorModifier.name] {
-            let data = try JSONEncoder().encode(foregroundColor)
-            try JSONDecoder().decode(ForegroundColorModifier.self, from: data)
+            let data = try encoder.encode(foregroundColor)
+            try decoder.decode(ForegroundColorModifier.self, from: data)
         }
         if let lineLimit = dictionaries[LineLimitModifier.name] {
-            let data = try JSONEncoder().encode(lineLimit)
-            try JSONDecoder().decode(LineLimitModifier.self, from: data)
+            let data = try encoder.encode(lineLimit)
+            try decoder.decode(LineLimitModifier.self, from: data)
         }
         if let textAlign = dictionaries[TextAlignModifier.name] {
-            let data = try JSONEncoder().encode(textAlign)
-            try JSONDecoder().decode(TextAlignModifier.self, from: data)
+            let data = try encoder.encode(textAlign)
+            try decoder.decode(TextAlignModifier.self, from: data)
         }
         if let padding = dictionaries[PaddingModifier.name] {
-            let data = try JSONEncoder().encode(padding)
-            try JSONDecoder().decode(PaddingModifier.self, from: data)
+            let data = try encoder.encode(padding)
+            try decoder.decode(PaddingModifier.self, from: data)
         }
         if let frameModifier = dictionaries[FrameModifier.name] {
-            let data = try JSONEncoder().encode(frameModifier)
-            try JSONDecoder().decode(FrameModifier.self, from: data)
+            let data = try encoder.encode(frameModifier)
+            try decoder.decode(FrameModifier.self, from: data)
         }
 
         //        switch name {
-        //        case "font": try! JSONDecoder().decode(FontModifier.self, from: data)
-        //        case "foregroundColor": try! JSONDecoder().decode(ForegroundColorModifier.self, from: data)
-        ////        case "concat": try! JSONDecoder().decode(ConcatModifier.self, from: data)
+        //        case "font": try! decoder.decode(FontModifier.self, from: data)
+        //        case "foregroundColor": try! decoder.decode(ForegroundColorModifier.self, from: data)
+        ////        case "concat": try! decoder.decode(ConcatModifier.self, from: data)
         //        default: EmptyModifier()
         //        }
     }
@@ -83,11 +83,11 @@ enum Parser {
     @ViewBuilder
     static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) throws -> some View {
         switch try _getTypeName(data: data, dictionary: dictionary) {
-        case "Text": try JSONDecoder().decode(PCText.self, from: data)
-        case "Stack": try JSONDecoder().decode(PCStack.self, from: data)
-        case "ScrollView": try JSONDecoder().decode(PCScrollView.self, from: data)
-        case "Shape": try JSONDecoder().decode(PCShapeView.self, from: data)
-        case "Image": try JSONDecoder().decode(PCAsyncImage.self, from: data)
+        case "Text": try decoder.decode(PCText.self, from: data)
+        case "Stack": try decoder.decode(PCStack.self, from: data)
+        case "ScrollView": try decoder.decode(PCScrollView.self, from: data)
+        case "Shape": try decoder.decode(PCShapeView.self, from: data)
+        case "Image": try decoder.decode(PCAsyncImage.self, from: data)
         default: fatalError()
         }
     }
@@ -97,7 +97,6 @@ enum Parser {
         if let dictionary {
             jsonObj = dictionary
         } else {
-            let decoder = JSONDecoder()
             jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
         }
 
