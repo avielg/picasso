@@ -11,6 +11,18 @@ import SwiftUI
 
 @testable import Picasso
 
+extension [PCModifiersData] {
+    var merged: PCModifiersData {
+        var result = PCModifiersData()
+        for dict in self {
+            for (key, value) in dict {
+                result[key] = value
+            }
+        }
+        return result
+    }
+}
+
 struct EncodeExample {
     static var modifier1: PCModifiersData = try! FontModifier(
         font: .system(.footnote, design: .monospaced, weight: .light)
@@ -26,25 +38,25 @@ struct EncodeExample {
         .jsonData().dictionary()
 
 
-    static var text1 = PCText(text: "Check", modifiers: [modifier1, modifier2])
+    static var text1 = PCText(text: "Check", modifiers: [modifier1, modifier2].merged)
 
-    static var text2 = PCText(text: "Check Simple", modifiers: [modifier3, modifier4])
+    static var text2 = PCText(text: "Check Simple", modifiers: [modifier3, modifier4].merged)
 
     static var text3 = PCText(text: "Check Simple")
 
     static var stack1 =
-        PCStack(layout: VStackLayout(alignment: .listRowSeparatorLeading, spacing: 20), views: [
+        PCStack(layout: VStackLayout(alignment: .listRowSeparatorLeading, spacing: 20), stack: [
             try! text1.jsonData().dictionary(),
             try! text2.jsonData().dictionary()
         ])
 
     static var stack2 =
-        PCStack(layout: HStackLayout(alignment: .firstTextBaseline), views: [
+        PCStack(layout: HStackLayout(alignment: .firstTextBaseline), stack: [
             try! text1.jsonData().dictionary(),
         ])
 
     static var stack3 =
-        PCStack(layout: ZStackLayout(alignment: .bottomTrailing), views: [
+        PCStack(layout: ZStackLayout(alignment: .bottomTrailing), stack: [
             try! text1.jsonData().dictionary(),
         ])
 
@@ -55,10 +67,10 @@ struct EncodeExample {
         ])
 
     static var image1 = 
-    PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [:])
+    PCAsyncImage(image: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [:])
 
     static var image2 =
-    PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [:])
+    PCAsyncImage(image: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [:])
 }
 
 
@@ -77,14 +89,14 @@ final class PicassoTests: XCTestCase {
 //        let json = String(data: data, encoding: .utf8) ?? "NA"
 //        print(json)
 
-        let decoder = JSONDecoder()
-        let jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
+        let jsonObj = try data.dictionary()
 
         let data2 = """
-    {"text":"Check","modifiers":[{"font":{"design":"monospaced","weight":"light","style":"footnote"}},{"foregroundColor":"#000000"}]}
+    {"text":"Check","modifiers":{"foregroundColor":"#000000","font":{"design":"monospaced","weight":"light","style":"footnote"}}}
     """.data(using: .utf8)!
 
-        let jsonObj2 = try decoder.decode([String: AnyCodable].self, from: data2)
+        let jsonObj2 = try data2.dictionary()
+
         XCTAssertEqual(jsonObj, jsonObj2, "\nNot Equal:\n\n-> \(jsonObj.description)\n-> \(jsonObj2.description)")
 
     }
@@ -148,13 +160,7 @@ final class PicassoTests: XCTestCase {
 
         let codableView = try JSONDecoder().decode(V.self, from: data)
         let dataFromView = try codableView.jsonData()
-        XCTAssertNoThrow(try JSONDecoder().decode(V.self, from: dataFromView))
-//        XCTAssertNoThrow(Parser.view(from: dataFromView))
-
-//        XCTAssertEqual(
-//            try codableView.jsonData().dictionary(),
-//            try data.dictionary()
-//        )
+        XCTAssertNoThrow(Parser.view(from: dataFromView))
     }
 
     func testRemoteViews() throws {

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct PCScrollView: View, Codable {
-    private let views: [PCViewData]
+    private let scrollView: [PCViewData]
     private let modifiers: PCModifiersData?
 
     var body: some View {
         ScrollView {
-            ForEach(views) {
+            ForEach(scrollView) {
                 Parser.view(from: $0)
             }
             .modifier(try! Parser.modifiers(from: modifiers))
@@ -21,7 +21,7 @@ struct PCScrollView: View, Codable {
     }
 
     init(views: [PCViewData], modifiers: PCModifiersData? = nil) {
-        self.views = views
+        self.scrollView = views
         self.modifiers = modifiers
     }
 }

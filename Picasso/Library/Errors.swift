@@ -82,14 +82,12 @@ extension Error {
 
         return """
         {
-          "_type": "Stack",
           "layout": {
             "axis": "VStack",
             "alignment": "leading"
           },
-          "views": [
+          "stack": [
             {
-              "_type": "Text",
               "text": "\(title)",
               "modifiers": {
                 "font": { "style": "callout", "weight": "bold" },
@@ -97,7 +95,6 @@ extension Error {
               }
             },
             {
-              "_type": "Text",
               "text": "\(escape(subtitle))",
               "modifiers": {
                 "font": { "style": "callout", "weight": "regular" },
@@ -105,7 +102,6 @@ extension Error {
               }
             },
             {
-              "_type": "Text",
               "text": "\(escape(description))",
               "modifiers": {
                 "font": { "style": "footnote" },

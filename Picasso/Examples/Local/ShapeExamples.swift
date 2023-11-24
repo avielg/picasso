@@ -9,11 +9,9 @@ import Foundation
 
 let shape_json1 = """
 {
-  "_type": "Stack",
   "layout": { "axis": "VStack" },
-  "views": [
+  "stack": [
     {
-      "_type": "Shape",
       "shape": { "type": { "circle": { } } },
       "fill": { "color": { "value": "red" } },
       "stroke": { "color": { "value": "primary" } },
@@ -23,7 +21,6 @@ let shape_json1 = """
       }
     },
     {
-      "_type": "Shape",
       "shape": { "type": { "rectangle": { "cornerRadius": 40 } } },
       "fill": { "color": { "value": "orange" } },
       "stroke": { "color": { "value": "teal" } },
@@ -33,7 +30,6 @@ let shape_json1 = """
       }
     },
     {
-      "_type": "Text",
       "text": "Press Here!",
       "modifiers": {
         "font": { "weight": "bold", "style": "title" },
@@ -41,7 +37,6 @@ let shape_json1 = """
         "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
         "background": {
           "content": {
-            "_type": "Shape",
             "shape": { "type": { "capsule": { "style": "continuous" } } },
             "fill": { "gradient": {
               "gradient": [

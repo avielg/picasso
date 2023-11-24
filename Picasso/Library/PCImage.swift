@@ -10,14 +10,14 @@ import SwiftUI
 extension ContentMode: AllCasesProvider {}
 
 struct PCAsyncImage: View, Codable {
-    private let url: URL?
+    private let image: URL?
     private let scale: CGFloat?
     private let mode: ContentMode?
 
     private let modifiers: PCModifiersData?
 
     var body: some View {
-        AsyncImage(url: url, scale: scale ?? 1, transaction: .init(animation: .default)) { phase in
+        AsyncImage(url: image, scale: scale ?? 1, transaction: .init(animation: .default)) { phase in
             switch phase {
             case .success(let image):
                 if let mode {
@@ -32,8 +32,8 @@ struct PCAsyncImage: View, Codable {
         .modifier(try! Parser.modifiers(from: modifiers))
     }
 
-    init(url: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {
-        self.url = url
+    init(image: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {
+        self.image = image
         self.scale = scale
         self.mode = mode
         self.modifiers = modifiers
@@ -42,16 +42,14 @@ struct PCAsyncImage: View, Codable {
 
 let image_json1 = """
 {
-  "_type": "Image",
-  "url": "https://picsum.photos/100/200",
+  "image": "https://picsum.photos/100/200",
   "scale": 1
 }
 """
 
 let image_json2 = """
 {
-  "_type": "Image",
-  "url": "https://picsum.photos/200/400",
+  "image": "https://picsum.photos/200/400",
   "scale": 2
 }
 """

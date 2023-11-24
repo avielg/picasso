@@ -41,29 +41,29 @@ extension PCViewData: Identifiable {
 
 struct PCStack: View, Codable {
     private let layout: any Layout
-    private let views: [PCViewData]
+    private let stack: [PCViewData]
     private let modifiers: PCModifiersData?
 
-    enum Keys: CodingKey { case layout, views, modifiers }
+    enum Keys: CodingKey { case layout, stack, modifiers }
 
     var body: some View {
         AnyLayout(layout) {
-            ForEach(views) {
+            ForEach(stack) {
                 Parser.view(from: $0)
             }
             .modifier(try! Parser.modifiers(from: modifiers))
         }
     }
 
-    init(layout: any Layout, views: [PCViewData], modifiers: PCModifiersData? = nil) {
+    init(layout: any Layout, stack: [PCViewData], modifiers: PCModifiersData? = nil) {
         self.layout = layout
-        self.views = views
+        self.stack = stack
         self.modifiers = modifiers
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
-        try container.encode(views, forKey: .views)
+        try container.encode(stack, forKey: .stack)
         try container.encode(PCLayoutData.create(from: layout), forKey: .layout)
         try container.encode(modifiers, forKey: .modifiers)
     }
@@ -71,7 +71,7 @@ struct PCStack: View, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         
-        views = try container.decode([PCViewData].self, forKey: .views)
+        stack = try container.decode([PCViewData].self, forKey: .stack)
         modifiers = try container.decodeIfPresent(PCModifiersData.self, forKey: .modifiers)
 
         let layoutData = try container.decode(PCLayoutData.self, forKey: .layout)

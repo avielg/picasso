@@ -9,7 +9,6 @@ import Foundation
 
 let text_json1 = """
 {
-  "_type": "Text",
   "text": "Hello One",
   "modifiers": {
     "font": { "weight": "bold", "style": "title" },
@@ -20,7 +19,6 @@ let text_json1 = """
 
 let text_json2 = """
 {
-  "_type": "Text",
   "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
   "modifiers": {
     "foregroundColor": "#A10D3C93",
@@ -32,7 +30,6 @@ let text_json2 = """
 
 let text_json3 = """
 {
-  "_type": "Text",
   "text": "Hello three",
   "modifiers": {
     "foregroundColor": "0x50a19a",
@@ -43,7 +40,6 @@ let text_json3 = """
 
 let text_json4 = """
 {
-  "_type": "Text",
   "text": "Hello four",
   "modifiers": {
     "foregroundColor": "orange",

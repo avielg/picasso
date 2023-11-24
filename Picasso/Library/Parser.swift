@@ -87,27 +87,21 @@ enum Parser {
 
     @ViewBuilder
     static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) throws -> some View {
-        switch try _getTypeName(data: data, dictionary: dictionary) {
-        case "Text": try decoder.decode(PCText.self, from: data)
-        case "Stack": try decoder.decode(PCStack.self, from: data)
-        case "ScrollView": try decoder.decode(PCScrollView.self, from: data)
-        case "Shape": try decoder.decode(PCShapeView.self, from: data)
-        case "Image": try decoder.decode(PCAsyncImage.self, from: data)
-        default: fatalError()
+        let dict = try dictionary ?? _getDict(data: data)
+        if dict["text"] != nil {
+            try decoder.decode(PCText.self, from: data)
+        } else if dict["stack"] != nil {
+            try decoder.decode(PCStack.self, from: data)
+        } else if dict["scrollView"] != nil {
+            try decoder.decode(PCScrollView.self, from: data)
+        } else if dict["shape"] != nil {
+            try decoder.decode(PCShapeView.self, from: data)
+        } else if dict["image"] != nil {
+            try decoder.decode(PCAsyncImage.self, from: data)
         }
     }
 
-    static private func _getTypeName(data: Data, dictionary: [String: AnyCodable]?) throws -> String {
-        let jsonObj: [String: AnyCodable]
-        if let dictionary {
-            jsonObj = dictionary
-        } else {
-            jsonObj = try decoder.decode([String: AnyCodable].self, from: data)
-        }
-
-        if let type = jsonObj["_type"]?.value as? String {
-            return type
-        }
-        throw CodableError.decodeError(value: "\(jsonObj)")
+    static private func _getDict(data: Data) throws -> [String: AnyCodable] {
+        try decoder.decode([String: AnyCodable].self, from: data)
     }
 }
