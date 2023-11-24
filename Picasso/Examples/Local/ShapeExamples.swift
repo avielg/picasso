@@ -19,8 +19,8 @@ let shape_json1 = """
       "stroke": { "color": { "value": "primary" } },
       "lineWidth": 3,
       "modifiers": [
-        { "_type": "frame", "height": 32 },
-      ],
+        { "_type": "frame", "height": 32 }
+      ]
     },
     {
       "_type": "Shape",
@@ -29,8 +29,8 @@ let shape_json1 = """
       "stroke": { "color": { "value": "teal" } },
       "lineWidth": 3,
       "modifiers": [
-        { "_type": "frame", "minHeight": 50 },
-      ],
+        { "_type": "frame", "minHeight": 50 }
+      ]
     },
     {
       "_type": "Text",
@@ -47,15 +47,15 @@ let shape_json1 = """
             "fill": { "gradient": {
               "gradient": [
                 { "color": "blue", "location": 0 },
-                { "color": "red", "location": 1 },
+                { "color": "red", "location": 1 }
               ],
               "spread": { "linear": { "start": "leading", "end": "trailing" } }
-            } },
-          },
-        },
+            } }
+          }
+        }
       ]
-    },
-  ],
+    }
+  ]
 }
 """
 

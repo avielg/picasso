@@ -17,7 +17,7 @@ let scrollview_example1 = """
             "modifiers": [
                 { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } },
                 { "_type": "foregroundColor", "foregroundColor": "#A10D3C93" },
-                { "_type": "alignment", "alignment": "trailing" },
+                { "_type": "alignment", "alignment": "trailing" }
             ]
         },
         {
@@ -34,7 +34,7 @@ let scrollview_example1 = """
         }
     ],
     "modifiers": [
-        { "_type": "foregroundColor", "foregroundColor": "#306ff6" },
+        { "_type": "foregroundColor", "foregroundColor": "#306ff6" }
     ]
 }
 """

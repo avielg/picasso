@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3010F6342B10F87E00EB7360 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3010F6332B10F87E00EB7360 /* ZippyJSON */; };
 		301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838B2B0460CC005377D1 /* Modifiers.swift */; };
 		301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838D2B046216005377D1 /* ModifierBuilder.swift */; };
 		301C83902B04684C005377D1 /* CodableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838F2B04684C005377D1 /* CodableConformance.swift */; };
@@ -93,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3091A2A02B009BE4002F8FFD /* AnyCodable in Frameworks */,
+				3010F6342B10F87E00EB7360 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +246,7 @@
 			name = Picasso;
 			packageProductDependencies = (
 				3091A29F2B009BE4002F8FFD /* AnyCodable */,
+				3010F6332B10F87E00EB7360 /* ZippyJSON */,
 			);
 			productName = Picasso;
 			productReference = 3091A2882AFFDD66002F8FFD /* Picasso.app */;
@@ -279,6 +282,7 @@
 			mainGroup = 3091A27F2AFFDD66002F8FFD;
 			packageReferences = (
 				3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */,
+				3010F6322B10F87E00EB7360 /* XCRemoteSwiftPackageReference "ZippyJSON" */,
 			);
 			productRefGroup = 3091A2892AFFDD66002F8FFD /* Products */;
 			projectDirPath = "";
@@ -630,6 +634,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3010F6322B10F87E00EB7360 /* XCRemoteSwiftPackageReference "ZippyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michaeleisel/ZippyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.10;
+			};
+		};
 		3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flight-School/AnyCodable";
@@ -641,6 +653,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3010F6332B10F87E00EB7360 /* ZippyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3010F6322B10F87E00EB7360 /* XCRemoteSwiftPackageReference "ZippyJSON" */;
+			productName = ZippyJSON;
+		};
 		3091A29F2B009BE4002F8FFD /* AnyCodable */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */;

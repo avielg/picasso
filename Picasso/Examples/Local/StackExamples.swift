@@ -22,10 +22,10 @@ let stack_json1 = """
     {
       "_type": "Text",
       "text": "...world"
-    },
+    }
   ],
   "modifiers": [
-    { "_type": "foregroundColor", "foregroundColor": "#306ff6" },
+    { "_type": "foregroundColor", "foregroundColor": "#306ff6" }
   ]
 }
 """
@@ -46,7 +46,7 @@ let stack_json2 = """
       },
       "views": [
         { "_type": "Text", "text": "one", "fontWeight": "semibold" },
-        { "_type": "Text", "text": "two" },
+        { "_type": "Text", "text": "two" }
       ]
     },
     {
@@ -57,7 +57,7 @@ let stack_json2 = """
       },
       "views": [
         { "_type": "Text", "text": "one one one\\none one one" },
-        { "_type": "Text", "text": "two", "foregroundColor": "red", "fontWeight": "black" },
+        { "_type": "Text", "text": "two", "foregroundColor": "red", "fontWeight": "black" }
       ]
     },
     {
@@ -67,9 +67,9 @@ let stack_json2 = """
       },
       "views": [
         { "_type": "Text", "text": "one" },
-        { "_type": "Text", "text": "two" },
+        { "_type": "Text", "text": "two" }
       ]
-    },
+    }
   ]
 }
 """

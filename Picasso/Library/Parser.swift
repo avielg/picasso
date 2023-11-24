@@ -7,6 +7,7 @@
 
 import AnyCodable
 import SwiftUI
+import ZippyJSON
 
 extension [PCModifierData] {
     subscript(_ key: String) -> PCModifierData? {
@@ -16,14 +17,17 @@ extension [PCModifierData] {
 
 enum Parser {
     static let encoder = JSONEncoder()
-    static let decoder = JSONDecoder()
+    static let decoder = ZippyJSONDecoder()
 
     static func view(from json: String) -> some View {
-        do {
-            let data = json.data(using: .utf8)!
-            return try _view(from: data)
-        } catch {
-            return try! _view(from: error.viewJSONData)
+        if let data = json.data(using: .utf8) {
+            do {
+                return try _view(from: data)
+            } catch {
+                return try! _view(from: error.viewJSONData)
+            }
+        } else {
+            return try! _view(from: CodableError.decodeError(value: json).viewJSONData)
         }
     }
 
@@ -31,6 +35,14 @@ enum Parser {
         do {
             let json = try! encoder.encode(dictionary)
             return try _view(from: json, dictionary: dictionary)
+        } catch {
+            return try! _view(from: error.viewJSONData)
+        }
+    }
+
+    static func view(from data: Data) -> some View {
+        do {
+            return try _view(from: data)
         } catch {
             return try! _view(from: error.viewJSONData)
         }

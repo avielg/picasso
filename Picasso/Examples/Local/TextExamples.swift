@@ -13,7 +13,7 @@ let text_json1 = """
   "text": "Hello One",
   "modifiers": [
     { "_type": "font", "font": { "weight": "bold", "style": "title" } },
-    { "_type": "padding", "top": 30, "leading": 100 },
+    { "_type": "padding", "top": 30, "leading": 100 }
   ]
 }
 """
@@ -25,7 +25,7 @@ let text_json2 = """
   "modifiers": [
     { "_type": "foregroundColor", "foregroundColor": "#A10D3C93" },
     { "_type": "lineLimit", "range": [1,3] },
-    { "_type": "alignment", "alignment": "trailing" },
+    { "_type": "alignment", "alignment": "trailing" }
   ]
 }
 """
@@ -36,7 +36,7 @@ let text_json3 = """
   "text": "Hello three",
   "modifiers": [
     { "_type": "foregroundColor", "foregroundColor": "0x50a19a" },
-    { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } },
+    { "_type": "font", "font": { "style": "title2", "weight": "ultralight" } }
   ]
 }
 """

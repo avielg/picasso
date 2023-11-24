@@ -9,10 +9,10 @@ import AnyCodable
 import SwiftUI
 
 struct PCView: View {
-    let json: [String: AnyCodable]
+    let data: Data
 
     var body: some View {
-        Parser.view(from: json)
+        Parser.view(from: data)
     }
 }
 
@@ -20,18 +20,18 @@ struct AsyncPCView<Content: View>: View {
     let urlRequest: URLRequest
     let placeholder: Content
 
-    @State var json: [String: AnyCodable]?
+    @State var data: Data?
     @State var error: Error?
 
     var body: some View {
         content
-            .animation(.spring, value: json)
+            .animation(.spring, value: data)
     }
 
     @ViewBuilder
     var content: some View {
-        if let json {
-            PCView(json: json)
+        if let data {
+            PCView(data: data)
         } else if let error {
             errorView(error)
         } else {
@@ -39,7 +39,7 @@ struct AsyncPCView<Content: View>: View {
                 .task {
                     do {
                         let (data, _) = try await URLSession.shared.data(for: urlRequest)
-                        json = try JSONDecoder().decode([String: AnyCodable].self, from: data)
+                        self.data = data
                     } catch {
                         self.error = error
                     }

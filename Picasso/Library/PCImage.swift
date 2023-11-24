@@ -37,7 +37,7 @@ let image_json1 = """
 {
   "_type": "Image",
   "url": "https://picsum.photos/100/200",
-  "scale": 1,
+  "scale": 1
 }
 """
 
@@ -45,7 +45,7 @@ let image_json2 = """
 {
   "_type": "Image",
   "url": "https://picsum.photos/200/400",
-  "scale": 2,
+  "scale": 2
 }
 """
 
