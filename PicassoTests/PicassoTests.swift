@@ -55,10 +55,10 @@ struct EncodeExample {
         ])
 
     static var image1 = 
-        PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill)
+    PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [])
     
     static var image2 =
-        PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil)
+        PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [])
 }
 
 
@@ -139,6 +139,27 @@ final class PicassoTests: XCTestCase {
         for view in [EncodeExample.image1, EncodeExample.image2] {
             try test(view: view)
         }
+    }
+
+    func _test<V: Codable>(fileName: String, rootType: V.Type) throws {
+        let url = Bundle.main.url(forResource: fileName, withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        XCTAssertNoThrow(Parser.view(from: data))
+
+        let codableView = try JSONDecoder().decode(V.self, from: data)
+        let dataFromView = try codableView.jsonData()
+        XCTAssertNoThrow(try JSONDecoder().decode(V.self, from: dataFromView))
+//        XCTAssertNoThrow(Parser.view(from: dataFromView))
+
+//        XCTAssertEqual(
+//            try codableView.jsonData().dictionary(),
+//            try data.dictionary()
+//        )
+    }
+
+    func testRemoteViews() throws {
+        try _test(fileName: "Example", rootType: PCStack.self)
+        try _test(fileName: "Example2", rootType: PCScrollView.self)
     }
 
     func testPerformanceExample() throws {

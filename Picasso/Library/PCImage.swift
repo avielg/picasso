@@ -31,6 +31,13 @@ struct PCAsyncImage: View, Codable {
         }
         .modifier(try! Parser.modifiers(from: modifiers ?? []))
     }
+
+    init(url: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: [PCModifierData]?) {
+        self.url = url
+        self.scale = scale
+        self.mode = mode
+        self.modifiers = modifiers
+    }
 }
 
 let image_json1 = """
