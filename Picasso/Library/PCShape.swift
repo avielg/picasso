@@ -13,13 +13,13 @@ struct PCShapeView: View, Codable {
     private let stroke: ShapePaint?
     private let lineWidth: CGFloat?
 
-    private let modifiers: [PCModifierData]?
+    private let modifiers: PCModifiersData?
 
     var body: some View {
         shape
             .stroke(stroke?.content ?? AnyShapeStyle(Color.clear), lineWidth: lineWidth ?? 0)
             .background(shape.fill(fill?.content ?? AnyShapeStyle(Color.clear)))
-            .modifier(try! Parser.modifiers(from: modifiers ?? []))
+            .modifier(try! Parser.modifiers(from: modifiers))
     }
 }
 

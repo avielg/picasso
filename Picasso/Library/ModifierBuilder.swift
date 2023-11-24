@@ -8,7 +8,7 @@
 import AnyCodable
 import SwiftUI
 
-typealias PCModifierData = [String: AnyCodable]
+typealias PCModifiersData = [String: AnyCodable]
 
 protocol PCModifier: ViewModifier, Codable {
     static var name: String { get }

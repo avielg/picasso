@@ -91,26 +91,26 @@ extension Error {
             {
               "_type": "Text",
               "text": "\(title)",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "callout", "weight": "bold" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
+              "modifiers": {
+                "font": { "style": "callout", "weight": "bold" },
+                "foregroundColor": "red"
+              }
             },
             {
               "_type": "Text",
               "text": "\(escape(subtitle))",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "callout", "weight": "regular" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
+              "modifiers": {
+                "font": { "style": "callout", "weight": "regular" },
+                "foregroundColor": "red"
+              }
             },
             {
               "_type": "Text",
               "text": "\(escape(description))",
-              "modifiers": [
-                { "_type": "font", "font": { "style": "footnote" } },
-                { "_type": "foregroundColor", "foregroundColor": "red" }
-              ],
+              "modifiers": {
+                "font": { "style": "footnote" },
+                "foregroundColor": "red"
+              }
             }
           ]
         }

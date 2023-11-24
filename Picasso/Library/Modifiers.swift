@@ -31,10 +31,10 @@ struct ForegroundColorModifier: PCModifier {
 struct LineLimitModifier: PCModifier {
     static var name: String { "lineLimit" }
 
-    let range: ClosedRange<Int>
+    let lineLimit: ClosedRange<Int>
 
     func body(content: Content) -> some View {
-        content.lineLimit(range)
+        content.lineLimit(lineLimit)
     }
 }
 
@@ -51,51 +51,75 @@ struct TextAlignModifier: PCModifier {
 struct PaddingModifier: PCModifier {
     static var name: String { "padding" }
 
-    let top: CGFloat?
-    let bottom: CGFloat?
-    let leading: CGFloat?
-    let trailing: CGFloat?
+    let padding: EdgeInsets
 
     func body(content: Content) -> some View {
         content.padding(
-            EdgeInsets(
-                top: top ?? 0,
-                leading: leading ?? 0,
-                bottom: bottom ?? 0,
-                trailing: trailing ?? 0
-            )
+            padding
         )
+    }
+}
+
+extension EdgeInsets: Codable {
+    enum Keys: CodingKey {
+        case top, leading, trailing, bottom
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self = .init(
+            top: try container.decodeIfPresent(CGFloat.self, forKey: .top) ?? 0,
+            leading: try container.decodeIfPresent(CGFloat.self, forKey: .leading) ?? 0,
+            bottom: try container.decodeIfPresent(CGFloat.self, forKey: .bottom) ?? 0,
+            trailing: try container.decodeIfPresent(CGFloat.self, forKey: .trailing) ?? 0
+        )
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(self.top, forKey: .top)
+        try container.encode(self.leading, forKey: .leading)
+        try container.encode(self.bottom, forKey: .bottom)
+        try container.encode(self.trailing, forKey: .trailing)
     }
 }
 
 struct FrameModifier: PCModifier {
     static var name: String { "frame" }
 
-    let width: CGFloat?
-    let height: CGFloat?
-    let minWidth: CGFloat?
-    let idealWidth: CGFloat?
-    let maxWidth: CGFloat?
-    let minHeight: CGFloat?
-    let idealHeight: CGFloat?
-    let maxHeight: CGFloat?
-    let alignment: Alignment?
+    struct Frame: Codable {
+        let width: CGFloat?
+        let height: CGFloat?
+        let minWidth: CGFloat?
+        let idealWidth: CGFloat?
+        let maxWidth: CGFloat?
+        let minHeight: CGFloat?
+        let idealHeight: CGFloat?
+        let maxHeight: CGFloat?
+        let alignment: Alignment?
+    }
+
+    let frame: Frame
 
     func body(content: Content) -> some View {
         content
-            .frame(width: width, height: height, alignment: alignment ?? .center)
-            .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight, alignment: alignment ?? .center)
+            .frame(width: frame.width, height: frame.height, alignment: frame.alignment ?? .center)
+            .frame(minWidth: frame.minWidth, idealWidth: frame.idealWidth, maxWidth: frame.maxWidth, minHeight: frame.minHeight, idealHeight: frame.idealHeight, maxHeight: frame.maxHeight, alignment: frame.alignment ?? .center)
     }
 }
 
 struct BackgroundModifier: PCModifier {
     static var name: String { "background" }
 
-    let content: PCViewData
-    let alignment: Alignment?
-
-    func body(content: Content) -> some View {
-        content.background(Parser.view(from: self.content), alignment: alignment ?? .center)
+    struct Background: Codable {
+        let content: PCViewData
+        let alignment: Alignment?
     }
 
+    let background: Background
+
+    func body(content: Content) -> some View {
+        content.background(
+            Parser.view(from: background.content), alignment: background.alignment ?? .center
+        )
+    }
 }

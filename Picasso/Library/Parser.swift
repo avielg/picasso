@@ -9,12 +9,6 @@ import AnyCodable
 import SwiftUI
 import ZippyJSON
 
-extension [PCModifierData] {
-    subscript(_ key: String) -> PCModifierData? {
-        first { $0["_type"]!.value as! String == key }
-    }
-}
-
 enum Parser {
     static let encoder = JSONEncoder()
     static let decoder = ZippyJSONDecoder()
@@ -58,36 +52,31 @@ enum Parser {
 //    }
 
     @ModifierBuilder
-    static func modifiers(from dictionaries: [PCModifierData]) throws -> some PCModifier {
-        if let font = dictionaries[FontModifier.name] {
-            let data = try encoder.encode(font)
-            try decoder.decode(FontModifier.self, from: data)
+    static func modifiers(from dictionary: PCModifiersData?) throws -> some PCModifier {
+        if let dictionary {
+            let data = try encoder.encode(dictionary)
+            if dictionary[FontModifier.name] != nil {
+                try decoder.decode(FontModifier.self, from: data)
+            }
+            if dictionary[ForegroundColorModifier.name] != nil {
+                try decoder.decode(ForegroundColorModifier.self, from: data)
+            }
+            if dictionary[LineLimitModifier.name] != nil {
+                try decoder.decode(LineLimitModifier.self, from: data)
+            }
+            if dictionary[TextAlignModifier.name] != nil {
+                try decoder.decode(TextAlignModifier.self, from: data)
+            }
+            if dictionary[PaddingModifier.name] != nil {
+                try decoder.decode(PaddingModifier.self, from: data)
+            }
+            if dictionary[FrameModifier.name] != nil {
+                try decoder.decode(FrameModifier.self, from: data)
+            }
+            if dictionary[BackgroundModifier.name] != nil {
+                try decoder.decode(BackgroundModifier.self, from: data)
+            }
         }
-        if let foregroundColor = dictionaries[ForegroundColorModifier.name] {
-            let data = try encoder.encode(foregroundColor)
-            try decoder.decode(ForegroundColorModifier.self, from: data)
-        }
-        if let lineLimit = dictionaries[LineLimitModifier.name] {
-            let data = try encoder.encode(lineLimit)
-            try decoder.decode(LineLimitModifier.self, from: data)
-        }
-        if let textAlign = dictionaries[TextAlignModifier.name] {
-            let data = try encoder.encode(textAlign)
-            try decoder.decode(TextAlignModifier.self, from: data)
-        }
-        if let padding = dictionaries[PaddingModifier.name] {
-            let data = try encoder.encode(padding)
-            try decoder.decode(PaddingModifier.self, from: data)
-        }
-        if let frame = dictionaries[FrameModifier.name] {
-            let data = try encoder.encode(frame)
-            try decoder.decode(FrameModifier.self, from: data)
-        }
-        if let background = dictionaries[BackgroundModifier.name] {
-            let data = try encoder.encode(background)
-            try decoder.decode(BackgroundModifier.self, from: data)
-        }
-
         //        switch name {
         //        case "font": try! decoder.decode(FontModifier.self, from: data)
         //        case "foregroundColor": try! decoder.decode(ForegroundColorModifier.self, from: data)

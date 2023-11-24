@@ -18,9 +18,9 @@ let shape_json1 = """
       "fill": { "color": { "value": "red" } },
       "stroke": { "color": { "value": "primary" } },
       "lineWidth": 3,
-      "modifiers": [
-        { "_type": "frame", "height": 32 }
-      ]
+      "modifiers": {
+        "frame": { "height": 32 }
+      }
     },
     {
       "_type": "Shape",
@@ -28,19 +28,18 @@ let shape_json1 = """
       "fill": { "color": { "value": "orange" } },
       "stroke": { "color": { "value": "teal" } },
       "lineWidth": 3,
-      "modifiers": [
-        { "_type": "frame", "minHeight": 50 }
-      ]
+      "modifiers": {
+        "frame": { "minHeight": 50 }
+      }
     },
     {
       "_type": "Text",
       "text": "Press Here!",
-      "modifiers": [
-        { "_type": "font", "font": { "weight": "bold", "style": "title" } },
-        { "_type": "foregroundColor", "foregroundColor": "#432b8b66" },
-        { "_type": "padding", "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
-        {
-          "_type": "background", 
+      "modifiers": {
+        "font": { "weight": "bold", "style": "title" },
+        "foregroundColor": "#432b8b66",
+        "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
+        "background": {
           "content": {
             "_type": "Shape",
             "shape": { "type": { "capsule": { "style": "continuous" } } },
@@ -53,10 +52,8 @@ let shape_json1 = """
             } }
           }
         }
-      ]
+      }
     }
   ]
 }
 """
-
-//        { "_type": "frame", "width": 180 },

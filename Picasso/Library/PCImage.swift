@@ -14,7 +14,7 @@ struct PCAsyncImage: View, Codable {
     private let scale: CGFloat?
     private let mode: ContentMode?
 
-    private let modifiers: [PCModifierData]?
+    private let modifiers: PCModifiersData?
 
     var body: some View {
         AsyncImage(url: url, scale: scale ?? 1, transaction: .init(animation: .default)) { phase in
@@ -29,10 +29,10 @@ struct PCAsyncImage: View, Codable {
                 Color.clear
             }
         }
-        .modifier(try! Parser.modifiers(from: modifiers ?? []))
+        .modifier(try! Parser.modifiers(from: modifiers))
     }
 
-    init(url: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: [PCModifierData]?) {
+    init(url: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {
         self.url = url
         self.scale = scale
         self.mode = mode

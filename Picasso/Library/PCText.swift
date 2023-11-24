@@ -24,14 +24,14 @@ struct PCText: View, Codable {
     }
 
     private let text: String
-    private let modifiers: [PCModifierData]?
+    private let modifiers: PCModifiersData?
 
     var body: some View {
         Text(text)
-            .modifier(try! Parser.modifiers(from: modifiers ?? []))
+            .modifier(try! Parser.modifiers(from: modifiers))
     }
 
-    init(text: String, modifiers: [PCModifierData]? = nil) {
+    init(text: String, modifiers: PCModifiersData? = nil) {
         self.text = text
         self.modifiers = modifiers
     }

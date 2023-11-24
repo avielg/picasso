@@ -12,11 +12,11 @@ import SwiftUI
 @testable import Picasso
 
 struct EncodeExample {
-    static var modifier1: PCModifierData = try! FontModifier(
+    static var modifier1: PCModifiersData = try! FontModifier(
         font: .system(.footnote, design: .monospaced, weight: .light)
     ).jsonData().dictionary()
 
-    static var modifier2: PCModifierData = try! ForegroundColorModifier(foregroundColor: .orange)
+    static var modifier2: PCModifiersData = try! ForegroundColorModifier(foregroundColor: .orange)
         .jsonData().dictionary()
 
     static var modifier3 = try! FontModifier(font: .body)
@@ -55,10 +55,10 @@ struct EncodeExample {
         ])
 
     static var image1 = 
-    PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [])
-    
+    PCAsyncImage(url: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [:])
+
     static var image2 =
-        PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [])
+    PCAsyncImage(url: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [:])
 }
 
 

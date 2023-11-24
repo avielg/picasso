@@ -24,9 +24,9 @@ let stack_json1 = """
       "text": "...world"
     }
   ],
-  "modifiers": [
-    { "_type": "foregroundColor", "foregroundColor": "#306ff6" }
-  ]
+  "modifiers": {
+    "foregroundColor": "#306ff6"
+  }
 }
 """
 
