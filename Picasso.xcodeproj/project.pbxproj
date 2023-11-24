@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3010F6342B10F87E00EB7360 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3010F6332B10F87E00EB7360 /* ZippyJSON */; };
+		3010F6372B11358E00EB7360 /* ImageExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F6362B11358E00EB7360 /* ImageExamples.swift */; };
 		301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838B2B0460CC005377D1 /* Modifiers.swift */; };
 		301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838D2B046216005377D1 /* ModifierBuilder.swift */; };
 		301C83902B04684C005377D1 /* CodableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838F2B04684C005377D1 /* CodableConformance.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3010F6362B11358E00EB7360 /* ImageExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExamples.swift; sourceTree = "<group>"; };
 		301C838B2B0460CC005377D1 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		301C838D2B046216005377D1 /* ModifierBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierBuilder.swift; sourceTree = "<group>"; };
 		301C838F2B04684C005377D1 /* CodableConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableConformance.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				3054A51A2B0515BB00F006E6 /* StackExamples.swift */,
 				30F59C2B2B06E2840092D7ED /* ScrollviewExamples.swift */,
 				30F59C3B2B0AC4370092D7ED /* ShapeExamples.swift */,
+				3010F6362B11358E00EB7360 /* ImageExamples.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				30F59C3C2B0AC4370092D7ED /* ShapeExamples.swift in Sources */,
 				3091A29B2AFFDD95002F8FFD /* PCText.swift in Sources */,
 				30F59C2E2B07E2F10092D7ED /* Errors.swift in Sources */,
+				3010F6372B11358E00EB7360 /* ImageExamples.swift in Sources */,
 				3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */,
 				3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */,
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,

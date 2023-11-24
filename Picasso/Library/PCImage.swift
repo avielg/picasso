@@ -42,20 +42,6 @@ struct PCAsyncImage: PCView {
     }
 }
 
-let image_json1 = """
-{
-  "image": "https://picsum.photos/100/200",
-  "scale": 1
-}
-"""
-
-let image_json2 = """
-{
-  "image": "https://picsum.photos/200/400",
-  "scale": 2
-}
-"""
-
 func imagesExample() -> some View {
     HStack {
         Parser.view(from: image_json1)
