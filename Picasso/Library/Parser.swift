@@ -53,7 +53,7 @@ enum Parser {
 
     @ModifierBuilder
     static func modifiers(from dictionary: PCModifiersData?) throws -> some PCModifier {
-        if let dictionary {
+        if let dictionary, !dictionary.isEmpty {
             let data = try encoder.encode(dictionary)
             if dictionary[FontModifier.name] != nil {
                 try decoder.decode(FontModifier.self, from: data)
