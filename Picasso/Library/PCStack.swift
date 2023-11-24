@@ -39,7 +39,9 @@ extension PCViewData: Identifiable {
     }
 }
 
-struct PCStack: View, Codable {
+struct PCStack: PCView {
+    static var name: String { Keys.stack.stringValue }
+
     private let layout: any Layout
     private let stack: [PCViewData]
     private let modifiers: PCModifiersData?

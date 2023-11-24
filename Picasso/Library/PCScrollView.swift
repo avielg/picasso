@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct PCScrollView: View, Codable {
+struct PCScrollView: PCView {
+    static var name: String { "scrollView" }
+
     private let scrollView: [PCViewData]
     private let modifiers: PCModifiersData?
 

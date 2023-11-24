@@ -8,7 +8,7 @@
 import AnyCodable
 import SwiftUI
 
-struct PCView: View {
+struct PCDataView: View {
     let data: Data
 
     var body: some View {
@@ -31,7 +31,7 @@ struct AsyncPCView<Content: View>: View {
     @ViewBuilder
     var content: some View {
         if let data {
-            PCView(data: data)
+            PCDataView(data: data)
         } else if let error {
             errorView(error)
         } else {

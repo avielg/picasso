@@ -18,7 +18,9 @@ func textExample() -> some View {
     }
 }
 
-struct PCText: View, Codable {
+struct PCText: PCView {
+    static var name: String { Keys.text.stringValue }
+
     enum Keys: CodingKey {
         case text, modifiers
     }

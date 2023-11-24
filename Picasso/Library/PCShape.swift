@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct PCShapeView: View, Codable {
+struct PCShapeView: PCView {
+    static var name: String { "shape" }
+
     private let shape: PCShape
     private let fill: ShapePaint?
     private let stroke: ShapePaint?

@@ -9,6 +9,10 @@ import AnyCodable
 import SwiftUI
 import ZippyJSON
 
+protocol PCView: View, Codable {
+    static var name: String { get }
+}
+
 enum Parser {
     static let encoder = JSONEncoder()
     static let decoder = ZippyJSONDecoder()
@@ -88,15 +92,15 @@ enum Parser {
     @ViewBuilder
     static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) throws -> some View {
         let dict = try dictionary ?? _getDict(data: data)
-        if dict["text"] != nil {
+        if dict[PCText.name] != nil {
             try decoder.decode(PCText.self, from: data)
-        } else if dict["stack"] != nil {
+        } else if dict[PCStack.name] != nil {
             try decoder.decode(PCStack.self, from: data)
-        } else if dict["scrollView"] != nil {
+        } else if dict[PCScrollView.name] != nil {
             try decoder.decode(PCScrollView.self, from: data)
-        } else if dict["shape"] != nil {
+        } else if dict[PCShapeView.name] != nil {
             try decoder.decode(PCShapeView.self, from: data)
-        } else if dict["image"] != nil {
+        } else if dict[PCAsyncImage.name] != nil {
             try decoder.decode(PCAsyncImage.self, from: data)
         }
     }
