@@ -107,6 +107,8 @@ enum Parser {
             try decoder.decode(PCAsyncImage.self, from: data)
         } else if dict[PCButton.name] != nil {
             try decoder.decode(PCButton.self, from: data)
+        } else if dict[PCOptionalView.name] != nil {
+            try decoder.decode(PCOptionalView.self, from: data)
         }
     }
 

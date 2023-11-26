@@ -14,6 +14,7 @@
 		3010F63E2B13069000EB7360 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F63D2B13069000EB7360 /* State.swift */; };
 		3010F6402B1306B700EB7360 /* PCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F63F2B1306B700EB7360 /* PCButton.swift */; };
 		3010F6422B13077100EB7360 /* ButtonExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F6412B13077100EB7360 /* ButtonExamples.swift */; };
+		3010F6442B1312D000EB7360 /* PCOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F6432B1312D000EB7360 /* PCOptionalView.swift */; };
 		301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838B2B0460CC005377D1 /* Modifiers.swift */; };
 		301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838D2B046216005377D1 /* ModifierBuilder.swift */; };
 		301C83902B04684C005377D1 /* CodableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838F2B04684C005377D1 /* CodableConformance.swift */; };
@@ -60,6 +61,7 @@
 		3010F63D2B13069000EB7360 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3010F63F2B1306B700EB7360 /* PCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCButton.swift; sourceTree = "<group>"; };
 		3010F6412B13077100EB7360 /* ButtonExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExamples.swift; sourceTree = "<group>"; };
+		3010F6432B1312D000EB7360 /* PCOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCOptionalView.swift; sourceTree = "<group>"; };
 		301C838B2B0460CC005377D1 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		301C838D2B046216005377D1 /* ModifierBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierBuilder.swift; sourceTree = "<group>"; };
 		301C838F2B04684C005377D1 /* CodableConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableConformance.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				30F59C392B0AABA00092D7ED /* PCShape.swift */,
 				30F59C3F2B0AC6820092D7ED /* PCImage.swift */,
 				3010F63F2B1306B700EB7360 /* PCButton.swift */,
+				3010F6432B1312D000EB7360 /* PCOptionalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
 				30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */,
+				3010F6442B1312D000EB7360 /* PCOptionalView.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
 				3010F63B2B12F6F800EB7360 /* CodableAxisSet.swift in Sources */,

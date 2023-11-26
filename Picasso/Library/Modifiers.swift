@@ -109,9 +109,9 @@ struct SheetModifier: PCModifier {
         let presentationFlag: String
     }
 
-    let sheet: Sheet
+    private let sheet: Sheet
 
-    @ObservedObject var flag: Flag
+    @ObservedObject private var flag: Flag
 
     func body(content: Content) -> some View {
         content.sheet(isPresented: $flag.value) {

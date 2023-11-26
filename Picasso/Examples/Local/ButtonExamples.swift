@@ -46,6 +46,19 @@ let button_json1 = """
         "foregroundColor": "cyan",
         "font": { "weight": "bold" }
       }
+    },
+    {
+      "optional": {
+        "content": { "text": "Hi there! :)" },
+        "presentationFlag": "show-text" }
+    },
+    {
+      "button": "Shows Hidden Text",
+      "toggleFlag": "show-text",
+      "modifiers": {
+        "foregroundColor": "teal",
+        "font": { "weight": "bold" }
+      }
     }
   ]
 }
