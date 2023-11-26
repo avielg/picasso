@@ -12,8 +12,8 @@ let button_json1 = """
   "layout": { "axis": "VStack", "spacing": 32 },
   "stack": [
     {
-      "button": "Click Here!",
-      "actionToggleFlag": "sheet1",
+      "button": "Show Sheet",
+      "toggleFlag": "sheet1",
       "modifiers": {
         "foregroundColor": "orange",
         "font": { "weight": "bold" },
@@ -25,9 +25,25 @@ let button_json1 = """
     },
     {
       "button": "Does Nothing...",
-      "actionToggleFlag": "does-nothing",
+      "toggleFlag": "does-nothing",
       "modifiers": {
         "foregroundColor": "purple",
+        "font": { "weight": "bold" }
+      }
+    },
+    {
+      "button": "Open URL",
+      "openURL": "https://www.apple.com",
+      "modifiers": {
+        "foregroundColor": "pink",
+        "font": { "weight": "bold" }
+      }
+    },
+    {
+      "button": "Present URL",
+      "presentURL": "https://www.apple.com",
+      "modifiers": {
+        "foregroundColor": "cyan",
         "font": { "weight": "bold" }
       }
     }
