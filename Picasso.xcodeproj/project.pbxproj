@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3010F6342B10F87E00EB7360 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3010F6332B10F87E00EB7360 /* ZippyJSON */; };
 		3010F6372B11358E00EB7360 /* ImageExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F6362B11358E00EB7360 /* ImageExamples.swift */; };
+		3010F6392B12F6D900EB7360 /* CodableEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F6382B12F6D900EB7360 /* CodableEdgeInsets.swift */; };
+		3010F63B2B12F6F800EB7360 /* CodableAxisSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010F63A2B12F6F800EB7360 /* CodableAxisSet.swift */; };
 		301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838B2B0460CC005377D1 /* Modifiers.swift */; };
 		301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838D2B046216005377D1 /* ModifierBuilder.swift */; };
 		301C83902B04684C005377D1 /* CodableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838F2B04684C005377D1 /* CodableConformance.swift */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		3010F6362B11358E00EB7360 /* ImageExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExamples.swift; sourceTree = "<group>"; };
+		3010F6382B12F6D900EB7360 /* CodableEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableEdgeInsets.swift; sourceTree = "<group>"; };
+		3010F63A2B12F6F800EB7360 /* CodableAxisSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAxisSet.swift; sourceTree = "<group>"; };
 		301C838B2B0460CC005377D1 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		301C838D2B046216005377D1 /* ModifierBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierBuilder.swift; sourceTree = "<group>"; };
 		301C838F2B04684C005377D1 /* CodableConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableConformance.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				301C83922B046874005377D1 /* CodableColor.swift */,
 				301C83942B0468B7005377D1 /* CodableFont.swift */,
 				30F59C3D2B0AC4830092D7ED /* CodableShapeStyle.swift */,
+				3010F6382B12F6D900EB7360 /* CodableEdgeInsets.swift */,
+				3010F63A2B12F6F800EB7360 /* CodableAxisSet.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -345,12 +351,14 @@
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,
 				301C83932B046874005377D1 /* CodableColor.swift in Sources */,
 				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
+				3010F6392B12F6D900EB7360 /* CodableEdgeInsets.swift in Sources */,
 				30F59C232B06D8D50092D7ED /* PCView.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
 				30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
+				3010F63B2B12F6F800EB7360 /* CodableAxisSet.swift in Sources */,
 				30F59C402B0AC6820092D7ED /* PCImage.swift in Sources */,
 				3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */,
 			);
