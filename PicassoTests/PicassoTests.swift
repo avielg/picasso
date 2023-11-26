@@ -61,7 +61,7 @@ struct EncodeExample {
         ])
 
     static var scrollview1 =
-        PCScrollView(views: [
+        PCScrollView(axes: .vertical, views: [
             try! text1.jsonData().dictionary(),
             try! text2.jsonData().dictionary()
         ])
@@ -105,7 +105,7 @@ final class PicassoTests: XCTestCase {
         let viewJsons = [
             text_json1, text_json2, text_json3, text_json4,
             stack_json1, stack_json2,
-            scrollview_example1,
+            scrollview_example1, scrollView_example2,
             shape_json1,
             image_json1, image_json2
         ]
@@ -170,6 +170,7 @@ final class PicassoTests: XCTestCase {
 
     func testPerformanceExample() throws {
         measure {
+            try! testDecode()
             try! testViews()
         }
     }

@@ -25,7 +25,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                Section("Local") {
                     NavigationLink {
                         ScrollView {
                             VStack {
@@ -37,7 +37,13 @@ struct ContentView: View {
                             .padding()
                         }
                     } label: {
-                        Text("Local")
+                        Text("Misc Examples")
+                    }
+
+                    NavigationLink {
+                        Parser.view(from: scrollView_example2)
+                    } label: {
+                        Text("Horizontal ScrollView")
                     }
                 }
 
