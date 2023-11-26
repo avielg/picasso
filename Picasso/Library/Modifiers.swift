@@ -100,3 +100,35 @@ struct BackgroundModifier: PCModifier {
         )
     }
 }
+
+struct SheetModifier: PCModifier {
+    static var name: String { "sheet" }
+
+    struct Sheet: Codable {
+        let content: PCViewData
+        let presentationFlag: String
+    }
+
+    let sheet: Sheet
+
+    @ObservedObject var flag: Flag
+
+    func body(content: Content) -> some View {
+        content.sheet(isPresented: $flag.value) {
+            Parser.view(from: sheet.content)
+        }
+    }
+
+    enum Keys: CodingKey { case sheet }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        sheet = try container.decode(Sheet.self, forKey: .sheet)
+        flag = Context.shared.flag(sheet.presentationFlag)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(sheet, forKey: .sheet)
+    }
+}

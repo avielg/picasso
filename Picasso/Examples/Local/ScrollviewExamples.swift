@@ -48,12 +48,15 @@ let scrollView_example2 = """
           {
             "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
             "modifiers": {
-              "frame": { "maxWidth": 200, "height": 500 },
+              "frame": { "maxWidth": 200, "height": 500 }
             }
           },
-          {"text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.","modifiers": {
-              "frame": { "maxWidth": 200 }
-            }}
+          {
+            "text": "The Sony a7C II is the brand's second-generation compact rangefinder-style full-frame camera. Similar in design to Its predecessor, the a7C II uses the same fantastic 33MP BSI sensor from the larger Sony a7 IV and boasts impressive still, video and autofocus capabilities that should appeal to a wide range of users.",
+            "modifiers": {
+              "frame": { "maxWidth": 200, "height": 500 }
+            }
+          }
       ]
     }
   ]

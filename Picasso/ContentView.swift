@@ -45,6 +45,12 @@ struct ContentView: View {
                     } label: {
                         Text("Horizontal ScrollView")
                     }
+
+                    NavigationLink {
+                        Parser.view(from: button_json1)
+                    } label: {
+                        Text("Button & Sheet")
+                    }
                 }
 
                 Section("Remote") {
