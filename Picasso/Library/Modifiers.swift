@@ -96,7 +96,26 @@ struct BackgroundModifier: PCModifier {
 
     func body(content: Content) -> some View {
         content.background(
-            Parser.view(from: background.content), alignment: background.alignment ?? .center
+            alignment: background.alignment ?? .center,
+            content: { Parser.view(from: background.content) }
+        )
+    }
+}
+
+struct OverlayModifier: PCModifier {
+    static var name: String { "overlay" }
+
+    struct Overlay: Codable {
+        let content: PCViewData
+        let alignment: Alignment?
+    }
+
+    let overlay: Overlay
+
+    func body(content: Content) -> some View {
+        content.overlay(
+            alignment: overlay.alignment ?? .center,
+            content: { Parser.view(from: overlay.content) }
         )
     }
 }

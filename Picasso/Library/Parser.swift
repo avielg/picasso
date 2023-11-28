@@ -83,6 +83,9 @@ enum Parser {
             if dictionary[SheetModifier.name] != nil {
                 try decoder.decode(SheetModifier.self, from: data)
             }
+            if dictionary[OverlayModifier.name] != nil {
+                try decoder.decode(OverlayModifier.self, from: data)
+            }
         }
         //        switch name {
         //        case "font": try! decoder.decode(FontModifier.self, from: data)

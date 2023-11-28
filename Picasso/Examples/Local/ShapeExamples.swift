@@ -30,7 +30,7 @@ let shape_json1 = """
       }
     },
     {
-      "text": "Press Here!",
+      "text": "background...",
       "modifiers": {
         "font": { "weight": "bold", "style": "title" },
         "foregroundColor": "#432b8b66",
@@ -48,6 +48,49 @@ let shape_json1 = """
           }
         }
       }
+    },
+    {
+      "shape": { "type": { "capsule": { "style": "continuous" } } },
+      "fill": { "gradient": {
+        "gradient": [
+          { "color": "blue", "location": 0 },
+          { "color": "red", "location": 1 }
+        ],
+        "spread": { "linear": { "start": "leading", "end": "trailing" } },
+      } },
+      "modifiers": {
+        "frame": { "height": 42 },
+        "overlay": {
+          "alignment": "bottomTrailing",
+          "content": { 
+            "text": "overlay at bottomTrailing...",
+            "modifiers": {
+              "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": { "axis": "ZStack", "alignment": "topLeading" },
+      "stack": [
+        {
+          "shape": { "type": { "capsule": { "style": "continuous" } } },
+          "fill": { "gradient": {
+            "gradient": [
+              { "color": "blue", "location": 0 },
+              { "color": "red", "location": 1 }
+            ],
+            "spread": { "linear": { "start": "leading", "end": "trailing" } }
+          } },
+        },
+        { 
+          "text": "ZStack...",
+          "modifiers": {
+            "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
+          }
+        }
+      ]
     }
   ]
 }
