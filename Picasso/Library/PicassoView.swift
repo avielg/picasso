@@ -32,6 +32,7 @@ struct PicassoView<Content: View>: View {
     var content: some View {
         if let data {
             PCDataView(data: data)
+                .environment(\.requestConfig, urlRequest.requestConfig)
         } else if let error {
             errorView(error)
         } else {
@@ -62,5 +63,46 @@ extension PicassoView {
                 .fill(Color(.systemRed))
         }
         .padding()
+    }
+}
+
+struct URLRequestConfig {
+    let cachePolicy: URLRequest.CachePolicy
+    let timeoutInterval: TimeInterval
+}
+
+private struct ViewRequestConfigKey: EnvironmentKey {
+    /// Default of ``URLRequest(url:cachePolicy:timeoutInterval:)``
+    static let defaultValue: URLRequestConfig = .init(
+        cachePolicy: .useProtocolCachePolicy,
+        timeoutInterval: 60.0
+    )
+}
+
+extension EnvironmentValues {
+    var requestConfig: URLRequestConfig {
+        get { self[ViewRequestConfigKey.self] }
+        set { self[ViewRequestConfigKey.self] = newValue }
+    }
+}
+
+extension URLRequest {
+    var requestConfig: URLRequestConfig {
+        .init(cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+    }
+
+    func with(_ config: URLRequestConfig) -> Self {
+        guard let url else {
+            assertionFailure()
+            return self
+        }
+        guard cachePolicy != config.cachePolicy || timeoutInterval != config.timeoutInterval else {
+            return self
+        }
+        return URLRequest(
+            url: url,
+            cachePolicy: config.cachePolicy,
+            timeoutInterval: config.timeoutInterval
+        )
     }
 }

@@ -56,7 +56,7 @@ let shape_json1 = """
           { "color": "blue", "location": 0 },
           { "color": "red", "location": 1 }
         ],
-        "spread": { "linear": { "start": "leading", "end": "trailing" } },
+        "spread": { "linear": { "start": "leading", "end": "trailing" } }
       } },
       "modifiers": {
         "frame": { "height": 42 },
@@ -65,7 +65,7 @@ let shape_json1 = """
           "content": { 
             "text": "overlay at bottomTrailing...",
             "modifiers": {
-              "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
+              "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 }
             }
           }
         }
@@ -82,12 +82,12 @@ let shape_json1 = """
               { "color": "red", "location": 1 }
             ],
             "spread": { "linear": { "start": "leading", "end": "trailing" } }
-          } },
+          } }
         },
         { 
           "text": "ZStack...",
           "modifiers": {
-            "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
+            "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 }
           }
         }
       ]

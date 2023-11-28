@@ -33,6 +33,7 @@ struct ContentView: View {
                                 shapesExample()
                                 textExample()
                                 stackExample()
+                                asyncExamples()
                             }
                             .padding()
                         }

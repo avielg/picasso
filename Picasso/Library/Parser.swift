@@ -112,6 +112,8 @@ enum Parser {
             try decoder.decode(PCButton.self, from: data)
         } else if dict[PCOptionalView.name] != nil {
             try decoder.decode(PCOptionalView.self, from: data)
+        } else if dict[PCAsyncView.name] != nil {
+            try decoder.decode(PCAsyncView.self, from: data)
         }
     }
 

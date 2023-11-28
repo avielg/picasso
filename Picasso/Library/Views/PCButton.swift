@@ -44,7 +44,7 @@ struct PCButton: PCView {
             .modifier(try! Parser.modifiers(from: modifiers))
     }
 
-    enum CodingKeys: CodingKey {
+    enum Keys: CodingKey {
         case button
         case modifiers
         case openURL
@@ -53,7 +53,7 @@ struct PCButton: PCView {
     }
 
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: Keys.self)
         self.button = try container.decode(String.self, forKey: .button)
         self.modifiers = try container.decodeIfPresent(PCModifiersData.self, forKey: .modifiers)
 
@@ -69,16 +69,16 @@ struct PCButton: PCView {
     }
 
     func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.container(keyedBy: Keys.self)
         switch action {
         case .empty:
             break
         case .toggleFlag(let flag):
-            try container.encode([CodingKeys.toggleFlag.stringValue: flag], forKey: .toggleFlag)
+            try container.encode([Keys.toggleFlag.stringValue: flag], forKey: .toggleFlag)
         case .openURL(let url):
-            try container.encode([CodingKeys.openURL.stringValue: url], forKey: .toggleFlag)
+            try container.encode([Keys.openURL.stringValue: url], forKey: .toggleFlag)
         case .presentURL(let url):
-            try container.encode([CodingKeys.presentURL.stringValue: url], forKey: .toggleFlag)
+            try container.encode([Keys.presentURL.stringValue: url], forKey: .toggleFlag)
         }
     }
 }
