@@ -16,7 +16,7 @@ struct PCDataView: View {
     }
 }
 
-struct AsyncPCView<Content: View>: View {
+struct PicassoView<Content: View>: View {
     let urlRequest: URLRequest
     let placeholder: Content
 
@@ -48,7 +48,7 @@ struct AsyncPCView<Content: View>: View {
     }
 }
 
-extension AsyncPCView {
+extension PicassoView {
     func errorView(_ error: some Error) -> some View {
         VStack(alignment: .leading) {
             Text(error.title).bold()

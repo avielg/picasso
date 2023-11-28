@@ -55,28 +55,28 @@ struct ContentView: View {
 
                 Section("Remote") {
                     NavigationLink {
-                        AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                        PicassoView(urlRequest: request, placeholder: Color.clear)
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "No Placeholder")
                     }
 
                     NavigationLink {
-                        AsyncPCView(urlRequest: request, placeholder: Color.red)
+                        PicassoView(urlRequest: request, placeholder: Color.red)
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "Red Placeholder")
                     }
 
                     NavigationLink {
-                        AsyncPCView(urlRequest: request, placeholder: ProgressView())
+                        PicassoView(urlRequest: request, placeholder: ProgressView())
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "Progress View")
                     }
 
                     NavigationLink {
-                        AsyncPCView(urlRequest: request, placeholder: Color.clear)
+                        PicassoView(urlRequest: request, placeholder: Color.clear)
                             .border(Color.blue)
                             .padding()
                     } label: {
@@ -87,7 +87,7 @@ struct ContentView: View {
 
                 Section("Remote") {
                     NavigationLink {
-                        AsyncPCView(urlRequest: requestScrollView, placeholder: Color.clear)
+                        PicassoView(urlRequest: requestScrollView, placeholder: Color.clear)
                     } label: {
                         label("ScrollView", subtitle: "No Placeholder")
                     }
@@ -95,13 +95,13 @@ struct ContentView: View {
 
                 Section("Error") {
                     NavigationLink {
-                        AsyncPCView(urlRequest: requestErrorDecode, placeholder: Color.clear)
+                        PicassoView(urlRequest: requestErrorDecode, placeholder: Color.clear)
                     } label: {
                         label("Decode Issue", subtitle: "No Placeholder")
                     }
 
                     NavigationLink {
-                        AsyncPCView(urlRequest: requestErrorCorrupt, placeholder: Color.clear)
+                        PicassoView(urlRequest: requestErrorCorrupt, placeholder: Color.clear)
                     } label: {
                         label("Corrupted JSON", subtitle: "No Placeholder")
                     }
