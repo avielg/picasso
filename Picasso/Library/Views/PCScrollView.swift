@@ -19,7 +19,7 @@ struct PCScrollView: PCView {
             ForEach(scrollView) {
                 Parser.view(from: $0)
             }
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(Parser.modifiers(from: modifiers))
         }
     }
 
@@ -28,6 +28,13 @@ struct PCScrollView: PCView {
         self.modifiers = modifiers
         self.axes = axes
     }
+
+    /// TODO: This should work, but waiting for bug fix in Swift parameter packs implementation
+//    init<each M: PCModifier>(axes: Axis.Set, views: [PCViewData], modifier: repeat each M) {
+//        self.scrollView = views
+//        self.modifiers = [repeat try! (each modifier).jsonData().dictionary()].merged
+//        self.axes = axes
+//    }
 }
 
 #Preview {

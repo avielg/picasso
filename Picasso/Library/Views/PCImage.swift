@@ -31,7 +31,7 @@ struct PCAsyncImage: PCView {
                 Color.clear
             }
         }
-        .modifier(try! Parser.modifiers(from: modifiers))
+        .modifier(Parser.modifiers(from: modifiers))
     }
 
     init(image: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {

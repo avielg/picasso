@@ -100,6 +100,10 @@ struct BackgroundModifier: PCModifier {
             content: { Parser.view(from: background.content) }
         )
     }
+
+    init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
+        self.background = try .init(content: content.jsonData().dictionary(), alignment: alignment)
+    }
 }
 
 struct OverlayModifier: PCModifier {
@@ -111,6 +115,10 @@ struct OverlayModifier: PCModifier {
     }
 
     let overlay: Overlay
+
+    init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
+        self.overlay = try .init(content: content.jsonData().dictionary(), alignment: alignment)
+    }
 
     func body(content: Content) -> some View {
         content.overlay(
@@ -139,6 +147,14 @@ struct SheetModifier: PCModifier {
     }
 
     enum Keys: CodingKey { case sheet }
+
+    init<V: PCView>(presentationFlag: String, content: V) throws {
+        self.sheet = try .init(
+            content: content.jsonData().dictionary(),
+            presentationFlag: presentationFlag
+        )
+        flag = Context.shared.flag(sheet.presentationFlag)
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)

@@ -21,7 +21,7 @@ struct PCAsyncView: PCView {
             urlRequest: URLRequest(url: url).with(requestConfig),
             placeholder: Color.clear
         )
-        .modifier(try! Parser.modifiers(from: modifiers))
+        .modifier(Parser.modifiers(from: modifiers))
     }
 
     enum Keys: CodingKey { case url, modifiers }

@@ -19,24 +19,27 @@ struct PCShapeView: PCView {
 
     var body: some View {
         shape
-            .stroke(stroke?.content ?? AnyShapeStyle(Color.clear), lineWidth: lineWidth ?? 0)
+            .stroke(stroke?.content ?? AnyShapeStyle(Color.clear), lineWidth: lineWidth ?? 1)
             .background(shape.fill(fill?.content ?? AnyShapeStyle(Color.clear)))
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(Parser.modifiers(from: modifiers))
+    }
+
+    init(shape: PCShape, fill: ShapePaint? = nil, stroke: ShapePaint? = nil, lineWidth: CGFloat? = nil, modifiers: PCModifiersData? = nil) {
+        self.shape = shape
+        self.fill = fill
+        self.stroke = stroke
+        self.lineWidth = lineWidth
+        self.modifiers = modifiers
     }
 }
 
-struct PCShape: Shape, Codable {
-    
-    enum ShapeType: Codable {
-        case rectangle(cornerRadius: CGFloat?)
-        case circle
-        case capsule(style: RoundedCornerStyle?)
-    }
-
-    private let type: ShapeType
+enum PCShape: Shape, Codable {
+    case rectangle(cornerRadius: CGFloat?)
+    case circle
+    case capsule(style: RoundedCornerStyle?)
 
     func path(in rect: CGRect) -> Path {
-        switch type {
+        switch self {
         case .rectangle(let cornerRadius): RoundedRectangle(cornerRadius: cornerRadius ?? 0).path(in: rect)
         case .circle: Circle().path(in: rect)
         case .capsule(let style): Capsule(style: style ?? .continuous).path(in: rect)

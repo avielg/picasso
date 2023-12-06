@@ -30,7 +30,7 @@ struct PCText: PCView {
 
     var body: some View {
         Text(text)
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(Parser.modifiers(from: modifiers))
     }
 
     init(text: String, modifiers: PCModifiersData? = nil) {

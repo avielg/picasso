@@ -12,6 +12,29 @@ import ZippyJSON
 protocol PCView: View, Codable {
     static var name: String { get }
 }
+extension Encodable {
+    func jsonData() throws -> Data {
+        try JSONEncoder().encode(self)
+    }
+}
+
+extension Data {
+    func dictionary() throws -> [String: AnyCodable] {
+        try JSONDecoder().decode([String: AnyCodable].self, from: self)
+    }
+}
+
+extension [PCModifiersData] {
+    var merged: PCModifiersData {
+        var result = PCModifiersData()
+        for dict in self {
+            for (key, value) in dict {
+                result[key] = value
+            }
+        }
+        return result
+    }
+}
 
 enum Parser {
     static let encoder = JSONEncoder()
@@ -55,8 +78,67 @@ enum Parser {
 //        }
 //    }
 
+    static func modifiers(from dictionary: PCModifiersData?) -> some PCModifier {
+        do {
+            return try _modifiers(from: dictionary)
+        } catch {
+            let scrollViewContent: [PCViewData] = [
+                PCText(
+                    text: "Error parsing modifier data:",
+                    modifiers: [
+                        try! FontModifier(font: .title2.bold())
+                            .jsonData().dictionary(),
+                        try! ForegroundColorModifier(foregroundColor: .red)
+                            .jsonData().dictionary()
+                    ].merged
+                ),
+                PCText(
+                    text: error.title,
+                    modifiers: [
+                        try! FontModifier(font: .body.bold())
+                            .jsonData().dictionary(),
+                        try! ForegroundColorModifier(foregroundColor: .red)
+                            .jsonData().dictionary()
+                    ].merged
+                ),
+                PCText(text: error.subtitle),
+                PCText(text: error.debugDump),
+                PCText(text: String(describing: dictionary ?? [:]))
+            ].map { try! $0.jsonData().dictionary() }
+
+            let sheetContent = PCScrollView(axes: .vertical, views: scrollViewContent, modifiers: [
+                try! PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))
+                    .jsonData().dictionary()
+            ].merged)
+
+            let buttonBackground = PCShapeView(
+                shape: .rectangle(cornerRadius: 10),
+                fill: .color(value: .red)
+            )
+
+            let modifiersValues: [Encodable] = [
+                PaddingModifier(padding: .init(top: 4, leading: 4, bottom: 4, trailing: 4)),
+                FrameModifier(frame: .init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil)),
+                try! BackgroundModifier(content: buttonBackground),
+                try! SheetModifier(presentationFlag: "modifier_error", content: sheetContent),
+                ForegroundColorModifier(foregroundColor: .white)
+            ]
+            let modifiersData: [PCModifiersData] = modifiersValues.map { try! $0.jsonData().dictionary() }
+
+            let button = PCButton(
+                title: "Error parsing modifier data",
+                action: .toggleFlag("modifier_error"),
+                modifiers: modifiersData.merged
+            )
+
+            let errorContent = try! OverlayModifier(content: button).jsonData().dictionary()
+            
+            return try! _modifiers(from: errorContent)
+        }
+    }
+
     @ModifierBuilder
-    static func modifiers(from dictionary: PCModifiersData?) throws -> some PCModifier {
+    private static func _modifiers(from dictionary: PCModifiersData?) throws -> some PCModifier {
         if let dictionary, !dictionary.isEmpty {
             let data = try encoder.encode(dictionary)
             if dictionary[FontModifier.name] != nil {

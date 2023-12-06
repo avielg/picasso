@@ -11,6 +11,22 @@ Eventually also:
 
 ---
 
+## Getting Started
+
+Views:
+```json
+[
+	"text": "...",
+	"layout": {
+		"axis": "HStack", "VStack", "ZStack",
+		"alignment": "bottomTrailing"
+	  },
+	  "stack": [ other views...	]
+]
+```
+
+---
+
 ### ToDo/Reminders
 (beyond the obvious missing stuff...)
 - [ ] Somehow single pass on the JSON?

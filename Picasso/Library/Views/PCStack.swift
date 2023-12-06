@@ -53,7 +53,7 @@ struct PCStack: PCView {
             ForEach(stack) {
                 Parser.view(from: $0)
             }
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(Parser.modifiers(from: modifiers))
         }
     }
 

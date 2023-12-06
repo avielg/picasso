@@ -14,12 +14,38 @@ extension Color: Codable {
         let g: CGFloat = components?[1] ?? 0.0
         let b: CGFloat = components?[2] ?? 0.0
 
-        let hexString = String.init(format: "#%02lX%02lX%02lX", lroundf(Float(r * 255)), lroundf(Float(g * 255)), lroundf(Float(b * 255)))
+        let hexString = String(
+            format: "#%02lX%02lX%02lX",
+            lroundf(Float(r * 255)),
+            lroundf(Float(g * 255)),
+            lroundf(Float(b * 255))
+        )
         return hexString
     }
 
     public func encode(to encoder: Encoder) throws {
-        try hexString().encode(to: encoder)
+        switch self {
+        case .red: try "red".encode(to: encoder)
+        case .orange: try "orange".encode(to: encoder)
+        case .yellow: try "yellow".encode(to: encoder)
+        case .green: try "green".encode(to: encoder)
+        case .mint: try "mint".encode(to: encoder)
+        case .teal: try "teal".encode(to: encoder)
+        case .cyan: try "cyan".encode(to: encoder)
+        case .blue: try "blue".encode(to: encoder)
+        case .indigo: try "indigo".encode(to: encoder)
+        case .purple: try "purple".encode(to: encoder)
+        case .pink: try "pink".encode(to: encoder)
+        case .brown: try "brown".encode(to: encoder)
+        case .white: try "white".encode(to: encoder)
+        case .gray: try "gray".encode(to: encoder)
+        case .black: try "black".encode(to: encoder)
+        case .clear: try "clear".encode(to: encoder)
+        case .primary: try "primary".encode(to: encoder)
+        case .secondary: try "secondary".encode(to: encoder)
+        case .accentColor: try "accent".encode(to: encoder)
+        default: try hexString().encode(to: encoder)
+        }
     }
 
     public init(from decoder: Decoder) throws {

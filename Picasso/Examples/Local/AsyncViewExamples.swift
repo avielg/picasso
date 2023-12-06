@@ -12,7 +12,7 @@ let async_json1 = """
   "layout": { "axis": "ZStack" },
   "stack": [
     {
-      "shape": { "type": { "rectangle": { "cornerRadius": 48 } } },
+      "shape": { "rectangle": { "cornerRadius": 48 } },
       "fill": { "color": { "value": "orange" } }
     },
     {

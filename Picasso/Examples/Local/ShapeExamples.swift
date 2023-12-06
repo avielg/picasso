@@ -12,7 +12,7 @@ let shape_json1 = """
   "layout": { "axis": "VStack" },
   "stack": [
     {
-      "shape": { "type": { "circle": { } } },
+      "shape": { "circle": { } },
       "fill": { "color": { "value": "red" } },
       "stroke": { "color": { "value": "primary" } },
       "lineWidth": 3,
@@ -21,7 +21,7 @@ let shape_json1 = """
       }
     },
     {
-      "shape": { "type": { "rectangle": { "cornerRadius": 40 } } },
+      "shape": { "rectangle": { "cornerRadius": 40 } },
       "fill": { "color": { "value": "orange" } },
       "stroke": { "color": { "value": "teal" } },
       "lineWidth": 3,
@@ -37,7 +37,7 @@ let shape_json1 = """
         "padding": { "top": 4, "bottom": 4, "leading": 28, "trailing": 28 },
         "background": {
           "content": {
-            "shape": { "type": { "capsule": { "style": "continuous" } } },
+            "shape": { "capsule": { "style": "continuous" } },
             "fill": { "gradient": {
               "gradient": [
                 { "color": "blue", "location": 0 },
@@ -50,7 +50,7 @@ let shape_json1 = """
       }
     },
     {
-      "shape": { "type": { "capsule": { "style": "continuous" } } },
+      "shape": { "capsule": { "style": "continuous" } },
       "fill": { "gradient": {
         "gradient": [
           { "color": "blue", "location": 0 },
@@ -75,7 +75,7 @@ let shape_json1 = """
       "layout": { "axis": "ZStack", "alignment": "topLeading" },
       "stack": [
         {
-          "shape": { "type": { "capsule": { "style": "continuous" } } },
+          "shape": { "capsule": { "style": "continuous" } },
           "fill": { "gradient": {
             "gradient": [
               { "color": "blue", "location": 0 },

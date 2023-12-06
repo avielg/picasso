@@ -11,18 +11,6 @@ import SwiftUI
 
 @testable import Picasso
 
-extension [PCModifiersData] {
-    var merged: PCModifiersData {
-        var result = PCModifiersData()
-        for dict in self {
-            for (key, value) in dict {
-                result[key] = value
-            }
-        }
-        return result
-    }
-}
-
 struct EncodeExample {
     static var modifier1: PCModifiersData = try! FontModifier(
         font: .system(.footnote, design: .monospaced, weight: .light)
@@ -175,18 +163,6 @@ final class PicassoTests: XCTestCase {
         }
     }
 
-}
-
-extension Encodable {
-    func jsonData() throws -> Data {
-        try JSONEncoder().encode(self)
-    }
-}
-
-extension Data {
-    func dictionary() throws -> [String: AnyCodable] {
-        try JSONDecoder().decode([String: AnyCodable].self, from: self)
-    }
 }
 
 extension [String: AnyCodable] {

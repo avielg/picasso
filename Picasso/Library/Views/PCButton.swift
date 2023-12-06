@@ -41,7 +41,7 @@ struct PCButton: PCView {
 
     var body: some View {
         Button(button, action: performAction)
-            .modifier(try! Parser.modifiers(from: modifiers))
+            .modifier(Parser.modifiers(from: modifiers))
     }
 
     enum Keys: CodingKey {
@@ -50,6 +50,12 @@ struct PCButton: PCView {
         case openURL
         case presentURL
         case toggleFlag
+    }
+
+    init(title: String, action: Action, modifiers: PCModifiersData? = nil) {
+        self.button = title
+        self.action = action
+        self.modifiers = modifiers
     }
 
     init(from decoder: Decoder) throws {
@@ -70,15 +76,19 @@ struct PCButton: PCView {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
+        
+        try container.encode(button, forKey: .button)
+        try container.encode(modifiers, forKey: .modifiers)
+
         switch action {
         case .empty:
             break
         case .toggleFlag(let flag):
-            try container.encode([Keys.toggleFlag.stringValue: flag], forKey: .toggleFlag)
+            try container.encode(flag, forKey: .toggleFlag)
         case .openURL(let url):
-            try container.encode([Keys.openURL.stringValue: url], forKey: .toggleFlag)
+            try container.encode(url, forKey: .openURL)
         case .presentURL(let url):
-            try container.encode([Keys.presentURL.stringValue: url], forKey: .toggleFlag)
+            try container.encode(url, forKey: .presentURL)
         }
     }
 }
