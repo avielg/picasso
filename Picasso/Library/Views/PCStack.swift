@@ -40,6 +40,12 @@ struct PCLayoutData: Codable {
     let axis: Axis
     let alignment: PCAlignment?
     let spacing: Double?
+
+    init(axis: Axis, alignment: PCAlignment? = nil, spacing: Double? = nil) {
+        self.axis = axis
+        self.alignment = alignment
+        self.spacing = spacing
+    }
 }
 
 enum PCAlignment: String, Codable {

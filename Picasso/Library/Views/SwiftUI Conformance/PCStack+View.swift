@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension PCStack: PCView {
-    init(layout: any Layout, stack: [PCViewData], modifiers: PCModifiersData? = nil) throws {
-        self.layout = try PCLayoutData.from(layout)
+    init(layout: PCLayoutData, stack: [PCViewData], modifiers: PCModifiersData? = nil) {
+        self.layout = layout
         self.stack = stack
         self.modifiers = modifiers
     }
