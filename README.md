@@ -24,11 +24,8 @@ Views:
     }
   },
   {
-    "layout": {
-      "axis": "HStack" (or "VStack" or "ZStack" )
-      "alignment": "bottomTrailing"
-    },
-    "stack": [other views...]
+    "alignment": "bottomTrailing",
+    "VStack": [other views...]
   }
 ]
 ```
