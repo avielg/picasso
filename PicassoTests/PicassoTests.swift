@@ -80,7 +80,7 @@ final class PicassoTests: XCTestCase {
         let jsonObj = try data.dictionary()
 
         let data2 = """
-    {"text":"Check","modifiers":{"foregroundColor":"#000000","font":{"design":"monospaced","weight":"light","style":"footnote"}}}
+    {"text":"Check","modifiers":{"foregroundColor":"orange","font":{"design":"monospaced","weight":"light","style":"footnote"}}}
     """.data(using: .utf8)!
 
         let jsonObj2 = try data2.dictionary()
