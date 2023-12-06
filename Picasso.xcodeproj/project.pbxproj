@@ -31,6 +31,12 @@
 		3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A29C2B00882C002F8FFD /* PCStack.swift */; };
 		3091A2A02B009BE4002F8FFD /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 3091A29F2B009BE4002F8FFD /* AnyCodable */; };
 		3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A2A12B01B3C9002F8FFD /* Parser.swift */; };
+		30B4A6CB2B20264000E58CDE /* PCLayoutData+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */; };
+		30B4A6CD2B2027BA00E58CDE /* PCStack+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */; };
+		30B4A6CF2B20280A00E58CDE /* PCViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CE2B20280A00E58CDE /* PCViewData.swift */; };
+		30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */; };
+		30B4A6D32B202B5100E58CDE /* PCAlignment+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */; };
+		30B4A6D52B202DFB00E58CDE /* PCText+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D42B202DFB00E58CDE /* PCText+View.swift */; };
 		30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55D2B16326700847124 /* PCAsyncView.swift */; };
 		30DCC5602B163C7C00847124 /* AsyncViewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */; };
 		30F59C212B06D83A0092D7ED /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C202B06D83A0092D7ED /* Example.json */; };
@@ -83,6 +89,12 @@
 		3091A29A2AFFDD95002F8FFD /* PCText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCText.swift; sourceTree = "<group>"; };
 		3091A29C2B00882C002F8FFD /* PCStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCStack.swift; sourceTree = "<group>"; };
 		3091A2A12B01B3C9002F8FFD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCLayoutData+Layout.swift"; sourceTree = "<group>"; };
+		30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCStack+View.swift"; sourceTree = "<group>"; };
+		30B4A6CE2B20280A00E58CDE /* PCViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCViewData.swift; sourceTree = "<group>"; };
+		30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAlignment.swift; sourceTree = "<group>"; };
+		30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCAlignment+Alignment.swift"; sourceTree = "<group>"; };
+		30B4A6D42B202DFB00E58CDE /* PCText+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCText+View.swift"; sourceTree = "<group>"; };
 		30DCC55D2B16326700847124 /* PCAsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCAsyncView.swift; sourceTree = "<group>"; };
 		30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewExamples.swift; sourceTree = "<group>"; };
 		30F59C202B06D83A0092D7ED /* Example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
@@ -122,6 +134,7 @@
 		3010F63C2B12F73000EB7360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30B4A6C92B20261700E58CDE /* SwiftUI Conformance */,
 				3091A29A2AFFDD95002F8FFD /* PCText.swift */,
 				3091A29C2B00882C002F8FFD /* PCStack.swift */,
 				30F59C242B06DFCB0092D7ED /* PCScrollView.swift */,
@@ -143,6 +156,7 @@
 				30F59C3D2B0AC4830092D7ED /* CodableShapeStyle.swift */,
 				3010F6382B12F6D900EB7360 /* CodableEdgeInsets.swift */,
 				3010F63A2B12F6F800EB7360 /* CodableAxisSet.swift */,
+				30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -167,6 +181,7 @@
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
 				30F59C2D2B07E2F10092D7ED /* Errors.swift */,
 				3010F63D2B13069000EB7360 /* State.swift */,
+				30B4A6CE2B20280A00E58CDE /* PCViewData.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -209,6 +224,17 @@
 				3091A2932AFFDD68002F8FFD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		30B4A6C92B20261700E58CDE /* SwiftUI Conformance */ = {
+			isa = PBXGroup;
+			children = (
+				30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */,
+				30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */,
+				30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */,
+				30B4A6D42B202DFB00E58CDE /* PCText+View.swift */,
+			);
+			path = "SwiftUI Conformance";
 			sourceTree = "<group>";
 		};
 		30F59C282B06E2660092D7ED /* Examples */ = {
@@ -376,13 +402,17 @@
 				3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */,
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,
 				301C83932B046874005377D1 /* CodableColor.swift in Sources */,
+				30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */,
 				30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */,
 				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
 				3010F6392B12F6D900EB7360 /* CodableEdgeInsets.swift in Sources */,
 				30F59C232B06D8D50092D7ED /* PicassoView.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
+				30B4A6CB2B20264000E58CDE /* PCLayoutData+Layout.swift in Sources */,
+				30B4A6CF2B20280A00E58CDE /* PCViewData.swift in Sources */,
 				30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */,
+				30B4A6D32B202B5100E58CDE /* PCAlignment+Alignment.swift in Sources */,
 				3010F6442B1312D000EB7360 /* PCOptionalView.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
@@ -391,6 +421,8 @@
 				30F59C402B0AC6820092D7ED /* PCImage.swift in Sources */,
 				3010F6422B13077100EB7360 /* ButtonExamples.swift in Sources */,
 				3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */,
+				30B4A6CD2B2027BA00E58CDE /* PCStack+View.swift in Sources */,
+				30B4A6D52B202DFB00E58CDE /* PCText+View.swift in Sources */,
 				3010F63E2B13069000EB7360 /* State.swift in Sources */,
 				3010F6402B1306B700EB7360 /* PCButton.swift in Sources */,
 			);
