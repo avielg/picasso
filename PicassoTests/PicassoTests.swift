@@ -32,21 +32,18 @@ struct EncodeExample {
 
     static var text3 = PCText(text: "Check Simple")
 
-    static var stack1 =
-        PCStack(layout: .init(axis: .vStack, alignment: .listRowSeparatorLeading, spacing: 20), stack: [
-            try! text1.jsonData().dictionary(),
-            try! text2.jsonData().dictionary()
-        ])
+    static var stack1 = PCStack(.vStack, spacing: 20, alignment: .listRowSeparatorLeading, content: [
+        try! text1.jsonData().dictionary(),
+        try! text2.jsonData().dictionary()
+    ])
 
-    static var stack2 =
-        PCStack(layout: .init(axis: .hStack, alignment: .firstTextBaseline), stack: [
-            try! text1.jsonData().dictionary(),
-        ])
+    static var stack2 = PCStack(.hStack, alignment: .firstTextBaseline, content: [
+        try! text1.jsonData().dictionary(),
+    ])
 
-    static var stack3 =
-        PCStack(layout: .init(axis: .zStack, alignment: .bottomTrailing), stack: [
-            try! text1.jsonData().dictionary(),
-        ])
+    static var stack3 = PCStack(.zStack, alignment: .bottomTrailing, content: [
+        try! text1.jsonData().dictionary(),
+    ])
 
     static var scrollview1 =
         PCScrollView(axes: .vertical, views: [

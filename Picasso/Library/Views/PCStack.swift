@@ -18,6 +18,20 @@ struct PCStack: Codable {
     let content: [PCViewData]
     let modifiers: PCModifiersData?
 
+    init(
+        _ axis: Axis,
+        spacing: Double? = nil,
+        alignment: PCAlignment? = nil,
+        content: [PCViewData],
+        modifiers: PCModifiersData? = nil
+    ) {
+        self.axis = axis
+        self.spacing = spacing
+        self.alignment = alignment
+        self.content = content
+        self.modifiers = modifiers
+    }
+
     enum CodingKeys: String, CodingKey {
         case hStack = "HStack"
         case vStack = "VStack"
