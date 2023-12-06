@@ -15,19 +15,40 @@ Eventually also:
 
 Views:
 ```json
-[
-  {
-    "text": "Hello!",
-    "modifiers": {
-      "font": { "weight": "bold", "style": "title" },
-      "padding": { "top": 30, "leading": 100 }
+{
+  "VStack": [
+    {
+      "text": "Hello!",
+      "modifiers": {
+        "font": { "weight": "bold", "style": "title" },
+        "padding": { "top": 30, "leading": 100 }
+      }
+    },
+    {
+      "HStack": [...other views...],
+      "alignment": "bottomTrailing",
+      "modifiers": {
+        "overlay": {
+          "alignment": "bottom",
+          "content": {...some view...}
+        }
+      }
+    },
+    {
+      "optional": {
+        "content": { "text": "Hi there! :)" },
+        "presentationFlag": "show-text" }
+    },
+    {
+      "button": "Toggle Hidden Text",
+      "toggleFlag": "show-text",
+    },
+    {
+      "image": "https://picsum.photos/200/400",
+      "scale": 2
     }
-  },
-  {
-    "alignment": "bottomTrailing",
-    "VStack": [other views...]
-  }
-]
+  ]
+}
 ```
 
 ---
