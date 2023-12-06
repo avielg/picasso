@@ -16,12 +16,20 @@ Eventually also:
 Views:
 ```json
 [
-	"text": "...",
-	"layout": {
-		"axis": "HStack", "VStack", "ZStack",
-		"alignment": "bottomTrailing"
-	  },
-	  "stack": [ other views...	]
+  {
+    "text": "Hello!",
+    "modifiers": {
+      "font": { "weight": "bold", "style": "title" },
+      "padding": { "top": 30, "leading": 100 }
+    }
+  },
+  {
+    "layout": {
+      "axis": "HStack" (or "VStack" or "ZStack" )
+      "alignment": "bottomTrailing"
+    },
+    "stack": [other views...]
+  }
 ]
 ```
 
@@ -31,4 +39,6 @@ Views:
 (beyond the obvious missing stuff...)
 - [ ] Somehow single pass on the JSON?
 - [ ] Eventually split ``Parser/modifiers(from:)`` to categories: text, etc.
-- [ ] Protobuf / FlatBuffers
+- [ ] Add MessagePack with perf tests against JSON
+- [ ] Remove the SwiftUI.View conformance from the types, make it separate (to later compile on Linux)
+
