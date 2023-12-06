@@ -9,8 +9,7 @@ import Foundation
 
 let async_json1 = """
 {
-  "layout": { "axis": "ZStack" },
-  "stack": [
+  "ZStack": [
     {
       "shape": { "rectangle": { "cornerRadius": 48 } },
       "fill": { "color": { "value": "orange" } }

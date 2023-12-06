@@ -82,11 +82,8 @@ extension Error {
 
         return """
         {
-          "layout": {
-            "axis": "VStack",
-            "alignment": "leading"
-          },
-          "stack": [
+          "alignment": "leading",
+          "VStack": [
             {
               "text": "\(title)",
               "modifiers": {

@@ -9,8 +9,7 @@ import Foundation
 
 let shape_json1 = """
 {
-  "layout": { "axis": "VStack" },
-  "stack": [
+  "VStack": [
     {
       "shape": { "circle": { } },
       "fill": { "color": { "value": "red" } },
@@ -72,8 +71,8 @@ let shape_json1 = """
       }
     },
     {
-      "layout": { "axis": "ZStack", "alignment": "topLeading" },
-      "stack": [
+      "alignment": "topLeading",
+      "ZStack": [
         {
           "shape": { "capsule": { "style": "continuous" } },
           "fill": { "gradient": {

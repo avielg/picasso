@@ -8,15 +8,25 @@
 import SwiftUI
 
 extension PCStack: PCView {
-    init(layout: PCLayoutData, stack: [PCViewData], modifiers: PCModifiersData? = nil) {
-        self.layout = layout
-        self.stack = stack
-        self.modifiers = modifiers
+    private var getSpacing: CGFloat? {
+        if let spacing { CGFloat(spacing) }
+        else { nil }
+    }
+
+    private var layout: any Layout {
+        switch axis {
+        case .vStack:
+            return VStackLayout(alignment: (alignment ?? .center).toAlignment.horizontal, spacing: getSpacing)
+        case .hStack:
+            return HStackLayout(alignment: (alignment ?? .center).toAlignment.vertical, spacing: getSpacing)
+        case .zStack:
+            return ZStackLayout(alignment: (alignment ?? .center).toAlignment)
+        }
     }
 
     var body: some View {
-        AnyLayout(layout.toLayout) {
-            ForEach(stack) {
+        AnyLayout(layout) {
+            ForEach(content) {
                 Parser.view(from: $0)
             }
             .modifier(Parser.modifiers(from: modifiers))

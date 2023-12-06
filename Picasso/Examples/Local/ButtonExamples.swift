@@ -9,8 +9,8 @@ import Foundation
 
 let button_json1 = """
 {
-  "layout": { "axis": "VStack", "spacing": 32 },
-  "stack": [
+  "spacing": 32,
+  "VStack": [
     {
       "button": "Show Sheet",
       "toggleFlag": "sheet1",

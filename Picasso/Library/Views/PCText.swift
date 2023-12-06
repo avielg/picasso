@@ -8,7 +8,7 @@
 import AnyCodable
 
 struct PCText: Codable {
-    static var name: String { "text" }
+    static var names: [String] { ["text"] }
 
     let text: String
     let modifiers: PCModifiersData?

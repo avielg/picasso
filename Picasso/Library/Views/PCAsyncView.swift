@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PCAsyncView: PCView {
-    static var name: String { "url" }
+    static let names = ["url"]
 
     private let url: URL
 

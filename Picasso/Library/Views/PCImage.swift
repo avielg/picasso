@@ -10,7 +10,7 @@ import SwiftUI
 extension ContentMode: AllCasesProvider {}
 
 struct PCAsyncImage: PCView {
-    static var name: String { "image" }
+    static let names = ["image"]
 
     private let image: URL?
     private let scale: CGFloat?

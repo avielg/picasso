@@ -9,11 +9,8 @@ import Foundation
 
 let stack_json1 = """
 {
-  "layout": {
-    "axis": "HStack",
-    "spacing": 40
-  },
-  "stack": [
+  "spacing": 40,
+  "HStack": [
     {
       "text": "Hello... "
     },
@@ -29,36 +26,24 @@ let stack_json1 = """
 
 let stack_json2 = """
 {
-  "layout": {
-    "axis": "HStack",
-    "spacing": 32
-  },
-  "stack": [
+  "spacing": 32,
+  "HStack": [
     {
-      "layout": {
-        "axis": "VStack",
-        "alignment": "leading"
-      },
-      "stack": [
+      "alignment": "leading",
+      "VStack": [
         { "text": "one", "fontWeight": "semibold" },
         { "text": "two" }
       ]
     },
     {
-      "layout": {
-        "axis": "ZStack",
-        "alignment": "bottomTrailing"
-      },
-      "stack": [
+      "alignment": "bottomTrailing",
+      "ZStack": [
         { "text": "one one one\\none one one" },
         { "text": "two", "foregroundColor": "red", "fontWeight": "black" }
       ]
     },
     {
-      "layout": {
-        "axis": "HStack"
-      },
-      "stack": [
+      "HStack": [
         { "text": "one" },
         { "text": "two" }
       ]

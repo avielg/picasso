@@ -10,7 +10,7 @@ import SwiftUI
 import ZippyJSON
 
 protocol PCView: View, Codable {
-    static var name: String { get }
+    static var names: [String] { get }
 }
 extension Encodable {
     func jsonData() throws -> Data {
@@ -180,26 +180,35 @@ enum Parser {
     @ViewBuilder
     static private func _view(from data: Data, dictionary: [String: AnyCodable]? = nil) throws -> some View {
         let dict = try dictionary ?? _getDict(data: data)
-        if dict[PCText.name] != nil {
+        if dict.has(PCText.names) {
             try decoder.decode(PCText.self, from: data)
-        } else if dict[PCStack.name] != nil {
+        } else if dict.has(PCStack.names) {
             try decoder.decode(PCStack.self, from: data)
-        } else if dict[PCScrollView.name] != nil {
+        } else if dict.has(PCScrollView.names) {
             try decoder.decode(PCScrollView.self, from: data)
-        } else if dict[PCShapeView.name] != nil {
+        } else if dict.has(PCShapeView.names) {
             try decoder.decode(PCShapeView.self, from: data)
-        } else if dict[PCAsyncImage.name] != nil {
+        } else if dict.has(PCAsyncImage.names) {
             try decoder.decode(PCAsyncImage.self, from: data)
-        } else if dict[PCButton.name] != nil {
+        } else if dict.has(PCButton.names) {
             try decoder.decode(PCButton.self, from: data)
-        } else if dict[PCOptionalView.name] != nil {
+        } else if dict.has(PCOptionalView.names) {
             try decoder.decode(PCOptionalView.self, from: data)
-        } else if dict[PCAsyncView.name] != nil {
+        } else if dict.has(PCAsyncView.names) {
             try decoder.decode(PCAsyncView.self, from: data)
+        } else {
+            let keys = try? dictionary?.keys.joined(separator: ", ") ?? data.dictionary().keys.joined(separator: ", ")
+            throw CodableError.decodeError(value: "Unexpected view name keys: \(keys ?? "No keys")")
         }
     }
 
     static private func _getDict(data: Data) throws -> [String: AnyCodable] {
         try decoder.decode([String: AnyCodable].self, from: data)
+    }
+}
+
+private extension [String : AnyCodable] {
+    func has(_ anyOfKeys: [String]) -> Bool {
+        keys.first { anyOfKeys.contains($0) } != nil
     }
 }

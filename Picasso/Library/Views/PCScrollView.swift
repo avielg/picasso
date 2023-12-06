@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PCScrollView: PCView {
-    static var name: String { "scrollView" }
+    static let names = ["scrollView"]
 
     private let axes: Axis.Set?
     private let scrollView: [PCViewData]

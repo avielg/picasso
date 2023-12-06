@@ -31,7 +31,6 @@
 		3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A29C2B00882C002F8FFD /* PCStack.swift */; };
 		3091A2A02B009BE4002F8FFD /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 3091A29F2B009BE4002F8FFD /* AnyCodable */; };
 		3091A2A22B01B3C9002F8FFD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A2A12B01B3C9002F8FFD /* Parser.swift */; };
-		30B4A6CB2B20264000E58CDE /* PCLayoutData+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */; };
 		30B4A6CD2B2027BA00E58CDE /* PCStack+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */; };
 		30B4A6CF2B20280A00E58CDE /* PCViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CE2B20280A00E58CDE /* PCViewData.swift */; };
 		30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */; };
@@ -89,7 +88,6 @@
 		3091A29A2AFFDD95002F8FFD /* PCText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCText.swift; sourceTree = "<group>"; };
 		3091A29C2B00882C002F8FFD /* PCStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCStack.swift; sourceTree = "<group>"; };
 		3091A2A12B01B3C9002F8FFD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCLayoutData+Layout.swift"; sourceTree = "<group>"; };
 		30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PCStack+View.swift"; sourceTree = "<group>"; };
 		30B4A6CE2B20280A00E58CDE /* PCViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCViewData.swift; sourceTree = "<group>"; };
 		30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAlignment.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 		30B4A6C92B20261700E58CDE /* SwiftUI Conformance */ = {
 			isa = PBXGroup;
 			children = (
-				30B4A6CA2B20264000E58CDE /* PCLayoutData+Layout.swift */,
 				30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */,
 				30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */,
 				30B4A6D42B202DFB00E58CDE /* PCText+View.swift */,
@@ -409,7 +406,6 @@
 				30F59C232B06D8D50092D7ED /* PicassoView.swift in Sources */,
 				3091A29D2B00882C002F8FFD /* PCStack.swift in Sources */,
 				30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */,
-				30B4A6CB2B20264000E58CDE /* PCLayoutData+Layout.swift in Sources */,
 				30B4A6CF2B20280A00E58CDE /* PCViewData.swift in Sources */,
 				30F59C3E2B0AC4830092D7ED /* CodableShapeStyle.swift in Sources */,
 				30B4A6D32B202B5100E58CDE /* PCAlignment+Alignment.swift in Sources */,

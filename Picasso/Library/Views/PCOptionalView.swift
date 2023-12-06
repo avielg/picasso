@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PCOptionalView: PCView {
-    static var name: String { "optional" }
+    static let names = ["optional"]
 
     struct Optional: Codable {
         let content: PCViewData

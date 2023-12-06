@@ -9,7 +9,7 @@ import SafariServices
 import SwiftUI
 
 struct PCButton: PCView {
-    static var name: String { "button" }
+    static let names = ["button"]
 
     private let button: String
 

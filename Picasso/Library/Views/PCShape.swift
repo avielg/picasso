@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PCShapeView: PCView {
-    static var name: String { "shape" }
+    static let names = ["shape"]
 
     private let shape: PCShape
     private let fill: ShapePaint?
