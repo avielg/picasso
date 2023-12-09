@@ -82,7 +82,7 @@ enum Parser {
         do {
             return try _modifiers(from: dictionary)
         } catch {
-            let scrollViewContent: [PCViewData] = [
+            let scrollViewContent: [any PCView] = [
                 PCText(
                     text: "Error parsing modifier data:",
                     modifiers: [
@@ -104,7 +104,7 @@ enum Parser {
                 PCText(text: error.subtitle),
                 PCText(text: error.debugDump),
                 PCText(text: String(describing: dictionary ?? [:]))
-            ].map { try! $0.jsonData().dictionary() }
+            ]
 
             let sheetContent = PCScrollView(axes: .vertical, views: scrollViewContent, modifiers: [
                 try! PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))

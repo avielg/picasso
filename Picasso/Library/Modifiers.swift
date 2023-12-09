@@ -88,7 +88,7 @@ struct BackgroundModifier: PCModifier {
     static var name: String { "background" }
 
     struct Background: Codable {
-        let content: PCViewData
+        let content: AnyPCView
         let alignment: Alignment?
     }
 
@@ -97,12 +97,12 @@ struct BackgroundModifier: PCModifier {
     func body(content: Content) -> some View {
         content.background(
             alignment: background.alignment ?? .center,
-            content: { Parser.view(from: background.content) }
+            content: { background.content }
         )
     }
 
     init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
-        self.background = try .init(content: content.jsonData().dictionary(), alignment: alignment)
+        self.background = .init(content: AnyPCView(content), alignment: alignment)
     }
 }
 
@@ -110,20 +110,20 @@ struct OverlayModifier: PCModifier {
     static var name: String { "overlay" }
 
     struct Overlay: Codable {
-        let content: PCViewData
+        let content: AnyPCView
         let alignment: Alignment?
     }
 
     let overlay: Overlay
 
     init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
-        self.overlay = try .init(content: content.jsonData().dictionary(), alignment: alignment)
+        self.overlay = .init(content: AnyPCView(content), alignment: alignment)
     }
 
     func body(content: Content) -> some View {
         content.overlay(
             alignment: overlay.alignment ?? .center,
-            content: { Parser.view(from: overlay.content) }
+            content: { overlay.content }
         )
     }
 }
@@ -132,7 +132,7 @@ struct SheetModifier: PCModifier {
     static var name: String { "sheet" }
 
     struct Sheet: Codable {
-        let content: PCViewData
+        let content: AnyPCView
         let presentationFlag: String
     }
 
@@ -142,15 +142,15 @@ struct SheetModifier: PCModifier {
 
     func body(content: Content) -> some View {
         content.sheet(isPresented: $flag.value) {
-            Parser.view(from: sheet.content)
+            sheet.content
         }
     }
 
     enum Keys: CodingKey { case sheet }
 
     init<V: PCView>(presentationFlag: String, content: V) throws {
-        self.sheet = try .init(
-            content: content.jsonData().dictionary(),
+        self.sheet = .init(
+            content: AnyPCView(content),
             presentationFlag: presentationFlag
         )
         flag = Context.shared.flag(sheet.presentationFlag)

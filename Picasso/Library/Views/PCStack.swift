@@ -15,20 +15,20 @@ struct PCStack: Codable {
 
     let spacing: Double?
     let alignment: PCAlignment?
-    let content: [PCViewData]
+    let content: [AnyPCView]
     let modifiers: PCModifiersData?
 
     init(
         _ axis: Axis,
         spacing: Double? = nil,
         alignment: PCAlignment? = nil,
-        content: [PCViewData],
+        content: [any PCView],
         modifiers: PCModifiersData? = nil
     ) {
         self.axis = axis
         self.spacing = spacing
         self.alignment = alignment
-        self.content = content
+        self.content = content.map(AnyPCView.init)
         self.modifiers = modifiers
     }
 
@@ -59,15 +59,15 @@ struct PCStack: Codable {
         alignment = try container.decodeIfPresent(PCAlignment.self, forKey: .alignment)
         modifiers = try container.decodeIfPresent(PCModifiersData.self, forKey: .modifiers)
 
-        if let hStack = try container.decodeIfPresent([PCViewData].self, forKey: .hStack) {
+        if container.allKeys.contains(.hStack) {
             axis = .hStack
-            content = hStack
-        } else if let vStack = try container.decodeIfPresent([PCViewData].self, forKey: .vStack) {
+            content = try container.decode([AnyPCView].self, forKey: .hStack)
+        } else if container.allKeys.contains(.vStack) {
             axis = .vStack
-            content = vStack
-        } else if let zStack = try container.decodeIfPresent([PCViewData].self, forKey: .zStack) {
+            content = try container.decode([AnyPCView].self, forKey: .vStack)
+        } else if container.allKeys.contains(.zStack) {
             axis = .zStack
-            content = zStack
+            content = try container.decode([AnyPCView].self, forKey: .zStack)
         } else {
             throw CodableError.decodeError(value: "Unexpected stack type")
         }

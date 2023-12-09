@@ -11,7 +11,7 @@ struct PCOptionalView: PCView {
     static let names = ["optional"]
 
     struct Optional: Codable {
-        let content: PCViewData
+        let content: AnyPCView
         let presentationFlag: String
     }
 
@@ -21,7 +21,7 @@ struct PCOptionalView: PCView {
 
     var body: some View {
         if flag.value {
-            Parser.view(from: optional.content)
+            optional.content
         }
     }
 

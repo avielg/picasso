@@ -11,28 +11,28 @@ struct PCScrollView: PCView {
     static let names = ["scrollView"]
 
     private let axes: Axis.Set?
-    private let scrollView: [PCViewData]
+    private let scrollView: [AnyPCView]
     private let modifiers: PCModifiersData?
 
     var body: some View {
         ScrollView(axes ?? .vertical) {
-            ForEach(scrollView) {
-                Parser.view(from: $0)
+            ForEach(scrollView.indices) {
+                scrollView[$0]
             }
             .modifier(Parser.modifiers(from: modifiers))
         }
     }
 
-    init(axes: Axis.Set, views: [PCViewData], modifiers: PCModifiersData? = nil) {
-        self.scrollView = views
+    init(axes: Axis.Set, views: [any PCView], modifiers: PCModifiersData? = nil) {
+        self.scrollView = views.map(AnyPCView.init)
         self.modifiers = modifiers
         self.axes = axes
     }
 
     /// TODO: This should work, but waiting for bug fix in Swift parameter packs implementation
-//    init<each M: PCModifier>(axes: Axis.Set, views: [PCViewData], modifier: repeat each M) {
+//    init<each M: PCModifier>(axes: Axis.Set, views: [any PCView], modifier: repeat each M) {
 //        self.scrollView = views
-//        self.modifiers = [repeat try! (each modifier).jsonData().dictionary()].merged
+//        self.modifiers = [repeat AnyPCView((each modifier))].merged
 //        self.axes = axes
 //    }
 }
