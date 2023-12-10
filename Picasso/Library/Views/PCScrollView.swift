@@ -16,7 +16,7 @@ struct PCScrollView: PCView {
 
     var body: some View {
         ScrollView(axes ?? .vertical) {
-            ForEach(scrollView.indices) {
+            ForEach(scrollView.indices, id: \.self) {
                 scrollView[$0]
             }
             .modifier(Parser.modifiers(from: modifiers))

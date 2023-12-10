@@ -26,7 +26,7 @@ extension PCStack: PCView {
 
     var body: some View {
         AnyLayout(layout) {
-            ForEach(content.indices) {
+            ForEach(content.indices, id: \.self) {
                 content[$0]
             }
             .modifier(Parser.modifiers(from: modifiers))
