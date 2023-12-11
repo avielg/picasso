@@ -101,7 +101,7 @@ struct BackgroundModifier: PCModifier {
         )
     }
 
-    init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
+    init<V: PCView>(content: V, alignment: Alignment? = nil) {
         self.background = .init(content: AnyPCView(content), alignment: alignment)
     }
 }
@@ -116,7 +116,7 @@ struct OverlayModifier: PCModifier {
 
     let overlay: Overlay
 
-    init<V: PCView>(content: V, alignment: Alignment? = nil) throws {
+    init<V: PCView>(content: V, alignment: Alignment? = nil) {
         self.overlay = .init(content: AnyPCView(content), alignment: alignment)
     }
 
@@ -148,8 +148,8 @@ struct SheetModifier: PCModifier {
 
     enum Keys: CodingKey { case sheet }
 
-    init<V: PCView>(presentationFlag: String, content: V) throws {
-        self.sheet = .init(
+    init<V: PCView>(presentationFlag: String, content: V) {
+        sheet = .init(
             content: AnyPCView(content),
             presentationFlag: presentationFlag
         )

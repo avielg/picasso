@@ -119,8 +119,8 @@ enum Parser {
             let modifiersValues: [Encodable] = [
                 PaddingModifier(padding: .init(top: 4, leading: 4, bottom: 4, trailing: 4)),
                 FrameModifier(frame: .init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil)),
-                try! BackgroundModifier(content: buttonBackground),
-                try! SheetModifier(presentationFlag: "modifier_error", content: sheetContent),
+                BackgroundModifier(content: buttonBackground),
+                SheetModifier(presentationFlag: "modifier_error", content: sheetContent),
                 ForegroundColorModifier(foregroundColor: .white)
             ]
             let modifiersData: [PCModifiersData] = modifiersValues.map { try! $0.jsonData().dictionary() }
@@ -131,9 +131,10 @@ enum Parser {
                 modifiers: modifiersData.merged
             )
 
-            let errorContent = try! OverlayModifier(content: button).jsonData().dictionary()
-            
-            return try! _modifiers(from: errorContent)
+            let errorContent = OverlayModifier(content: button)
+            let errorDictionary = try! errorContent.jsonData().dictionary()
+
+            return try! _modifiers(from: errorDictionary)
         }
     }
 
