@@ -150,6 +150,23 @@ final class PicassoTests: XCTestCase {
         }
     }
 
+    func testEncodePerformanceLargeView() throws {
+        let encoder = JSONEncoder()
+        measure {
+            let view = largeView(count: 2_500)
+            let dataFromView = try! encoder.encode(view)
+        }
+    }
+
+    func testDecodePerformanceLargeView() throws {
+        let view = largeView(count: 250)
+        let encoder = JSONEncoder()
+        let dataFromView = try encoder.encode(view)
+        measure {
+            let view = Parser.view(from: dataFromView)
+        }
+    }
+
 }
 
 extension [String: AnyCodable] {
@@ -157,4 +174,50 @@ extension [String: AnyCodable] {
         let data = try! JSONEncoder().encode(self)
         return String(data: data, encoding: .utf8) ?? "NA"
     }
+}
+
+
+func largeView(count: Int) -> some PCView {
+    let manyModifiers: [Encodable] = [
+        FontModifier(font: .callout),
+        ForegroundColorModifier(foregroundColor: .red),
+        LineLimitModifier(lineLimit: 1...5),
+        TextAlignModifier(alignment: .trailing),
+        PaddingModifier(padding: .init(top: 1, leading: 2, bottom: 3, trailing: 4)),
+        FrameModifier(frame: .init(width: 10, height: 20, minWidth: 30, idealWidth: 40, maxWidth: 40, minHeight: nil, idealHeight: nil, maxHeight: 60, alignment: .bottomLeading))
+    ]
+    let modifiersData: [PCModifiersData] = manyModifiers.map { try! $0.jsonData().dictionary() }
+    let text = PCText(text: "lorem ipsum", modifiers: modifiersData.merged)
+    
+    let btnModifiers = [
+        BackgroundModifier(content: text)
+    ] + manyModifiers
+    let btn = PCButton(
+        title: "blah blah blah",
+        action: .presentURL(URL(string: "www.google.com")!),
+        modifiers: btnModifiers.map({ try! $0.jsonData().dictionary() }).merged
+    )
+
+    let shapeModifiers = [
+        OverlayModifier(content: text, alignment: .centerFirstTextBaseline)
+    ] + manyModifiers
+    let shape = PCShapeView(
+        shape: .capsule(style: .circular),
+        fill: .gradient(gradient: .init(colors: [.red, .blue]), spread: .elliptical(center: .bottom, startRadiusFraction: 0.1, endRadiusFraction: 0.2)),
+        stroke: .color(value: .accentColor),
+        lineWidth: 3,
+        modifiers: shapeModifiers.map({ try! $0.jsonData().dictionary() }).merged)
+
+    let image = PCAsyncImage(image: URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: modifiersData.merged)
+
+    let stack = PCStack(.hStack, alignment: .bottom, content: [
+        text,
+        btn,
+        shape,
+        image
+    ])
+
+    let scrollView = PCScrollView(axes: .horizontal, views: .init(repeating: stack, count: count), modifiers: modifiersData.merged)
+
+    return scrollView
 }
