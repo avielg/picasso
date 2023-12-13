@@ -19,6 +19,24 @@
       }
     },
     {
+      "identity" : "messagepacker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hirotakan/MessagePacker",
+      "state" : {
+        "revision" : "4d8346c6bc579347e4df0429493760691c5aeca2",
+        "version" : "0.4.7"
+      }
+    },
+    {
+      "identity" : "msgpack-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fumoboy007/msgpack-swift",
+      "state" : {
+        "revision" : "1e3124367973f45955f27f49a617862605e55288",
+        "version" : "2.0.0"
+      }
+    },
+    {
       "identity" : "zippyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/michaeleisel/ZippyJSON",

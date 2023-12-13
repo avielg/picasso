@@ -20,6 +20,7 @@
 		301C83902B04684C005377D1 /* CodableConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C838F2B04684C005377D1 /* CodableConformance.swift */; };
 		301C83932B046874005377D1 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83922B046874005377D1 /* CodableColor.swift */; };
 		301C83952B0468B7005377D1 /* CodableFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83942B0468B7005377D1 /* CodableFont.swift */; };
+		304DD3EA2B2923E20070C6DB /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DD3E92B2923E20070C6DB /* Coders.swift */; };
 		304F84F52B029294007080AB /* PicassoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F84F42B029294007080AB /* PicassoTests.swift */; };
 		3054A5192B05157500F006E6 /* TextExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A5182B05157500F006E6 /* TextExamples.swift */; };
 		3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A51A2B0515BB00F006E6 /* StackExamples.swift */; };
@@ -35,6 +36,8 @@
 		30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D02B2028E600E58CDE /* CodableAlignment.swift */; };
 		30B4A6D32B202B5100E58CDE /* PCAlignment+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */; };
 		30B4A6D52B202DFB00E58CDE /* PCText+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D42B202DFB00E58CDE /* PCText+View.swift */; };
+		30C8EC682B268F5C000D674C /* DMMessagePack in Frameworks */ = {isa = PBXBuildFile; productRef = 30C8EC672B268F5C000D674C /* DMMessagePack */; };
+		30C8EC6B2B269945000D674C /* MessagePacker in Frameworks */ = {isa = PBXBuildFile; productRef = 30C8EC6A2B269945000D674C /* MessagePacker */; };
 		30CA5B932B24EDDF00BDF440 /* AnyPCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA5B922B24EDDF00BDF440 /* AnyPCView.swift */; };
 		30CA5B952B24EE3400BDF440 /* AnyPCView+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA5B942B24EE3400BDF440 /* AnyPCView+View.swift */; };
 		30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55D2B16326700847124 /* PCAsyncView.swift */; };
@@ -75,6 +78,7 @@
 		301C838F2B04684C005377D1 /* CodableConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableConformance.swift; sourceTree = "<group>"; };
 		301C83922B046874005377D1 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
 		301C83942B0468B7005377D1 /* CodableFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFont.swift; sourceTree = "<group>"; };
+		304DD3E92B2923E20070C6DB /* Coders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coders.swift; sourceTree = "<group>"; };
 		304F84ED2B02928B007080AB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		304F84F22B029294007080AB /* PicassoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicassoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F84F42B029294007080AB /* PicassoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoTests.swift; sourceTree = "<group>"; };
@@ -123,7 +127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C8EC6B2B269945000D674C /* MessagePacker in Frameworks */,
 				3091A2A02B009BE4002F8FFD /* AnyCodable in Frameworks */,
+				30C8EC682B268F5C000D674C /* DMMessagePack in Frameworks */,
 				3010F6342B10F87E00EB7360 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,6 +220,7 @@
 				3091A28F2AFFDD68002F8FFD /* Assets.xcassets */,
 				3091A2912AFFDD68002F8FFD /* Picasso.entitlements */,
 				3091A2922AFFDD68002F8FFD /* Preview Content */,
+				304DD3E92B2923E20070C6DB /* Coders.swift */,
 			);
 			path = Picasso;
 			sourceTree = "<group>";
@@ -308,6 +315,8 @@
 			packageProductDependencies = (
 				3091A29F2B009BE4002F8FFD /* AnyCodable */,
 				3010F6332B10F87E00EB7360 /* ZippyJSON */,
+				30C8EC672B268F5C000D674C /* DMMessagePack */,
+				30C8EC6A2B269945000D674C /* MessagePacker */,
 			);
 			productName = Picasso;
 			productReference = 3091A2882AFFDD66002F8FFD /* Picasso.app */;
@@ -344,6 +353,8 @@
 			packageReferences = (
 				3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */,
 				3010F6322B10F87E00EB7360 /* XCRemoteSwiftPackageReference "ZippyJSON" */,
+				30C8EC662B268F5C000D674C /* XCRemoteSwiftPackageReference "msgpack-swift" */,
+				30C8EC692B269945000D674C /* XCRemoteSwiftPackageReference "MessagePacker" */,
 			);
 			productRefGroup = 3091A2892AFFDD66002F8FFD /* Products */;
 			projectDirPath = "";
@@ -405,6 +416,7 @@
 				301C83932B046874005377D1 /* CodableColor.swift in Sources */,
 				30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */,
 				30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */,
+				304DD3EA2B2923E20070C6DB /* Coders.swift in Sources */,
 				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
 				3010F6392B12F6D900EB7360 /* CodableEdgeInsets.swift in Sources */,
 				30F59C232B06D8D50092D7ED /* PicassoView.swift in Sources */,
@@ -650,6 +662,7 @@
 				DEVELOPMENT_TEAM = 85JPBD89LM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -726,6 +739,22 @@
 				minimumVersion = 0.6.7;
 			};
 		};
+		30C8EC662B268F5C000D674C /* XCRemoteSwiftPackageReference "msgpack-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fumoboy007/msgpack-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		30C8EC692B269945000D674C /* XCRemoteSwiftPackageReference "MessagePacker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hirotakan/MessagePacker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -738,6 +767,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */;
 			productName = AnyCodable;
+		};
+		30C8EC672B268F5C000D674C /* DMMessagePack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30C8EC662B268F5C000D674C /* XCRemoteSwiftPackageReference "msgpack-swift" */;
+			productName = DMMessagePack;
+		};
+		30C8EC6A2B269945000D674C /* MessagePacker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30C8EC692B269945000D674C /* XCRemoteSwiftPackageReference "MessagePacker" */;
+			productName = MessagePacker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -42,13 +42,13 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        Parser.view(from: scrollView_example2)
+                        Parser.shared.view(from: scrollView_example2)
                     } label: {
                         Text("Horizontal ScrollView")
                     }
 
                     NavigationLink {
-                        Parser.view(from: button_json1)
+                        Parser.shared.view(from: button_json1)
                     } label: {
                         Text("Button & Sheet")
                     }

@@ -21,7 +21,7 @@ struct PCAsyncView: PCView {
             urlRequest: URLRequest(url: url).with(requestConfig),
             placeholder: Color.clear
         )
-        .modifier(Parser.modifiers(from: modifiers))
+        .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
     enum Keys: CodingKey { case url, modifiers }
@@ -40,5 +40,5 @@ struct PCAsyncView: PCView {
 }
 
 func asyncExamples() -> some View {
-    Parser.view(from: async_json1)
+    Parser.shared.view(from: async_json1)
 }

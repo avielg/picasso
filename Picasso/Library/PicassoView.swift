@@ -12,7 +12,7 @@ struct PCDataView: View {
     let data: Data
 
     var body: some View {
-        Parser.view(from: data)
+        Parser.shared.view(from: data)
     }
 }
 

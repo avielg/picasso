@@ -8,6 +8,9 @@
 import XCTest
 import AnyCodable
 import SwiftUI
+import ZippyJSON
+import MessagePacker // hirotakan/MessagePacker
+import MessagePack // fumoboy007/msgpack-swift
 
 @testable import Picasso
 
@@ -61,8 +64,8 @@ final class PicassoTests: XCTestCase {
 
     func testEncode() throws {
         let data = try JSONEncoder().encode(EncodeExample.text1)
-//        let json = String(data: data, encoding: .utf8) ?? "NA"
-//        print(json)
+        //        let json = String(data: data, encoding: .utf8) ?? "NA"
+        //        print(json)
 
         let jsonObj = try data.dictionary()
 
@@ -85,7 +88,7 @@ final class PicassoTests: XCTestCase {
             image_json1, image_json2
         ]
         for json in viewJsons {
-            XCTAssertNoThrow(Parser.view(from: json))
+            XCTAssertNoThrow(Parser.shared.view(from: json))
         }
     }
 
@@ -131,11 +134,11 @@ final class PicassoTests: XCTestCase {
     func _test<V: Codable>(fileName: String, rootType: V.Type) throws {
         let url = Bundle.main.url(forResource: fileName, withExtension: "json")!
         let data = try Data(contentsOf: url)
-        XCTAssertNoThrow(Parser.view(from: data))
+        XCTAssertNoThrow(Parser.shared.view(from: data))
 
         let codableView = try JSONDecoder().decode(V.self, from: data)
         let dataFromView = try codableView.jsonData()
-        XCTAssertNoThrow(Parser.view(from: dataFromView))
+        XCTAssertNoThrow(Parser.shared.view(from: dataFromView))
     }
 
     func testRemoteViews() throws {
@@ -144,29 +147,77 @@ final class PicassoTests: XCTestCase {
     }
 
     func testPerformanceExample() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = JSONDecoder()
         measure {
             try! testDecode()
             try! testViews()
         }
     }
 
-    func testEncodePerformanceLargeView() throws {
-        let encoder = JSONEncoder()
+    // MARK: ZippyJSON
+
+    func testJSONEncodePerformanceLargeView() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = ZippyJSONDecoder()
         measure {
-            let view = largeView(count: 2_500)
-            let dataFromView = try! encoder.encode(view)
+            let view = noModifiersLargeView(count: 2_500)
+            _ = try! Parser.shared.encoder.encode(view)
         }
     }
 
-    func testDecodePerformanceLargeView() throws {
-        let view = largeView(count: 250)
-        let encoder = JSONEncoder()
-        let dataFromView = try encoder.encode(view)
+    func testZippyJSONDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = ZippyJSONDecoder()
+        let view = noModifiersLargeView(count: 2_500)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+
         measure {
-            let view = Parser.view(from: dataFromView)
+            _ = Parser.shared.view(from: dataFromView)
         }
     }
 
+    // MARK: MessagePacker
+
+    func testMessagePackerEncodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePacker.MessagePackEncoder()
+        Parser.shared.decoder = MessagePacker.MessagePackDecoder()
+        measure {
+            let view = noModifiersLargeView(count: 2_500)
+            _ = try! Parser.shared.encoder.encode(view)
+        }
+    }
+
+    func testMessagePackerDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePacker.MessagePackEncoder()
+        Parser.shared.decoder = MessagePacker.MessagePackDecoder()
+        let view = noModifiersLargeView(count: 2_500)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
+
+    // MARK: msgpack-swift
+
+    func testMsgPackEncodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePack.MessagePackEncoder()
+        Parser.shared.decoder = MessagePack.MessagePackDecoder()
+        measure {
+            let view = noModifiersLargeView(count: 2_500)
+            _ = try! Parser.shared.encoder.encode(view)
+        }
+    }
+
+    func testMsgPackDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePack.MessagePackEncoder()
+        Parser.shared.decoder = MessagePack.MessagePackDecoder()
+        let view = noModifiersLargeView(count: 2_500)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
 }
 
 extension [String: AnyCodable] {
@@ -176,6 +227,36 @@ extension [String: AnyCodable] {
     }
 }
 
+func noModifiersLargeView(count: Int) -> some PCView {
+    let text = PCText(text: "lorem ipsum", modifiers: nil)
+
+    let btn = PCButton(
+        title: "blah blah blah",
+        action: .presentURL(URL(string: "www.google.com")!),
+        modifiers: nil
+    )
+
+    let shape = PCShapeView(
+        shape: .capsule(style: .circular),
+        fill: .gradient(gradient: .init(colors: [.red, .blue]), spread: .elliptical(center: .bottom, startRadiusFraction: 0.1, endRadiusFraction: 0.2)),
+        stroke: .color(value: .accentColor),
+        lineWidth: 3,
+        modifiers: nil
+    )
+
+    let image = PCAsyncImage(image: URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: nil)
+
+    let stack = PCStack(.hStack, alignment: .bottom, content: [
+        text,
+        btn,
+        shape,
+        image
+    ])
+
+    let scrollView = PCScrollView(axes: .horizontal, views: .init(repeating: stack, count: count), modifiers: nil)
+
+    return scrollView
+}
 
 func largeView(count: Int) -> some PCView {
     let manyModifiers: [Encodable] = [

@@ -41,7 +41,7 @@ struct PCButton: PCView {
 
     var body: some View {
         Button(button, action: performAction)
-            .modifier(Parser.modifiers(from: modifiers))
+            .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
     enum Keys: CodingKey {

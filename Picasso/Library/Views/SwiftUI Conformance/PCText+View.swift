@@ -10,17 +10,17 @@ import SwiftUI
 extension PCText: PCView {
     var body: some View {
         Text(text)
-            .modifier(Parser.modifiers(from: modifiers))
+            .modifier(Parser.shared.modifiers(from: modifiers))
     }
 }
 
 func textExample() -> some View {
     VStack {
         Text("TEXT")
-        Parser.view(from: text_json1)
-        Parser.view(from: text_json2)
-        Parser.view(from: text_json3)
-        Parser.view(from: text_json4)
+        Parser.shared.view(from: text_json1)
+        Parser.shared.view(from: text_json2)
+        Parser.shared.view(from: text_json3)
+        Parser.shared.view(from: text_json4)
     }
 }
 

@@ -21,7 +21,7 @@ struct PCShapeView: PCView {
         shape
             .stroke(stroke?.content ?? AnyShapeStyle(Color.clear), lineWidth: lineWidth ?? 1)
             .background(shape.fill(fill?.content ?? AnyShapeStyle(Color.clear)))
-            .modifier(Parser.modifiers(from: modifiers))
+            .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
     init(shape: PCShape, fill: ShapePaint? = nil, stroke: ShapePaint? = nil, lineWidth: CGFloat? = nil, modifiers: PCModifiersData? = nil) {
@@ -49,7 +49,7 @@ enum PCShape: Shape, Codable {
 
 func shapesExample() -> some View {
     VStack {
-        Parser.view(from: shape_json1)
+        Parser.shared.view(from: shape_json1)
     }
 }
 

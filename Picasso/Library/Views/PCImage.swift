@@ -31,7 +31,7 @@ struct PCAsyncImage: PCView {
                 Color.clear
             }
         }
-        .modifier(Parser.modifiers(from: modifiers))
+        .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
     init(image: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {
@@ -44,8 +44,8 @@ struct PCAsyncImage: PCView {
 
 func imagesExample() -> some View {
     HStack {
-        Parser.view(from: image_json1)
-        Parser.view(from: image_json2)
+        Parser.shared.view(from: image_json1)
+        Parser.shared.view(from: image_json2)
     }
 }
 

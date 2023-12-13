@@ -19,7 +19,7 @@ struct PCScrollView: PCView {
             ForEach(scrollView.indices, id: \.self) {
                 scrollView[$0]
             }
-            .modifier(Parser.modifiers(from: modifiers))
+            .modifier(Parser.shared.modifiers(from: modifiers))
         }
     }
 
@@ -38,5 +38,5 @@ struct PCScrollView: PCView {
 }
 
 #Preview {
-    Parser.view(from: scrollview_example1)
+    Parser.shared.view(from: scrollview_example1)
 }

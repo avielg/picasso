@@ -29,7 +29,7 @@ extension PCStack: PCView {
             ForEach(content.indices, id: \.self) {
                 content[$0]
             }
-            .modifier(Parser.modifiers(from: modifiers))
+            .modifier(Parser.shared.modifiers(from: modifiers))
         }
     }
 }
@@ -37,8 +37,8 @@ extension PCStack: PCView {
 func stackExample() -> some View {
     VStack {
         Text("STACK")
-        Parser.view(from: stack_json1)
-        Parser.view(from: stack_json2)
+        Parser.shared.view(from: stack_json1)
+        Parser.shared.view(from: stack_json2)
     }
 }
 
