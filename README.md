@@ -55,10 +55,12 @@ Views:
 
 ### ToDo/Reminders
 (beyond the obvious missing stuff...)
-- [x] Somehow single pass on the JSON?
-- [ ] Fix the `.indices` in containers body (stack and scrollview)
+- [ ] Figure out the crash in msgpack-swift when trying to parse modifiers
 - [ ] Find a way to type erase the modifiers like `AnyPCView`?
 - [ ] Eventually split ``Parser/modifiers(from:)`` to categories: text, etc.
-- [ ] Add MessagePack with perf tests against JSON
 - [ ] Remove the SwiftUI.View conformance from the types, make it separate (to later compile on Linux)
+- [x] Somehow single pass on the JSON?
+- [x] Fix the `.indices` in containers body (stack and scrollview)
+- [x] Add MessagePack with perf tests against JSON
+
 
