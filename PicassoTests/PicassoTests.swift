@@ -155,21 +155,72 @@ final class PicassoTests: XCTestCase {
         }
     }
 
-    // MARK: ZippyJSON
+    // MARK: - Performance Tests
+    
+    /// Last measurement:
+    ///
+    /// JSONE ENCODE  NM 0.072
+    /// JSON DECODE NM 0.202
+    /// JSON DECODE WM 0.286
+    /// ZIPPY DECODE NM 0.232
+    /// ZIPPY DECODE WM 0.231
+    /// PACKER ENCODE NM 0.076
+    /// PACKER DECODE NM 0.330
+    /// PACKER ENCODE WM 0.068
+    /// PACKER ENCODE WM 0.153
+    /// MSGPACK ENCODE NM 0.083
+    /// MSGPACK DECODE NM 0.219
+
+    // MARK: Baseline - JSONDecoder/Encoder
 
     func testJSONEncodePerformanceLargeView() throws {
         Parser.shared.encoder = JSONEncoder()
-        Parser.shared.decoder = ZippyJSONDecoder()
+        Parser.shared.decoder = JSONDecoder()
         measure {
             let view = noModifiersLargeView(count: 2_500)
             _ = try! Parser.shared.encoder.encode(view)
         }
     }
 
-    func testZippyJSONDecodePerformanceLargeView() throws {
+    func testJSONDecodePerformanceNoModifiersLargeView() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = JSONDecoder()
+        let view = noModifiersLargeView(count: 2_500)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
+
+    func testJSONDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = JSONDecoder()
+        let view = largeView(count: 250)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
+
+    // MARK: ZippyJSON (Decode only)
+
+    func testZippyJSONDecodePerformanceNoModifiersLargeView() throws {
         Parser.shared.encoder = JSONEncoder()
         Parser.shared.decoder = ZippyJSONDecoder()
         let view = noModifiersLargeView(count: 2_500)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
+
+    func testZippyJSONDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = JSONEncoder()
+        Parser.shared.decoder = ZippyJSONDecoder()
+        let view = largeView(count: 250)
         let dataFromView = try Parser.shared.encoder.encode(view)
 
         measure {
@@ -179,7 +230,7 @@ final class PicassoTests: XCTestCase {
 
     // MARK: MessagePacker
 
-    func testMessagePackerEncodePerformanceLargeView() throws {
+    func testMessagePackerEncodePerformanceNoModifiersLargeView() throws {
         Parser.shared.encoder = MessagePacker.MessagePackEncoder()
         Parser.shared.decoder = MessagePacker.MessagePackDecoder()
         measure {
@@ -188,7 +239,7 @@ final class PicassoTests: XCTestCase {
         }
     }
 
-    func testMessagePackerDecodePerformanceLargeView() throws {
+    func testMessagePackerDecodePerformanceNoModifiersLargeView() throws {
         Parser.shared.encoder = MessagePacker.MessagePackEncoder()
         Parser.shared.decoder = MessagePacker.MessagePackDecoder()
         let view = noModifiersLargeView(count: 2_500)
@@ -198,9 +249,28 @@ final class PicassoTests: XCTestCase {
         }
     }
 
+    func testMessagePackerEncodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePacker.MessagePackEncoder()
+        Parser.shared.decoder = MessagePacker.MessagePackDecoder()
+        measure {
+            let view = largeView(count: 250)
+            _ = try! Parser.shared.encoder.encode(view)
+        }
+    }
+
+    func testMessagePackerDecodePerformanceLargeView() throws {
+        Parser.shared.encoder = MessagePacker.MessagePackEncoder()
+        Parser.shared.decoder = MessagePacker.MessagePackDecoder()
+        let view = largeView(count: 250)
+        let dataFromView = try Parser.shared.encoder.encode(view)
+        measure {
+            _ = Parser.shared.view(from: dataFromView)
+        }
+    }
+
     // MARK: msgpack-swift
 
-    func testMsgPackEncodePerformanceLargeView() throws {
+    func testMsgPackEncodePerformanceNoModifiersLargeView() throws {
         Parser.shared.encoder = MessagePack.MessagePackEncoder()
         Parser.shared.decoder = MessagePack.MessagePackDecoder()
         measure {
@@ -209,7 +279,7 @@ final class PicassoTests: XCTestCase {
         }
     }
 
-    func testMsgPackDecodePerformanceLargeView() throws {
+    func testMsgPackDecodePerformanceNoModifiersLargeView() throws {
         Parser.shared.encoder = MessagePack.MessagePackEncoder()
         Parser.shared.decoder = MessagePack.MessagePackDecoder()
         let view = noModifiersLargeView(count: 2_500)
