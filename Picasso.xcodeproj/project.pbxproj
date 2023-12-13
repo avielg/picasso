@@ -236,9 +236,9 @@
 		30B4A6C92B20261700E58CDE /* SwiftUI Conformance */ = {
 			isa = PBXGroup;
 			children = (
+				30B4A6D42B202DFB00E58CDE /* PCText+View.swift */,
 				30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */,
 				30B4A6D22B202B5100E58CDE /* PCAlignment+Alignment.swift */,
-				30B4A6D42B202DFB00E58CDE /* PCText+View.swift */,
 				30CA5B942B24EE3400BDF440 /* AnyPCView+View.swift */,
 			);
 			path = "SwiftUI Conformance";
