@@ -21,6 +21,7 @@
 		301C83932B046874005377D1 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83922B046874005377D1 /* CodableColor.swift */; };
 		301C83952B0468B7005377D1 /* CodableFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301C83942B0468B7005377D1 /* CodableFont.swift */; };
 		304DD3EA2B2923E20070C6DB /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DD3E92B2923E20070C6DB /* Coders.swift */; };
+		304DD3FB2B2A12F80070C6DB /* PCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DD3FA2B2A12F80070C6DB /* PCColor.swift */; };
 		304F84F52B029294007080AB /* PicassoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F84F42B029294007080AB /* PicassoTests.swift */; };
 		3054A5192B05157500F006E6 /* TextExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A5182B05157500F006E6 /* TextExamples.swift */; };
 		3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A51A2B0515BB00F006E6 /* StackExamples.swift */; };
@@ -79,6 +80,7 @@
 		301C83922B046874005377D1 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
 		301C83942B0468B7005377D1 /* CodableFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFont.swift; sourceTree = "<group>"; };
 		304DD3E92B2923E20070C6DB /* Coders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coders.swift; sourceTree = "<group>"; };
+		304DD3FA2B2A12F80070C6DB /* PCColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCColor.swift; sourceTree = "<group>"; };
 		304F84ED2B02928B007080AB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		304F84F22B029294007080AB /* PicassoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicassoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F84F42B029294007080AB /* PicassoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoTests.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				3010F63F2B1306B700EB7360 /* PCButton.swift */,
 				3010F6432B1312D000EB7360 /* PCOptionalView.swift */,
 				30DCC55D2B16326700847124 /* PCAsyncView.swift */,
+				304DD3FA2B2A12F80070C6DB /* PCColor.swift */,
 				30CA5B922B24EDDF00BDF440 /* AnyPCView.swift */,
 			);
 			path = Views;
@@ -403,6 +406,7 @@
 			files = (
 				30F59C3A2B0AABA00092D7ED /* PCShape.swift in Sources */,
 				301C83902B04684C005377D1 /* CodableConformance.swift in Sources */,
+				304DD3FB2B2A12F80070C6DB /* PCColor.swift in Sources */,
 				30CA5B932B24EDDF00BDF440 /* AnyPCView.swift in Sources */,
 				30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */,
 				301C83952B0468B7005377D1 /* CodableFont.swift in Sources */,

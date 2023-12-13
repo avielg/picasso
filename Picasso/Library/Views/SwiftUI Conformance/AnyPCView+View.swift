@@ -16,6 +16,7 @@ extension AnyPCView: View {
         if let v = data as? PCAsyncImage { v } else
         if let v = data as? PCButton { v } else
         if let v = data as? PCOptionalView { v } else
-        if let v = data as? PCAsyncView { v }
+        if let v = data as? PCAsyncView { v } else
+        if let v = data as? PCColor { v }
     }
 }

@@ -12,7 +12,7 @@ struct AnyPCView: Codable {
         case hStack = "HStack"
         case vStack = "VStack"
         case zStack = "ZStack"
-        case text, scrollView, shape, image, button, optional, url
+        case text, scrollView, shape, image, button, optional, url, color
     }
 
     static let types: [(Kind, any PCView.Type)] = [
@@ -26,6 +26,7 @@ struct AnyPCView: Codable {
         (.button, PCButton.self),
         (.optional, PCOptionalView.self),
         (.url, PCAsyncView.self),
+        (.color, PCColor.self)
     ]
 
     let data: any PCView
