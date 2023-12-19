@@ -7,9 +7,6 @@
 
 import Foundation
 
-extension JSONEncoder: SomeEncoder {}
-extension JSONDecoder: SomeDecoder {}
-
 import ZippyJSON
 extension ZippyJSONDecoder: SomeDecoder {}
 
