@@ -72,13 +72,13 @@ extension Font: Codable {
         }
 
         var container = encoder.container(keyedBy: Keys.self)
-        if let weightData {
+        if let weightData, weightData != .regular {
             try container.encode(weightData, forKey: .weight)
         }
-        if let styleData {
+        if let styleData, styleData != .body {
             try container.encode(styleData, forKey: .style)
         }
-        if let designData {
+        if let designData, designData != .default {
             try container.encode(designData, forKey: .design)
         }
     }
