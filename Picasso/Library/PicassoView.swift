@@ -8,11 +8,9 @@
 import AnyCodable
 import SwiftUI
 
-struct PCDataView: View {
-    let data: Data
-
-    var body: some View {
-        Parser.shared.view(from: data)
+extension PicassoView where Content == EmptyView {
+    static func with(_ data: Data) -> some View {
+        PCDataView(data: data)
     }
 }
 
@@ -46,6 +44,14 @@ struct PicassoView<Content: View>: View {
                     }
                 }
         }
+    }
+}
+
+private struct PCDataView: View {
+    let data: Data
+
+    var body: some View {
+        Parser.shared.view(from: data)
     }
 }
 
