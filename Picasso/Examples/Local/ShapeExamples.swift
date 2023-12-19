@@ -5,7 +5,17 @@
 //  Created by Aviel Gross on 19.11.2023.
 //
 
-import Foundation
+import SwiftUI
+
+func shapesExample() -> some View {
+    VStack {
+        Parser.shared.view(from: shape_json1)
+    }
+}
+
+#Preview {
+    shapesExample()
+}
 
 let shape_json1 = """
 {

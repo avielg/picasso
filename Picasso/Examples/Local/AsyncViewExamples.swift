@@ -5,7 +5,11 @@
 //  Created by Aviel Gross on 28.11.2023.
 //
 
-import Foundation
+import SwiftUI
+
+func asyncExamples() -> some View {
+    Parser.shared.view(from: async_json1)
+}
 
 let async_json1 = """
 {

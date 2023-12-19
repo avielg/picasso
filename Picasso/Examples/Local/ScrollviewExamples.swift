@@ -5,7 +5,11 @@
 //  Created by Aviel Gross on 16.11.2023.
 //
 
-import Foundation
+import SwiftUI
+
+#Preview {
+    Parser.shared.view(from: scrollview_example1)
+}
 
 let scrollview_example1 = """
 {

@@ -5,7 +5,23 @@
 //  Created by Aviel Gross on 15.11.2023.
 //
 
-import Foundation
+import SwiftUI
+
+func textExample() -> some View {
+    VStack {
+        Text("TEXT")
+        Parser.shared.view(from: text_json1)
+        Parser.shared.view(from: text_json2)
+        Parser.shared.view(from: text_json3)
+        Parser.shared.view(from: text_json4)
+    }
+}
+
+struct PCText_Previews: PreviewProvider {
+    static var previews: some View {
+        textExample()
+    }
+}
 
 let text_json1 = """
 {

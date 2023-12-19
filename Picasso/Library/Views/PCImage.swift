@@ -41,14 +41,3 @@ struct PCAsyncImage: PCView {
         self.modifiers = modifiers
     }
 }
-
-func imagesExample() -> some View {
-    HStack {
-        Parser.shared.view(from: image_json1)
-        Parser.shared.view(from: image_json2)
-    }
-}
-
-#Preview {
-    imagesExample()
-}

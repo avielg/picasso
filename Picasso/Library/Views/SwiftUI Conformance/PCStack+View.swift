@@ -33,17 +33,3 @@ extension PCStack: PCView {
         }
     }
 }
-
-func stackExample() -> some View {
-    VStack {
-        Text("STACK")
-        Parser.shared.view(from: stack_json1)
-        Parser.shared.view(from: stack_json2)
-    }
-}
-
-struct PCStack_Previews: PreviewProvider {
-    static var previews: some View {
-        stackExample()
-    }
-}

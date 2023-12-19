@@ -46,13 +46,3 @@ enum PCShape: Shape, Codable {
         }
     }
 }
-
-func shapesExample() -> some View {
-    VStack {
-        Parser.shared.view(from: shape_json1)
-    }
-}
-
-#Preview {
-    shapesExample()
-}

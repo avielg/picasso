@@ -38,7 +38,3 @@ struct PCAsyncView: PCView {
         try container.encode(modifiers, forKey: .modifiers)
     }
 }
-
-func asyncExamples() -> some View {
-    Parser.shared.view(from: async_json1)
-}

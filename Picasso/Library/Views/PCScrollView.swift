@@ -36,7 +36,3 @@ struct PCScrollView: PCView {
 //        self.axes = axes
 //    }
 }
-
-#Preview {
-    Parser.shared.view(from: scrollview_example1)
-}
