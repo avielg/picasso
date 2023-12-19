@@ -35,6 +35,8 @@ struct PCAsyncView: PCView {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
         try container.encode(url, forKey: .url)
-        try container.encode(modifiers, forKey: .modifiers)
+        if let modifiers {
+            try container.encode(modifiers, forKey: .modifiers)
+        }
     }
 }

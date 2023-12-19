@@ -78,7 +78,9 @@ struct PCButton: PCView {
         var container = encoder.container(keyedBy: Keys.self)
         
         try container.encode(button, forKey: .button)
-        try container.encode(modifiers, forKey: .modifiers)
+        if let modifiers {
+            try container.encode(modifiers, forKey: .modifiers)
+        }
 
         switch action {
         case .empty:

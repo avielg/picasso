@@ -41,9 +41,15 @@ struct PCStack: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(spacing, forKey: .spacing)
-        try container.encode(alignment, forKey: .alignment)
-        try container.encode(modifiers, forKey: .modifiers)
+        if let spacing {
+            try container.encode(spacing, forKey: .spacing)
+        }
+        if let alignment {
+            try container.encode(alignment, forKey: .alignment)
+        }
+        if let modifiers {
+            try container.encode(modifiers, forKey: .modifiers)
+        }
 
         let layoutKey = switch axis {
         case .hStack: CodingKeys.hStack
