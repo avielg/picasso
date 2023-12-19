@@ -111,6 +111,7 @@ extension Error {
     }
 }
 
+// swiftlint:disable force_try
 extension Error {
     func modifierData(extraInfo: String) -> PCModifiersData {
         let scrollViewContent: [any PCView] = [

@@ -47,6 +47,7 @@ protocol SomeDecoder {
 extension JSONDecoder: SomeDecoder {}
 extension JSONEncoder: SomeEncoder {}
 
+// swiftlint:disable force_try
 class Parser {
     var encoder: SomeEncoder
     var decoder: SomeDecoder
