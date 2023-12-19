@@ -44,6 +44,9 @@ protocol SomeDecoder {
     func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
+extension JSONDecoder: SomeDecoder {}
+extension JSONEncoder: SomeEncoder {}
+
 class Parser {
     var encoder: SomeEncoder
     var decoder: SomeDecoder
