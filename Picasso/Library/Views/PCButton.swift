@@ -14,15 +14,27 @@ struct PCButton: PCView {
     private let button: String
 
     enum Action: Codable {
+        enum Navigation: Codable {
+            case dismiss
+
+            init?(from rawValue: String) {
+                if rawValue == "\(Self.dismiss)" { self = .dismiss }
+                else { return nil }
+            }
+        }
+
         case empty
         case toggleFlag(String)
         case openURL(URL)
         case presentURL(URL)
+        case navigate(Navigation)
     }
 
     private let action: Action
 
     private let modifiers: PCModifiersData?
+
+    @Environment(\.dismiss) private var dismiss
 
     @MainActor
     func performAction() {
@@ -36,6 +48,10 @@ struct PCButton: PCView {
         case .presentURL(let url):
             UIApplication.shared.firstKeyWindow?.rootViewController?
                 .present(SFSafariViewController(url: url), animated: true)
+        case .navigate(let navigation):
+            switch navigation {
+            case .dismiss: dismiss()
+            }
         }
     }
 
@@ -50,6 +66,7 @@ struct PCButton: PCView {
         case openURL
         case presentURL
         case toggleFlag
+        case navigate
     }
 
     init(title: String, action: Action, modifiers: PCModifiersData? = nil) {
@@ -69,6 +86,10 @@ struct PCButton: PCView {
             self.action = .presentURL(url)
         } else if let flag = try container.decodeIfPresent(String.self, forKey: .toggleFlag) {
             self.action = .toggleFlag(flag)
+        } else if let navigationValue = try container.decodeIfPresent(String.self, forKey: .navigate) {
+            self.action = Action.Navigation(from: navigationValue).map(Action.navigate) ?? .empty
+        } else if let navigation = try container.decodeIfPresent(Action.Navigation.self, forKey: .navigate) {
+            self.action = .navigate(navigation)
         } else {
             self.action = .empty
         }
@@ -91,6 +112,8 @@ struct PCButton: PCView {
             try container.encode(url, forKey: .openURL)
         case .presentURL(let url):
             try container.encode(url, forKey: .presentURL)
+        case .navigate(let navigation):
+            try container.encode(navigation, forKey: .navigate)
         }
     }
 }

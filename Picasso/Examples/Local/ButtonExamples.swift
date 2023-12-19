@@ -19,7 +19,17 @@ let button_json1 = """
         "font": { "weight": "bold" },
         "sheet": {
           "presentationFlag": "sheet1",
-          "content": { "text": "Hello!" }
+          "content": { 
+            "VStack": [
+              { 
+                "text": "Hello!"
+              },
+              {
+                "button": "Click me to dismiss!",
+                "navigate": "dismiss"
+              }
+            ]
+          }
         }
       }
     },
