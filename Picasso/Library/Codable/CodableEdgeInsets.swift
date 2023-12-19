@@ -23,9 +23,17 @@ extension EdgeInsets: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
-        try container.encode(self.top, forKey: .top)
-        try container.encode(self.leading, forKey: .leading)
-        try container.encode(self.bottom, forKey: .bottom)
-        try container.encode(self.trailing, forKey: .trailing)
+        if top != 0 {
+            try container.encode(top, forKey: .top)
+        }
+        if leading != 0 {
+            try container.encode(leading, forKey: .leading)
+        }
+        if bottom != 0 {
+            try container.encode(bottom, forKey: .bottom)
+        }
+        if trailing != 0 {
+            try container.encode(trailing, forKey: .trailing)
+        }
     }
 }

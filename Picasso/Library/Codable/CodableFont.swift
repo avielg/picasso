@@ -72,9 +72,15 @@ extension Font: Codable {
         }
 
         var container = encoder.container(keyedBy: Keys.self)
-        try container.encode(weightData ?? .regular, forKey: .weight)
-        try container.encode(styleData ?? .body, forKey: .style)
-        try container.encode(designData ?? .default, forKey: .design)
+        if let weightData {
+            try container.encode(weightData, forKey: .weight)
+        }
+        if let styleData {
+            try container.encode(styleData, forKey: .style)
+        }
+        if let designData {
+            try container.encode(designData, forKey: .design)
+        }
     }
 
     public init(from decoder: Decoder) throws {
