@@ -13,8 +13,8 @@ struct PCButton: PCView {
 
     private let button: String
 
-    enum Action: Codable {
-        enum Navigation: Codable {
+    enum Action {
+        enum Navigation {
             case dismiss
 
             init?(from rawValue: String) {
@@ -88,8 +88,6 @@ struct PCButton: PCView {
             self.action = .toggleFlag(flag)
         } else if let navigationValue = try container.decodeIfPresent(String.self, forKey: .navigate) {
             self.action = Action.Navigation(from: navigationValue).map(Action.navigate) ?? .empty
-        } else if let navigation = try container.decodeIfPresent(Action.Navigation.self, forKey: .navigate) {
-            self.action = .navigate(navigation)
         } else {
             self.action = .empty
         }
@@ -97,7 +95,7 @@ struct PCButton: PCView {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
-        
+
         try container.encode(button, forKey: .button)
         if let modifiers {
             try container.encode(modifiers, forKey: .modifiers)
@@ -113,7 +111,10 @@ struct PCButton: PCView {
         case .presentURL(let url):
             try container.encode(url, forKey: .presentURL)
         case .navigate(let navigation):
-            try container.encode(navigation, forKey: .navigate)
+            switch navigation {
+            case .dismiss:
+                try container.encode("\(navigation)", forKey: .navigate)
+            }
         }
     }
 }
@@ -122,7 +123,7 @@ extension UIApplication {
     var firstKeyWindow: UIWindow? {
         return UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
-            .filter { $0.activationState == .foregroundActive }
-            .first?.keyWindow
+            .first { $0.activationState == .foregroundActive }?
+            .keyWindow
     }
 }
