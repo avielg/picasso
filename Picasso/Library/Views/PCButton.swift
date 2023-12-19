@@ -30,7 +30,7 @@ struct PCButton: PCView {
         case .empty:
             break
         case .toggleFlag(let value):
-            Context.shared.flag(value).value.toggle()
+            PCContext.shared.flag(value).value.toggle()
         case .openURL(let url):
             UIApplication.shared.open(url)
         case .presentURL(let url):

@@ -153,13 +153,13 @@ struct SheetModifier: PCModifier {
             content: AnyPCView(content),
             presentationFlag: presentationFlag
         )
-        flag = Context.shared.flag(sheet.presentationFlag)
+        flag = PCContext.shared.flag(sheet.presentationFlag)
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         sheet = try container.decode(Sheet.self, forKey: .sheet)
-        flag = Context.shared.flag(sheet.presentationFlag)
+        flag = PCContext.shared.flag(sheet.presentationFlag)
     }
 
     func encode(to encoder: Encoder) throws {

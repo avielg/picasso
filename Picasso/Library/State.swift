@@ -8,8 +8,8 @@
 import SwiftUI
 
 @MainActor
-class Context {
-    static let shared = Context()
+class PCContext {
+    static let shared = PCContext()
     private var flags = [String: Flag]()
 
     func flag(_ key: String) -> Flag {

@@ -30,7 +30,7 @@ struct PCOptionalView: PCView {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         optional = try container.decode(Optional.self, forKey: .optional)
-        flag = Context.shared.flag(optional.presentationFlag)
+        flag = PCContext.shared.flag(optional.presentationFlag)
     }
 
     func encode(to encoder: Encoder) throws {
