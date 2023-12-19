@@ -16,14 +16,18 @@ extension Font: Codable {
 
         var boxChildren = Mirror(reflecting: base).children
         while boxChildren.count == 1 {
+            let value = boxChildren.first!.value
+            if "\(type(of: value))".contains("<BoldModifier>") {
+                weight = .bold
+            }
             boxChildren = Mirror(reflecting: boxChildren.first!.value).children
         }
         if boxChildren.count > 1 {
-            var base: Any?
+            var nextBase: Any?
             var modifier: Any?
             for child in boxChildren {
                 if child.label == "base" {
-                    base = child.value
+                    nextBase = child.value
                 } else if child.label == "modifier" {
                     modifier = child.value
                 } else if let styleValue = child.value as? Font.TextStyle {
@@ -40,15 +44,19 @@ extension Font: Codable {
             }
             
             if let modifier, let modifierData = Mirror(reflecting: modifier).children.first {
-                let modifierValueData = Mirror(reflecting: modifierData.value).children.first!
-                if let weightValue = modifierValueData.value as? Font.Weight {
+                if let weightValue = modifierData.value as? Font.Weight {
                     weight = weightValue
                 } else {
-                    print(modifierValueData.value)
+                    let modifierValueData = Mirror(reflecting: modifierData.value).children.first!
+                    if let weightValue = modifierValueData.value as? Font.Weight {
+                        weight = weightValue
+                    } else {
+                        print(modifierValueData.value)
+                    }
                 }
             }
 
-            return base
+            return nextBase
         }
         return nil
     }
