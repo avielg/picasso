@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Following: https://developer.apple.com/documentation/xcode/creating-a-multi-platform-binary-framework-bundle
+# Run this in Xcode Cloud? https://developer.apple.com/documentation/xcode/writing-custom-build-scripts
+
 BUILD_DIR="_build_framework"
 if [ ! -d $BUILD_DIR ]
 then
