@@ -49,8 +49,8 @@ extension JSONEncoder: SomeEncoder {}
 
 // swiftlint:disable force_try
 public class Parser {
-    private var encoder: SomeEncoder
-    private var decoder: SomeDecoder
+    internal var encoder: SomeEncoder
+    internal var decoder: SomeDecoder
 
     public init(encoder: SomeEncoder, decoder: SomeDecoder) {
         self.encoder = encoder

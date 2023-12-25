@@ -78,6 +78,7 @@
 		30C8EC6B2B269945000D674C /* MessagePacker in Frameworks */ = {isa = PBXBuildFile; productRef = 30C8EC6A2B269945000D674C /* MessagePacker */; };
 		30CA5B932B24EDDF00BDF440 /* AnyPCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA5B922B24EDDF00BDF440 /* AnyPCView.swift */; };
 		30CA5B952B24EE3400BDF440 /* AnyPCView+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA5B942B24EE3400BDF440 /* AnyPCView+View.swift */; };
+		30D2BA632B39FA1B0030391C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 30D2BA622B39FA1B0030391C /* AnyCodable */; };
 		30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55D2B16326700847124 /* PCAsyncView.swift */; };
 		30DCC5602B163C7C00847124 /* AsyncViewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */; };
 		30F59C212B06D83A0092D7ED /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C202B06D83A0092D7ED /* Example.json */; };
@@ -188,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D2BA632B39FA1B0030391C /* AnyCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +418,9 @@
 				304F84F72B029294007080AB /* PBXTargetDependency */,
 			);
 			name = PicassoTests;
+			packageProductDependencies = (
+				30D2BA622B39FA1B0030391C /* AnyCodable */,
+			);
 			productName = PicassoTests;
 			productReference = 304F84F22B029294007080AB /* PicassoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1069,6 +1074,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 30C8EC692B269945000D674C /* XCRemoteSwiftPackageReference "MessagePacker" */;
 			productName = MessagePacker;
+		};
+		30D2BA622B39FA1B0030391C /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3091A29E2B009BE4002F8FFD /* XCRemoteSwiftPackageReference "AnyCodable" */;
+			productName = AnyCodable;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
