@@ -23,8 +23,12 @@
 		304DD3EA2B2923E20070C6DB /* Coders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DD3E92B2923E20070C6DB /* Coders.swift */; };
 		304DD3FB2B2A12F80070C6DB /* PCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DD3FA2B2A12F80070C6DB /* PCColor.swift */; };
 		304F84F52B029294007080AB /* PicassoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F84F42B029294007080AB /* PicassoTests.swift */; };
+		305394C22B391183006AB6D6 /* MuseoModerno-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 305394B02B391182006AB6D6 /* MuseoModerno-SemiBold.ttf */; };
+		305394C32B391183006AB6D6 /* MuseoModerno-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 305394B12B391182006AB6D6 /* MuseoModerno-Regular.ttf */; };
+		305394C72B391183006AB6D6 /* MuseoModerno-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 305394B52B391182006AB6D6 /* MuseoModerno-Bold.ttf */; };
 		3054A5192B05157500F006E6 /* TextExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A5182B05157500F006E6 /* TextExamples.swift */; };
 		3054A51B2B0515BB00F006E6 /* StackExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054A51A2B0515BB00F006E6 /* StackExamples.swift */; };
+		3085D7FD2B339EC1008E823E /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085D7FC2B339EC1008E823E /* CustomFont.swift */; };
 		3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */; };
 		3091A28E2AFFDD66002F8FFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091A28D2AFFDD66002F8FFD /* ContentView.swift */; };
 		3091A2902AFFDD68002F8FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3091A28F2AFFDD68002F8FFD /* Assets.xcassets */; };
@@ -84,8 +88,13 @@
 		304F84ED2B02928B007080AB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		304F84F22B029294007080AB /* PicassoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicassoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F84F42B029294007080AB /* PicassoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoTests.swift; sourceTree = "<group>"; };
+		305394B02B391182006AB6D6 /* MuseoModerno-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoModerno-SemiBold.ttf"; sourceTree = "<group>"; };
+		305394B12B391182006AB6D6 /* MuseoModerno-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoModerno-Regular.ttf"; sourceTree = "<group>"; };
+		305394B52B391182006AB6D6 /* MuseoModerno-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoModerno-Bold.ttf"; sourceTree = "<group>"; };
+		305394CE2B39122F006AB6D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3054A5182B05157500F006E6 /* TextExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExamples.swift; sourceTree = "<group>"; };
 		3054A51A2B0515BB00F006E6 /* StackExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackExamples.swift; sourceTree = "<group>"; };
+		3085D7FC2B339EC1008E823E /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		3091A2882AFFDD66002F8FFD /* Picasso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picasso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoApp.swift; sourceTree = "<group>"; };
 		3091A28D2AFFDD66002F8FFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +189,16 @@
 			path = PicassoTests;
 			sourceTree = "<group>";
 		};
+		305394A92B391182006AB6D6 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				305394B02B391182006AB6D6 /* MuseoModerno-SemiBold.ttf */,
+				305394B12B391182006AB6D6 /* MuseoModerno-Regular.ttf */,
+				305394B52B391182006AB6D6 /* MuseoModerno-Bold.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		3054A51C2B0515D800F006E6 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +206,7 @@
 				3010F63C2B12F73000EB7360 /* Views */,
 				301C83912B04686A005377D1 /* Codable */,
 				3091A2A12B01B3C9002F8FFD /* Parser.swift */,
+				3085D7FC2B339EC1008E823E /* CustomFont.swift */,
 				301C838B2B0460CC005377D1 /* Modifiers.swift */,
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
 				30F59C2D2B07E2F10092D7ED /* Errors.swift */,
@@ -216,6 +236,8 @@
 		3091A28A2AFFDD66002F8FFD /* Picasso */ = {
 			isa = PBXGroup;
 			children = (
+				305394CE2B39122F006AB6D6 /* Info.plist */,
+				305394A92B391182006AB6D6 /* fonts */,
 				3054A51C2B0515D800F006E6 /* Library */,
 				30F59C282B06E2660092D7ED /* Examples */,
 				3091A28B2AFFDD66002F8FFD /* PicassoApp.swift */,
@@ -384,7 +406,10 @@
 				30F59C212B06D83A0092D7ED /* Example.json in Resources */,
 				3091A2942AFFDD68002F8FFD /* Preview Assets.xcassets in Resources */,
 				30F59C272B06E21A0092D7ED /* Example2.json in Resources */,
+				305394C72B391183006AB6D6 /* MuseoModerno-Bold.ttf in Resources */,
+				305394C32B391183006AB6D6 /* MuseoModerno-Regular.ttf in Resources */,
 				30F59C302B07EB150092D7ED /* ExampleErrorDecode.json in Resources */,
+				305394C22B391183006AB6D6 /* MuseoModerno-SemiBold.ttf in Resources */,
 				3091A2902AFFDD68002F8FFD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +432,7 @@
 				30F59C3A2B0AABA00092D7ED /* PCShape.swift in Sources */,
 				301C83902B04684C005377D1 /* CodableConformance.swift in Sources */,
 				304DD3FB2B2A12F80070C6DB /* PCColor.swift in Sources */,
+				3085D7FD2B339EC1008E823E /* CustomFont.swift in Sources */,
 				30CA5B932B24EDDF00BDF440 /* AnyPCView.swift in Sources */,
 				30F59C2C2B06E2840092D7ED /* ScrollviewExamples.swift in Sources */,
 				301C83952B0468B7005377D1 /* CodableFont.swift in Sources */,
@@ -628,6 +654,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Picasso/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -668,6 +695,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Picasso/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

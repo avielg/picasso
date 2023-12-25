@@ -62,24 +62,17 @@ extension Font: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        var weightData: Font.Weight?
-        var styleData: Font.TextStyle?
-        var designData: Font.Design?
-
-        var nextBase: Any? = self
-        while let base = nextBase {
-            nextBase = modifier(from: base, weight: &weightData, style: &styleData, design: &designData)
-        }
+        let attributes = self.attributes
 
         var container = encoder.container(keyedBy: Keys.self)
-        if let weightData, weightData != .regular {
-            try container.encode(weightData, forKey: .weight)
+        if let weight = attributes.weight, weight != .regular {
+            try container.encode(weight, forKey: .weight)
         }
-        if let styleData, styleData != .body {
-            try container.encode(styleData, forKey: .style)
+        if let style = attributes.style, style != .body {
+            try container.encode(style, forKey: .style)
         }
-        if let designData, designData != .default {
-            try container.encode(designData, forKey: .design)
+        if let design = attributes.design, design != .default {
+            try container.encode(design, forKey: .design)
         }
     }
 
@@ -89,6 +82,25 @@ extension Font: Codable {
         let weight = try container.decodeIfPresent(Font.Weight.self, forKey: .weight) ?? .regular
         let design = try container.decodeIfPresent(Font.Design.self, forKey: .design) ?? .default
         self = .system(style, design: design, weight: weight)
+    }
+
+    struct Attributes {
+        let weight: Font.Weight?
+        let style: Font.TextStyle?
+        let design: Font.Design?
+    }
+
+    var attributes: Attributes {
+        var weightData: Font.Weight?
+        var styleData: Font.TextStyle?
+        var designData: Font.Design?
+
+        var nextBase: Any? = self
+        while let base = nextBase {
+            nextBase = modifier(from: base, weight: &weightData, style: &styleData, design: &designData)
+        }
+
+        return Attributes(weight: weightData, style: styleData, design: designData)
     }
 }
 

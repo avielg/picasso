@@ -14,7 +14,9 @@ struct FontModifier: PCModifier {
     let font: Font
 
     func body(content: Content) -> some View {
-        content.font(font)
+        let attributes = font.attributes
+        
+        content.font(attributes.style, weight: attributes.weight, design: attributes.design)
     }
 }
 
