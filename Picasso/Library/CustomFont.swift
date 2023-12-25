@@ -41,6 +41,7 @@ private extension Font.Weight {
     }
 }
 
+// source: https://www.iosfontsizes.com
 private extension Font.TextStyle {
     var pointSize: CGFloat {
         switch self {
