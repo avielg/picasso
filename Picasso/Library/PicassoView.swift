@@ -8,20 +8,33 @@
 import AnyCodable
 import SwiftUI
 
-extension PicassoView where Content == EmptyView {
+public extension Parser {
+    static var shared: Parser! = nil
+}
+
+public extension PicassoView where Content == EmptyView {
     static func with(_ data: Data) -> some View {
         PCDataView(data: data)
     }
 }
 
-struct PicassoView<Content: View>: View {
+public struct PicassoView<Content: View>: View {
     let urlRequest: URLRequest
     let placeholder: Content
+
+    public init(_ urlRequest: URLRequest, placeholder: Content = Color.clear) {
+        self.urlRequest = urlRequest
+        self.placeholder = placeholder
+    }
+
+    public init(_ url: URL, placeholder: Content = Color.clear) {
+        self.init(URLRequest(url: url), placeholder: placeholder)
+    }
 
     @State var data: Data?
     @State var error: Error?
 
-    var body: some View {
+    public var body: some View {
         content
             .animation(.spring, value: data)
     }

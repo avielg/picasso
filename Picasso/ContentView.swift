@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let request = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!)
-    let requestScrollView = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/Example2.json")!)
-    let requestErrorDecode = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorDecode.json")!)
-    let requestErrorCorrupt = URLRequest(url: URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorCorrupt.json")!)
+    let request = URL(string: "https://f001.backblazeb2.com/file/Picasso/Example.json")!
+    let requestScrollView = URL(string: "https://f001.backblazeb2.com/file/Picasso/Example2.json")!
+    let requestErrorDecode = URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorDecode.json")!
+    let requestErrorCorrupt = URL(string: "https://f001.backblazeb2.com/file/Picasso/ExampleErrorCorrupt.json")!
 
     func label(_ title: String, subtitle: String) -> some View {
         VStack(alignment: .leading) {
@@ -56,28 +56,28 @@ struct ContentView: View {
 
                 Section("Remote") {
                     NavigationLink {
-                        PicassoView(urlRequest: request, placeholder: Color.clear)
+                        PicassoView(request)
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "No Placeholder")
                     }
 
                     NavigationLink {
-                        PicassoView(urlRequest: request, placeholder: Color.red)
+                        PicassoView(request, placeholder: Color.red)
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "Red Placeholder")
                     }
 
                     NavigationLink {
-                        PicassoView(urlRequest: request, placeholder: ProgressView())
+                        PicassoView(request, placeholder: ProgressView())
                             .padding()
                     } label: {
                         label("Texts & Stacks", subtitle: "Progress View")
                     }
 
                     NavigationLink {
-                        PicassoView(urlRequest: request, placeholder: Color.clear)
+                        PicassoView(request)
                             .border(Color.blue)
                             .padding()
                     } label: {
@@ -88,7 +88,7 @@ struct ContentView: View {
 
                 Section("Remote") {
                     NavigationLink {
-                        PicassoView(urlRequest: requestScrollView, placeholder: Color.clear)
+                        PicassoView(requestScrollView)
                     } label: {
                         label("ScrollView", subtitle: "No Placeholder")
                     }
@@ -96,13 +96,13 @@ struct ContentView: View {
 
                 Section("Error") {
                     NavigationLink {
-                        PicassoView(urlRequest: requestErrorDecode, placeholder: Color.clear)
+                        PicassoView(requestErrorDecode)
                     } label: {
                         label("Decode Issue", subtitle: "No Placeholder")
                     }
 
                     NavigationLink {
-                        PicassoView(urlRequest: requestErrorCorrupt, placeholder: Color.clear)
+                        PicassoView(requestErrorCorrupt)
                     } label: {
                         label("Corrupted JSON", subtitle: "No Placeholder")
                     }

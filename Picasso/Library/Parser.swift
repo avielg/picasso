@@ -36,11 +36,11 @@ extension [PCModifiersData] {
     }
 }
 
-protocol SomeEncoder {
+public protocol SomeEncoder {
     func encode<T>(_ value: T) throws -> Data where T : Encodable
 }
 
-protocol SomeDecoder {
+public protocol SomeDecoder {
     func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
@@ -48,11 +48,11 @@ extension JSONDecoder: SomeDecoder {}
 extension JSONEncoder: SomeEncoder {}
 
 // swiftlint:disable force_try
-class Parser {
-    var encoder: SomeEncoder
-    var decoder: SomeDecoder
+public class Parser {
+    private var encoder: SomeEncoder
+    private var decoder: SomeDecoder
 
-    init(encoder: SomeEncoder, decoder: SomeDecoder) {
+    public init(encoder: SomeEncoder, decoder: SomeDecoder) {
         self.encoder = encoder
         self.decoder = decoder
     }

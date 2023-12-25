@@ -17,8 +17,3 @@ extension MessagePacker.MessagePackDecoder: SomeDecoder {}
 import MessagePack
 extension MessagePack.MessagePackEncoder: SomeEncoder {}
 extension MessagePack.MessagePackDecoder: SomeDecoder {}
-
-
-extension Parser {
-    static var shared: Parser = Parser(encoder: JSONEncoder(), decoder: ZippyJSONDecoder())
-}

@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import ZippyJSON
 
 @main
 struct PicassoApp: App {
 
-    let customFont: Void = {
+    let setup: Void = {
+        Parser.shared = Parser(encoder: JSONEncoder(), decoder: ZippyJSONDecoder())
         CustomFont.weights[.regular] = "MuseoModerno-Regular"
         CustomFont.weights[.bold] = "MuseoModerno-Bold"
         CustomFont.weights[.semibold] = "MuseoModerno-SemiBold"
     }()
+
     var body: some Scene {
         WindowGroup {
             ContentView()

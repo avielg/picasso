@@ -18,7 +18,7 @@ struct PCAsyncView: PCView {
 
     var body: some View {
         PicassoView(
-            urlRequest: URLRequest(url: url).with(requestConfig),
+            URLRequest(url: url).with(requestConfig),
             placeholder: Color.clear
         )
         .modifier(Parser.shared.modifiers(from: modifiers))
