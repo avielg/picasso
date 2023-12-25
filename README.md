@@ -11,26 +11,51 @@ Eventually also:
 
 ---
 
-## Setup
+## Usage
 
 1. Clone or download the repo.
 2. Run `./build_framework.sh`
 3. Grab the framework from `_build_framework/PicassoKit.xcframework` and drag into your Xcode project.
 4. Add [AnyCodable](`https://github.com/Flight-School/AnyCodable`) as a dependency to your target.
 
----
-
-## Getting Started
+### Getting Started
 
 1. `import PicassoKit`
 2. Provide an encoder and decoder: `Parser.shared = Parser(encoder: ..., decoder: ...)`. Picasso is tested on 3 options:
     1. [ZippyJSON](https://github.com/michaeleisel/ZippyJSON) for decoding (pair with Apple's `JSONEncoder`).
     2. Apple's `JSONDecoder` and `JSONEncoder`.
     3. [MessagePacker](https://github.com/hirotakan/MessagePacker) for [MessagePack](https://msgpack.org) support.
-3. Create a `PicassoView` in your SwiftUI view, passing a URL to your view contents.
+3. Create a `PicassoView` anywhere in your SwiftUI code:
+
+    ```swift
+    struct MyCoolView: View {
+        var body: some View {
+          VStack {
+            Text("Hello!")
+            PicassoView(URL("my.server.com/picasso/coolcontent")!) // <--
+          }
+        }
+    }
+    ```
+
+## Building Payload
+
+Instead of typing the view hierarchy in JSON yourself (or if you want to use MessagePack), construct your UI from various PC views (`PCStack`, `PCText` etc.) and encode the main view:
+```swift
+func someView() -> PCStackView {
+  PCStackView(...)
+}
+
+let view = someView()
+let data = try someEncoder.encode(view)
+let json = String(data: data, encoding: .utf8)
+// upload the result json to your backend etc.
+```
 
 
-Views:
+## JSON Syntax
+
+While not a comprehensive guide, this should provide an idea of how the JSON syntax looks like:
 ```json
 {
   "VStack": [
