@@ -142,9 +142,3 @@ public class Parser {
         try decoder.decode(AnyPCView.self, from: data)
     }
 }
-
-private extension [String : AnyCodable] {
-    func has(_ anyOfKeys: [String]) -> Bool {
-        keys.first { anyOfKeys.contains($0) } != nil
-    }
-}

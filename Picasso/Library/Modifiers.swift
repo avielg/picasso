@@ -5,7 +5,6 @@
 //  Created by Aviel Gross on 14.11.2023.
 //
 
-import AnyCodable
 import SwiftUI
 
 struct FontModifier: PCModifier {
