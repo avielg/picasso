@@ -34,7 +34,12 @@ struct PCAsyncImage: PCView {
         .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
-    init(image: URL?, scale: CGFloat?, mode: ContentMode?, modifiers: PCModifiersData?) {
+    init(
+        _ image: URL?,
+        scale: CGFloat? = nil,
+        mode: ContentMode? = nil,
+        modifiers: PCModifiersData? = nil
+    ) {
         self.image = image
         self.scale = scale
         self.mode = mode

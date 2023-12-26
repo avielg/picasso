@@ -52,6 +52,12 @@ struct ContentView: View {
                     } label: {
                         Text("Button & Sheet")
                     }
+
+                    NavigationLink {
+                        pagesExample()
+                    } label: {
+                        Text("Page View")
+                    }
                 }
 
                 Section("Remote") {

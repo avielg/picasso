@@ -45,10 +45,12 @@ struct EncodeExample {
         PCScrollView(axes: .vertical, views: [text1, text2])
 
     static var image1 = 
-    PCAsyncImage(image: URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill, modifiers: [:])
+    PCAsyncImage(URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill)
 
     static var image2 =
-    PCAsyncImage(image: URL(string: "https://picsum.photos/200"), scale: nil, mode: nil, modifiers: [:])
+    PCAsyncImage(URL(string: "https://picsum.photos/200"))
+
+    static var page1 = PCPageView([image1, image2], indexDisplay: .never)
 }
 
 
@@ -127,6 +129,9 @@ final class PicassoTests: XCTestCase {
             try test(view: view)
         }
         for view in [EncodeExample.image1, EncodeExample.image2] {
+            try test(view: view)
+        }
+        for view in [EncodeExample.page1] {
             try test(view: view)
         }
     }
@@ -314,7 +319,7 @@ func noModifiersLargeView(count: Int) -> some PCView {
         modifiers: nil
     )
 
-    let image = PCAsyncImage(image: URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: nil)
+    let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit)
 
     let stack = PCStack(.hStack, alignment: .bottom, content: [
         text,
@@ -359,7 +364,7 @@ func largeView(count: Int) -> some PCView {
         lineWidth: 3,
         modifiers: shapeModifiers.map({ try! $0.jsonData().dictionary() }).merged)
 
-    let image = PCAsyncImage(image: URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: modifiersData.merged)
+    let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: modifiersData.merged)
 
     let stack = PCStack(.hStack, alignment: .bottom, content: [
         text,

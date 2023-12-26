@@ -81,6 +81,9 @@
 		30D2BA632B39FA1B0030391C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 30D2BA622B39FA1B0030391C /* AnyCodable */; };
 		30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55D2B16326700847124 /* PCAsyncView.swift */; };
 		30DCC5602B163C7C00847124 /* AsyncViewExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */; };
+		30E21CF32B3B590C00FB651C /* PCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF22B3B590C00FB651C /* PCPageView.swift */; };
+		30E21CF42B3B5C0500FB651C /* PCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF22B3B590C00FB651C /* PCPageView.swift */; };
+		30E21CF62B3B5D1C00FB651C /* PageExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF52B3B5D1C00FB651C /* PageExamples.swift */; };
 		30F59C212B06D83A0092D7ED /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C202B06D83A0092D7ED /* Example.json */; };
 		30F59C232B06D8D50092D7ED /* PicassoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C222B06D8D50092D7ED /* PicassoView.swift */; };
 		30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C242B06DFCB0092D7ED /* PCScrollView.swift */; };
@@ -170,6 +173,8 @@
 		30CA5B942B24EE3400BDF440 /* AnyPCView+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPCView+View.swift"; sourceTree = "<group>"; };
 		30DCC55D2B16326700847124 /* PCAsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCAsyncView.swift; sourceTree = "<group>"; };
 		30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewExamples.swift; sourceTree = "<group>"; };
+		30E21CF22B3B590C00FB651C /* PCPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPageView.swift; sourceTree = "<group>"; };
+		30E21CF52B3B5D1C00FB651C /* PageExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageExamples.swift; sourceTree = "<group>"; };
 		30F59C202B06D83A0092D7ED /* Example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
 		30F59C222B06D8D50092D7ED /* PicassoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoView.swift; sourceTree = "<group>"; };
 		30F59C242B06DFCB0092D7ED /* PCScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCScrollView.swift; sourceTree = "<group>"; };
@@ -230,6 +235,7 @@
 				30DCC55D2B16326700847124 /* PCAsyncView.swift */,
 				304DD3FA2B2A12F80070C6DB /* PCColor.swift */,
 				30CA5B922B24EDDF00BDF440 /* AnyPCView.swift */,
+				30E21CF22B3B590C00FB651C /* PCPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				3010F6362B11358E00EB7360 /* ImageExamples.swift */,
 				3010F6412B13077100EB7360 /* ButtonExamples.swift */,
 				30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */,
+				30E21CF52B3B5D1C00FB651C /* PageExamples.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -586,6 +593,7 @@
 				305394F52B3918B9006AB6D6 /* CodableEdgeInsets.swift in Sources */,
 				305394F62B3918B9006AB6D6 /* CodableAxisSet.swift in Sources */,
 				305394F72B3918B9006AB6D6 /* CodableAlignment.swift in Sources */,
+				30E21CF42B3B5C0500FB651C /* PCPageView.swift in Sources */,
 				305394F82B3918B9006AB6D6 /* Parser.swift in Sources */,
 				305394F92B3918B9006AB6D6 /* CustomFont.swift in Sources */,
 				305394FA2B3918B9006AB6D6 /* Modifiers.swift in Sources */,
@@ -601,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30F59C3A2B0AABA00092D7ED /* PCShape.swift in Sources */,
+				30E21CF32B3B590C00FB651C /* PCPageView.swift in Sources */,
 				301C83902B04684C005377D1 /* CodableConformance.swift in Sources */,
 				304DD3FB2B2A12F80070C6DB /* PCColor.swift in Sources */,
 				3085D7FD2B339EC1008E823E /* CustomFont.swift in Sources */,
@@ -616,6 +625,7 @@
 				301C838E2B046216005377D1 /* ModifierBuilder.swift in Sources */,
 				301C83932B046874005377D1 /* CodableColor.swift in Sources */,
 				30B4A6D12B2028E600E58CDE /* CodableAlignment.swift in Sources */,
+				30E21CF62B3B5D1C00FB651C /* PageExamples.swift in Sources */,
 				30DCC55E2B16326700847124 /* PCAsyncView.swift in Sources */,
 				304DD3EA2B2923E20070C6DB /* Coders.swift in Sources */,
 				3054A5192B05157500F006E6 /* TextExamples.swift in Sources */,
