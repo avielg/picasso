@@ -113,35 +113,37 @@ extension Error {
 
 // swiftlint:disable force_try
 extension Error {
-    func modifierData(extraInfo: String) -> PCModifiersData {
-        let scrollViewContent: [any PCView] = [
-            PCText(
-                text: "Error parsing modifier data:",
-                modifiers: [
-                    try! FontModifier(font: .title2.bold())
-                        .jsonData().dictionary(),
-                    try! ForegroundColorModifier(foregroundColor: .red)
-                        .jsonData().dictionary()
-                ].merged
-            ),
-            PCText(
-                text: title,
-                modifiers: [
-                    try! FontModifier(font: .body.bold())
-                        .jsonData().dictionary(),
-                    try! ForegroundColorModifier(foregroundColor: .red)
-                        .jsonData().dictionary()
-                ].merged
-            ),
-            PCText(text: subtitle),
-            PCText(text: debugDump),
-            PCText(text: extraInfo)
-        ]
 
-        let sheetContent = PCScrollView(axes: .vertical, views: scrollViewContent, modifiers: [
+    @PCViewBuilder
+    func scrollViewContent(extraInfo: String) -> [AnyPCView] {
+        PCText(
+            text: "Error parsing modifier data:",
+            modifiers: [
+                try! FontModifier(font: .title2.bold())
+                    .jsonData().dictionary(),
+                try! ForegroundColorModifier(foregroundColor: .red)
+                    .jsonData().dictionary()
+            ].merged
+        )
+        PCText(
+            text: title,
+            modifiers: [
+                try! FontModifier(font: .body.bold())
+                    .jsonData().dictionary(),
+                try! ForegroundColorModifier(foregroundColor: .red)
+                    .jsonData().dictionary()
+            ].merged
+        )
+        PCText(text: subtitle)
+        PCText(text: debugDump)
+        PCText(text: extraInfo)
+    }
+
+    func modifierData(extraInfo: String) -> PCModifiersData {
+        let sheetContent = PCScrollView(axes: .vertical, modifiers: [
             try! PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))
                 .jsonData().dictionary()
-        ].merged)
+        ].merged, views: { scrollViewContent(extraInfo: extraInfo) })
 
         let buttonBackground = PCShapeView(
             shape: .rectangle(cornerRadius: 10),

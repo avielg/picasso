@@ -35,14 +35,20 @@ struct EncodeExample {
 
     static var text3 = PCText(text: "Check Simple")
 
-    static var stack1 = PCStack(.vStack, spacing: 20, alignment: .listRowSeparatorLeading, content: [text1, text2])
+    static var stack1 = PCStack(.vStack, spacing: 20, alignment: .listRowSeparatorLeading) { 
+        text1
+        text2
+    }
 
-    static var stack2 = PCStack(.hStack, alignment: .firstTextBaseline, content: [text1])
+    static var stack2 = PCStack(.hStack, alignment: .firstTextBaseline) { text1 }
 
-    static var stack3 = PCStack(.zStack, alignment: .bottomTrailing, content: [text1])
+    static var stack3 = PCStack(.zStack, alignment: .bottomTrailing) { text1 }
 
     static var scrollview1 =
-        PCScrollView(axes: .vertical, views: [text1, text2])
+    PCScrollView(axes: .vertical) {
+        text1
+        text2
+    }
 
     static var image1 = 
     PCAsyncImage(URL(string: "https://picsum.photos/200/300"), scale: 1, mode: .fill)
@@ -50,7 +56,10 @@ struct EncodeExample {
     static var image2 =
     PCAsyncImage(URL(string: "https://picsum.photos/200"))
 
-    static var page1 = PCPageView([image1, image2], indexDisplay: .never)
+    static var page1 = PCPageView(indexDisplay: .never) {
+        image1
+        image2
+    }
 }
 
 
@@ -303,34 +312,24 @@ extension [String: AnyCodable] {
 }
 
 func noModifiersLargeView(count: Int) -> some PCView {
-    let text = PCText(text: "lorem ipsum", modifiers: nil)
+    let stack = PCStack(.hStack, alignment: .bottom) {
+        PCText(text: "lorem ipsum", modifiers: nil)
+        PCButton(
+            title: "blah blah blah",
+            action: .presentURL(URL(string: "www.google.com")!)
+        )
+        PCShapeView(
+            shape: .capsule(style: .circular),
+            fill: .gradient(gradient: .init(colors: [.red, .blue]), spread: .elliptical(center: .bottom, startRadiusFraction: 0.1, endRadiusFraction: 0.2)),
+            stroke: .color(value: .accentColor),
+            lineWidth: 3
+        )
+        PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit)
+    }
 
-    let btn = PCButton(
-        title: "blah blah blah",
-        action: .presentURL(URL(string: "www.google.com")!),
-        modifiers: nil
-    )
-
-    let shape = PCShapeView(
-        shape: .capsule(style: .circular),
-        fill: .gradient(gradient: .init(colors: [.red, .blue]), spread: .elliptical(center: .bottom, startRadiusFraction: 0.1, endRadiusFraction: 0.2)),
-        stroke: .color(value: .accentColor),
-        lineWidth: 3,
-        modifiers: nil
-    )
-
-    let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit)
-
-    let stack = PCStack(.hStack, alignment: .bottom, content: [
-        text,
-        btn,
-        shape,
-        image
-    ])
-
-    let scrollView = PCScrollView(axes: .horizontal, views: .init(repeating: stack, count: count), modifiers: nil)
-
-    return scrollView
+    return PCScrollView(axes: .horizontal) {
+        [any PCView](repeating: stack, count: count)
+    }
 }
 
 func largeView(count: Int) -> some PCView {
@@ -366,14 +365,16 @@ func largeView(count: Int) -> some PCView {
 
     let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: modifiersData.merged)
 
-    let stack = PCStack(.hStack, alignment: .bottom, content: [
-        text,
-        btn,
-        shape,
+    let stack = PCStack(.hStack, alignment: .bottom) {
+        text
+        btn
+        shape
         image
-    ])
+    }
 
-    let scrollView = PCScrollView(axes: .horizontal, views: .init(repeating: stack, count: count), modifiers: modifiersData.merged)
+    let scrollView = PCScrollView(axes: .horizontal, modifiers: modifiersData.merged) {
+        [any PCView](repeating: stack, count: count)
+    }
 
     return scrollView
 }

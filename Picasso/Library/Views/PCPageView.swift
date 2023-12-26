@@ -29,11 +29,11 @@ struct PCPageView: PCView {
     }
 
     init(
-        _ pages: [any PCView],
         indexDisplay: IndexDisplay? = nil,
-        modifiers: PCModifiersData? = nil
+        modifiers: PCModifiersData? = nil,
+        @PCViewBuilder pages: () -> [AnyPCView]
     ) {
-        self.pages = pages.map(AnyPCView.init)
+        self.pages = pages()
         self.indexDisplay = indexDisplay
         self.modifiers = modifiers
     }

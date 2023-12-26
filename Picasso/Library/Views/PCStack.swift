@@ -20,13 +20,13 @@ struct PCStack: Codable {
         _ axis: Axis,
         spacing: Double? = nil,
         alignment: PCAlignment? = nil,
-        content: [any PCView],
-        modifiers: PCModifiersData? = nil
+        modifiers: PCModifiersData? = nil,
+        @PCViewBuilder content: () -> [AnyPCView]
     ) {
         self.axis = axis
         self.spacing = spacing
         self.alignment = alignment
-        self.content = content.map(AnyPCView.init)
+        self.content = content()
         self.modifiers = modifiers
     }
 

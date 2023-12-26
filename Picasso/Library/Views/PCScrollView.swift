@@ -23,8 +23,12 @@ struct PCScrollView: PCView {
         }
     }
 
-    init(axes: Axis.Set, views: [any PCView], modifiers: PCModifiersData? = nil) {
-        self.scrollView = views.map(AnyPCView.init)
+    init(
+        axes: Axis.Set,
+        modifiers: PCModifiersData? = nil,
+        @PCViewBuilder views: () -> [AnyPCView]
+    ) {
+        self.scrollView = views()
         self.modifiers = modifiers
         self.axes = axes
     }

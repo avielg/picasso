@@ -84,6 +84,8 @@
 		30E21CF32B3B590C00FB651C /* PCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF22B3B590C00FB651C /* PCPageView.swift */; };
 		30E21CF42B3B5C0500FB651C /* PCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF22B3B590C00FB651C /* PCPageView.swift */; };
 		30E21CF62B3B5D1C00FB651C /* PageExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF52B3B5D1C00FB651C /* PageExamples.swift */; };
+		30E21CF82B3B5E6400FB651C /* PCViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF72B3B5E6400FB651C /* PCViewBuilder.swift */; };
+		30E21CF92B3B619100FB651C /* PCViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E21CF72B3B5E6400FB651C /* PCViewBuilder.swift */; };
 		30F59C212B06D83A0092D7ED /* Example.json in Resources */ = {isa = PBXBuildFile; fileRef = 30F59C202B06D83A0092D7ED /* Example.json */; };
 		30F59C232B06D8D50092D7ED /* PicassoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C222B06D8D50092D7ED /* PicassoView.swift */; };
 		30F59C252B06DFCB0092D7ED /* PCScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C242B06DFCB0092D7ED /* PCScrollView.swift */; };
@@ -175,6 +177,7 @@
 		30DCC55F2B163C7C00847124 /* AsyncViewExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewExamples.swift; sourceTree = "<group>"; };
 		30E21CF22B3B590C00FB651C /* PCPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPageView.swift; sourceTree = "<group>"; };
 		30E21CF52B3B5D1C00FB651C /* PageExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageExamples.swift; sourceTree = "<group>"; };
+		30E21CF72B3B5E6400FB651C /* PCViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCViewBuilder.swift; sourceTree = "<group>"; };
 		30F59C202B06D83A0092D7ED /* Example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example.json; sourceTree = "<group>"; };
 		30F59C222B06D8D50092D7ED /* PicassoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicassoView.swift; sourceTree = "<group>"; };
 		30F59C242B06DFCB0092D7ED /* PCScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCScrollView.swift; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 				3085D7FC2B339EC1008E823E /* CustomFont.swift */,
 				301C838B2B0460CC005377D1 /* Modifiers.swift */,
 				301C838D2B046216005377D1 /* ModifierBuilder.swift */,
+				30E21CF72B3B5E6400FB651C /* PCViewBuilder.swift */,
 				30F59C2D2B07E2F10092D7ED /* Errors.swift */,
 				3010F63D2B13069000EB7360 /* State.swift */,
 			);
@@ -598,6 +602,7 @@
 				305394F92B3918B9006AB6D6 /* CustomFont.swift in Sources */,
 				305394FA2B3918B9006AB6D6 /* Modifiers.swift in Sources */,
 				305394FB2B3918B9006AB6D6 /* ModifierBuilder.swift in Sources */,
+				30E21CF92B3B619100FB651C /* PCViewBuilder.swift in Sources */,
 				305394FC2B3918B9006AB6D6 /* Errors.swift in Sources */,
 				305394FD2B3918B9006AB6D6 /* State.swift in Sources */,
 				305394D82B391889006AB6D6 /* PicassoKit.docc in Sources */,
@@ -638,6 +643,7 @@
 				30B4A6D32B202B5100E58CDE /* PCAlignment+Alignment.swift in Sources */,
 				3010F6442B1312D000EB7360 /* PCOptionalView.swift in Sources */,
 				301C838C2B0460CC005377D1 /* Modifiers.swift in Sources */,
+				30E21CF82B3B5E6400FB651C /* PCViewBuilder.swift in Sources */,
 				3091A28C2AFFDD66002F8FFD /* PicassoApp.swift in Sources */,
 				30DCC5602B163C7C00847124 /* AsyncViewExamples.swift in Sources */,
 				3010F63B2B12F6F800EB7360 /* CodableAxisSet.swift in Sources */,
