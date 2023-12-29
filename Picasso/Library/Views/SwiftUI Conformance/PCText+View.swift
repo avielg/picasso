@@ -16,6 +16,6 @@ extension PCText: PCView {
     func modifiers(
         @ModifierBuilder modifiers: () -> some PCModifier
     ) -> Self {
-        Self(text: text, modifiers: modifiers)
+        Self(text, modifiers: modifiers)
     }
 }

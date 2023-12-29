@@ -70,7 +70,7 @@ struct PCButton: PCView {
     }
 
     init(
-        title: String,
+        _ title: String,
         action: Action,
         @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
     ) {
@@ -125,7 +125,7 @@ struct PCButton: PCView {
     func modifiers(
         @ModifierBuilder modifiers: () -> some PCModifier
     ) -> Self {
-        Self(title: button, action: action, modifiers: modifiers)
+        Self(button, action: action, modifiers: modifiers)
     }
 }
 

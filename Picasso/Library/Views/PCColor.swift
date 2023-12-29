@@ -16,7 +16,7 @@ struct PCColor: PCView {
     var body: some View { color }
 
     init(
-        color: Color,
+        _ color: Color,
         @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
     ) {
         self.color = color
@@ -26,6 +26,6 @@ struct PCColor: PCView {
     func modifiers(
         @ModifierBuilder modifiers: () -> some PCModifier
     ) -> Self {
-        Self(color: color, modifiers: modifiers)
+        Self(color, modifiers: modifiers)
     }
 }

@@ -14,7 +14,7 @@ func pagesExample() -> some PCView {
         PCAsyncImage(URL(string: "https://picsum.photos/200/300"))
     }
     .modifiers {
-        BackgroundModifier(content: PCColor(color: .black))
-        FontModifier(font: .headline)
+        BackgroundModifier(PCColor(.black))
+        FontModifier(.headline)
     }
 }

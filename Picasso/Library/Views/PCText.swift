@@ -12,7 +12,7 @@ struct PCText: Codable {
     let modifiers: PCModifiersData?
 
     init(
-        text: String,
+        _ text: String,
         @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
     ) {
         self.text = text

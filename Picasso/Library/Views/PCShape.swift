@@ -25,7 +25,7 @@ struct PCShapeView: PCView {
     }
 
     init(
-        shape: PCShape,
+        _ shape: PCShape,
         fill: ShapePaint? = nil,
         stroke: ShapePaint? = nil,
         lineWidth: CGFloat? = nil,
@@ -41,7 +41,7 @@ struct PCShapeView: PCView {
     func modifiers(
         @ModifierBuilder modifiers: () -> some PCModifier
     ) -> Self {
-        Self(shape: shape, fill: fill, stroke: stroke, lineWidth: lineWidth, modifiers: modifiers)
+        Self(shape, fill: fill, stroke: stroke, lineWidth: lineWidth, modifiers: modifiers)
     }
 }
 

@@ -116,48 +116,47 @@ extension Error {
 
     @PCViewBuilder
     func scrollViewContent(extraInfo: String) -> [AnyPCView] {
-        PCText(text: "Error parsing modifier data:")
+        PCText("Error parsing modifier data:")
             .modifiers {
-                FontModifier(font: .title2.bold())
-                ForegroundColorModifier(foregroundColor: .red)
+                FontModifier(.title2.bold())
+                ForegroundColorModifier(.red)
             }
-        PCText(text: title)
+        PCText(title)
             .modifiers {
-                FontModifier(font: .body.bold())
-                ForegroundColorModifier(foregroundColor: .red)
+                FontModifier(.body.bold())
+                ForegroundColorModifier(.red)
             }
-        PCText(text: subtitle)
-        PCText(text: debugDump)
-        PCText(text: extraInfo)
+        PCText(subtitle)
+        PCText(debugDump)
+        PCText(extraInfo)
     }
 
     func modifierData(extraInfo: String) -> PCModifiersData {
-        let sheetContent = PCScrollView(axes: .vertical) {
+        let sheetContent = PCScrollView(.vertical) {
             scrollViewContent(extraInfo: extraInfo)
         }
             .modifiers {
-                PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))
+                PaddingModifier(.init(top: 8, leading: 6, bottom: 8, trailing: 6))
             }
 
 
         let buttonBackground = PCShapeView(
-            shape: .rectangle(cornerRadius: 10),
+            .rectangle(cornerRadius: 10),
             fill: .color(value: .red)
         )
 
         let button = PCButton(
-            title: "Error parsing modifier data",
+            "Error parsing modifier data",
             action: .toggleFlag("modifier_error")
-        )
-            .modifiers {
-                PaddingModifier(padding: .init(top: 4, leading: 4, bottom: 4, trailing: 4))
-                FrameModifier(frame: .init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil))
-                BackgroundModifier(content: buttonBackground)
-                SheetModifier(presentationFlag: "modifier_error", content: sheetContent)
-                ForegroundColorModifier(foregroundColor: .white)
-            }
+        ) {
+            PaddingModifier(.init(top: 4, leading: 4, bottom: 4, trailing: 4))
+            FrameModifier(.init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil))
+            BackgroundModifier(buttonBackground)
+            SheetModifier(presentationFlag: "modifier_error", content: sheetContent)
+            ForegroundColorModifier(.white)
+        }
 
-        let errorContent = OverlayModifier(content: button)
+        let errorContent = OverlayModifier(button)
         return errorContent.data()
     }
 }

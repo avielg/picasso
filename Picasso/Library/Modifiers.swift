@@ -12,6 +12,10 @@ struct FontModifier: PCModifier {
 
     let font: Font
 
+    init(_ font: Font) {
+        self.font = font
+    }
+
     func body(content: Content) -> some View {
         let attributes = font.attributes
         
@@ -24,6 +28,10 @@ struct ForegroundColorModifier: PCModifier {
 
     let foregroundColor: Color
 
+    init(_ foregroundColor: Color) {
+        self.foregroundColor = foregroundColor
+    }
+
     func body(content: Content) -> some View {
         content.foregroundColor(foregroundColor)
     }
@@ -33,6 +41,10 @@ struct LineLimitModifier: PCModifier {
     static var name: String { "lineLimit" }
 
     let lineLimit: ClosedRange<Int>
+
+    init(_ lineLimit: ClosedRange<Int>) {
+        self.lineLimit = lineLimit
+    }
 
     func body(content: Content) -> some View {
         content.lineLimit(lineLimit)
@@ -44,6 +56,10 @@ struct TextAlignModifier: PCModifier {
     
     let alignment: TextAlignment
 
+    init(_ alignment: TextAlignment) {
+        self.alignment = alignment
+    }
+
     func body(content: Content) -> some View {
         content.multilineTextAlignment(alignment)
     }
@@ -53,6 +69,10 @@ struct PaddingModifier: PCModifier {
     static var name: String { "padding" }
 
     let padding: EdgeInsets
+
+    init(_ padding: EdgeInsets) {
+        self.padding = padding
+    }
 
     func body(content: Content) -> some View {
         content.padding(
@@ -78,6 +98,10 @@ struct FrameModifier: PCModifier {
 
     let frame: Frame
 
+    init(_ frame: Frame) {
+        self.frame = frame
+    }
+
     func body(content: Content) -> some View {
         content
             .frame(width: frame.width, height: frame.height, alignment: frame.alignment ?? .center)
@@ -102,7 +126,7 @@ struct BackgroundModifier: PCModifier {
         )
     }
 
-    init<V: PCView>(content: V, alignment: Alignment? = nil) {
+    init<V: PCView>(_ content: V, alignment: Alignment? = nil) {
         self.background = .init(content: AnyPCView(content), alignment: alignment)
     }
 }
@@ -117,7 +141,7 @@ struct OverlayModifier: PCModifier {
 
     let overlay: Overlay
 
-    init<V: PCView>(content: V, alignment: Alignment? = nil) {
+    init<V: PCView>(_ content: V, alignment: Alignment? = nil) {
         self.overlay = .init(content: AnyPCView(content), alignment: alignment)
     }
 
