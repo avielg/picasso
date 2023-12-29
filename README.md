@@ -97,9 +97,9 @@ While not a comprehensive guide, this should provide an idea of how the JSON syn
 
 ### ToDo/Reminders
 (beyond the obvious missing stuff...)
-- [ ] Find a way to type erase the modifiers like `AnyPCView`?
 - [ ] Eventually split ``Parser/modifiers(from:)`` to categories: text, etc.
 - [ ] Remove the SwiftUI.View conformance from the types, make it separate (to later compile on Linux)
+- [x] Find a way to type erase the modifiers like `AnyPCView`?
 - [x] Somehow single pass on the JSON?
 - [x] Fix the `.indices` in containers body (stack and scrollview)
 - [x] Add MessagePack with perf tests against JSON
