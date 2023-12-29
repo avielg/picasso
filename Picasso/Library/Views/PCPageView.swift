@@ -30,12 +30,18 @@ struct PCPageView: PCView {
 
     init(
         indexDisplay: IndexDisplay? = nil,
-        modifiers: PCModifiersData? = nil,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() },
         @PCViewBuilder pages: () -> [AnyPCView]
     ) {
         self.pages = pages()
         self.indexDisplay = indexDisplay
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(indexDisplay: indexDisplay, modifiers: modifiers, pages: { pages })
     }
 }
 

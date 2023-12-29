@@ -10,18 +10,7 @@ import SwiftUI
 
 protocol PCView: View, Codable {
     static var names: [String] { get }
-}
-
-extension Encodable {
-    func jsonData() throws -> Data {
-        try JSONEncoder().encode(self)
-    }
-}
-
-extension Data {
-    func dictionary() throws -> [String: AnyCodable] {
-        try JSONDecoder().decode([String: AnyCodable].self, from: self)
-    }
+    func modifiers(@ModifierBuilder modifiers: () -> some PCModifier) -> Self
 }
 
 extension [PCModifiersData] {

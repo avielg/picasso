@@ -38,11 +38,17 @@ struct PCAsyncImage: PCView {
         _ image: URL?,
         scale: CGFloat? = nil,
         mode: ContentMode? = nil,
-        modifiers: PCModifiersData? = nil
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
     ) {
         self.image = image
         self.scale = scale
         self.mode = mode
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(image, scale: scale, mode: mode, modifiers: modifiers)
     }
 }

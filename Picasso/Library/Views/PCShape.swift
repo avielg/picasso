@@ -24,12 +24,24 @@ struct PCShapeView: PCView {
             .modifier(Parser.shared.modifiers(from: modifiers))
     }
 
-    init(shape: PCShape, fill: ShapePaint? = nil, stroke: ShapePaint? = nil, lineWidth: CGFloat? = nil, modifiers: PCModifiersData? = nil) {
+    init(
+        shape: PCShape,
+        fill: ShapePaint? = nil,
+        stroke: ShapePaint? = nil,
+        lineWidth: CGFloat? = nil,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
+    ) {
         self.shape = shape
         self.fill = fill
         self.stroke = stroke
         self.lineWidth = lineWidth
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(shape: shape, fill: fill, stroke: stroke, lineWidth: lineWidth, modifiers: modifiers)
     }
 }
 

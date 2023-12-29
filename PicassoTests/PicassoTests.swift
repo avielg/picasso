@@ -15,23 +15,26 @@ import MessagePack // fumoboy007/msgpack-swift
 @testable import Picasso
 
 struct EncodeExample {
-    static var modifier1: PCModifiersData = try! FontModifier(
+    static var modifier1 = FontModifier(
         font: .system(.footnote, design: .monospaced, weight: .light)
-    ).jsonData().dictionary()
+    )
 
-    static var modifier2: PCModifiersData = try! ForegroundColorModifier(foregroundColor: .orange)
-        .jsonData().dictionary()
+    static var modifier2 = ForegroundColorModifier(foregroundColor: .orange)
 
-    static var modifier3 = try! FontModifier(font: .body)
-        .jsonData().dictionary()
+    static var modifier3 = FontModifier(font: .body)
 
-    static var modifier4 = try! ForegroundColorModifier(foregroundColor: .primary)
-        .jsonData().dictionary()
+    static var modifier4 = ForegroundColorModifier(foregroundColor: .primary)
 
 
-    static var text1 = PCText(text: "Check", modifiers: [modifier1, modifier2].merged)
+    static var text1 = PCText(text: "Check") {
+            modifier1
+            modifier2
+        }
 
-    static var text2 = PCText(text: "Check Simple", modifiers: [modifier3, modifier4].merged)
+    static var text2 = PCText(text: "Check Simple") {
+            modifier3
+            modifier4
+        }
 
     static var text3 = PCText(text: "Check Simple")
 
@@ -44,8 +47,7 @@ struct EncodeExample {
 
     static var stack3 = PCStack(.zStack, alignment: .bottomTrailing) { text1 }
 
-    static var scrollview1 =
-    PCScrollView(axes: .vertical) {
+    static var scrollview1 = PCScrollView(axes: .vertical) {
         text1
         text2
     }
@@ -313,7 +315,7 @@ extension [String: AnyCodable] {
 
 func noModifiersLargeView(count: Int) -> some PCView {
     let stack = PCStack(.hStack, alignment: .bottom) {
-        PCText(text: "lorem ipsum", modifiers: nil)
+        PCText(text: "lorem ipsum")
         PCButton(
             title: "blah blah blah",
             action: .presentURL(URL(string: "www.google.com")!)
@@ -332,38 +334,47 @@ func noModifiersLargeView(count: Int) -> some PCView {
     }
 }
 
+@ModifierBuilder
+func manyModifiers() -> some PCModifier {
+    FontModifier(font: .callout)
+    ForegroundColorModifier(foregroundColor: .red)
+    LineLimitModifier(lineLimit: 1...5)
+    TextAlignModifier(alignment: .trailing)
+    PaddingModifier(padding: .init(top: 1, leading: 2, bottom: 3, trailing: 4))
+    FrameModifier(frame: .init(width: 10, height: 20, minWidth: 30, idealWidth: 40, maxWidth: 40, minHeight: nil, idealHeight: nil, maxHeight: 60, alignment: .bottomLeading))
+}
+
 func largeView(count: Int) -> some PCView {
-    let manyModifiers: [Encodable] = [
-        FontModifier(font: .callout),
-        ForegroundColorModifier(foregroundColor: .red),
-        LineLimitModifier(lineLimit: 1...5),
-        TextAlignModifier(alignment: .trailing),
-        PaddingModifier(padding: .init(top: 1, leading: 2, bottom: 3, trailing: 4)),
-        FrameModifier(frame: .init(width: 10, height: 20, minWidth: 30, idealWidth: 40, maxWidth: 40, minHeight: nil, idealHeight: nil, maxHeight: 60, alignment: .bottomLeading))
-    ]
-    let modifiersData: [PCModifiersData] = manyModifiers.map { try! $0.jsonData().dictionary() }
-    let text = PCText(text: "lorem ipsum", modifiers: modifiersData.merged)
-    
-    let btnModifiers = [
-        BackgroundModifier(content: text)
-    ] + manyModifiers
+    let text = PCText(text: "lorem ipsum") {
+        manyModifiers()
+    }
+
     let btn = PCButton(
         title: "blah blah blah",
-        action: .presentURL(URL(string: "www.google.com")!),
-        modifiers: btnModifiers.map({ try! $0.jsonData().dictionary() }).merged
-    )
+        action: .presentURL(URL(string: "www.google.com")!)
+    ) {
+        BackgroundModifier(content: text)
+        manyModifiers()
+    }
 
-    let shapeModifiers = [
-        OverlayModifier(content: text, alignment: .centerFirstTextBaseline)
-    ] + manyModifiers
     let shape = PCShapeView(
         shape: .capsule(style: .circular),
         fill: .gradient(gradient: .init(colors: [.red, .blue]), spread: .elliptical(center: .bottom, startRadiusFraction: 0.1, endRadiusFraction: 0.2)),
         stroke: .color(value: .accentColor),
-        lineWidth: 3,
-        modifiers: shapeModifiers.map({ try! $0.jsonData().dictionary() }).merged)
+        lineWidth: 3) {
+            OverlayModifier(content: text, alignment: .centerFirstTextBaseline)
+            manyModifiers()
+        }
 
-    let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit, modifiers: modifiersData.merged)
+
+    let image = PCAsyncImage(URL(string: "www.google.com")!, scale: 2, mode: .fit) {
+        FontModifier(font: .callout)
+        ForegroundColorModifier(foregroundColor: .red)
+        LineLimitModifier(lineLimit: 1...5)
+        TextAlignModifier(alignment: .trailing)
+        PaddingModifier(padding: .init(top: 1, leading: 2, bottom: 3, trailing: 4))
+        FrameModifier(frame: .init(width: 10, height: 20, minWidth: 30, idealWidth: 40, maxWidth: 40, minHeight: nil, idealHeight: nil, maxHeight: 60, alignment: .bottomLeading))
+    }
 
     let stack = PCStack(.hStack, alignment: .bottom) {
         text
@@ -372,7 +383,9 @@ func largeView(count: Int) -> some PCView {
         image
     }
 
-    let scrollView = PCScrollView(axes: .horizontal, modifiers: modifiersData.merged) {
+    let scrollView = PCScrollView(axes: .horizontal) {
+        manyModifiers()
+    } views: {
         [any PCView](repeating: stack, count: count)
     }
 

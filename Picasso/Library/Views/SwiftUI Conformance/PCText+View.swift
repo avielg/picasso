@@ -12,4 +12,10 @@ extension PCText: PCView {
         Text(text)
             .modifier(Parser.shared.modifiers(from: modifiers))
     }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(text: text, modifiers: modifiers)
+    }
 }

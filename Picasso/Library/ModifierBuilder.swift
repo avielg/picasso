@@ -14,6 +14,24 @@ protocol PCModifier: ViewModifier, Codable {
     static var name: String { get }
 }
 
+internal extension PCModifier {
+    func data() -> PCModifiersData {
+        try! jsonData().dictionary()
+    }
+}
+
+internal extension Encodable {
+    func jsonData() throws -> Data {
+        try Parser.shared.encoder.encode(self)
+    }
+}
+
+internal extension Data {
+    func dictionary() throws -> [String: AnyCodable] {
+        try Parser.shared.decoder.decode([String: AnyCodable].self, from: self)
+    }
+}
+
 @resultBuilder
 struct ModifierBuilder {
 
@@ -59,10 +77,15 @@ struct ModifierBuilder {
     static func buildOptional<I: PCModifier>(_ component: I?) -> some PCModifier {
         _OptionalModifier(modifier: component)
     }
+
+    static func buildIf<M: PCModifier>(_ component: M?) -> M? {
+        component
+    }
 }
 
 ///
-/// These modifiers are only meant for ``ModifierBuilder`` but should never be encoded or decoded.
+/// These modifiers are only containers for ``ModifierBuilder`` but should never be decoded.
+/// When encoded they are flattened and encoded to the actual type of the modifier they contain.
 ///
 
 private struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCModifier>: PCModifier {
@@ -90,34 +113,45 @@ private struct _ConditionalModifier<TrueContent: PCModifier, FalseContent: PCMod
         }
     }
 
-    init(from decoder: Decoder) throws {
-        fatalError()
-//
-//        let container = try decoder.container(keyedBy: Keys.self)
-//
-//        let type = try container.decode(String.self, forKey: .type)
-//        let storage = try container.decode(PCModifier.self, forKey: .storage)
-//        switch type {
-//        case "TrueContent": self.storage = .trueContent(storage)
-//        case "FalseContent": self.storage = .falseContent(storage)
-//        default: throw CodableError.decodeError(value: type)
-//        }
-    }
+    init(from decoder: Decoder) throws { fatalError() }
 
     func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: Keys.self)
-
         switch storage {
         case .trueContent(let trueContent):
-            try container.encode("TrueContent", forKey: .type)
-            try container.encode(trueContent, forKey: .storage)
+            try trueContent.encode(to: encoder)
         case .falseContent(let falseContent):
-            try container.encode("FalseContent", forKey: .type)
-            try container.encode(falseContent, forKey: .storage)
+            try falseContent.encode(to: encoder)
         }
     }
 }
 
+//enum PCModifiersTypes {
+//    enum Kind: String, CodingKey {
+//        case font, foregroundColor, lineLimit, alignment, padding, frame, background, overlay, sheet
+//    }
+//
+//    static let types: [(Kind, any PCModifier.Type)] = [
+//        (.font, FontModifier.self),
+//        (.foregroundColor, ForegroundColorModifier.self),
+//        (.lineLimit, LineLimitModifier.self),
+//        (.alignment, TextAlignModifier.self),
+//        (.padding, PaddingModifier.self),
+//        (.frame, FrameModifier.self),
+//        (.background, BackgroundModifier.self),
+//        (.overlay, OverlayModifier.self),
+//        (.sheet, SheetModifier.self)
+//    ]
+//}
+//
+//extension PCModifier {
+//    func encode(into container: inout KeyedEncodingContainer<PCModifiersTypes.Kind>) throws {
+//        for (kind, modifierType) in PCModifiersTypes.types {
+//            if type(of: self) == modifierType {
+//                try container.encode(self, forKey: kind)
+//            }
+//        }
+//    }
+//}
 
 private struct _ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
     static var name: String { fatalError() }
@@ -127,6 +161,16 @@ private struct _ConcatModifier<A: PCModifier, B: PCModifier>: PCModifier {
 
     func body(content: Content) -> some View {
         content.modifier(rhs).modifier(lhs)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        try [rhs.data(), lhs.data()].merged.encode(to: encoder)
+
+        // need to find a way to encode `rhs` and `lhs` directly to the same dictionary
+        // and not as the value of a key since they contain the right key in their value.
+//        var container = encoder.container(keyedBy: PCModifiersTypes.Kind.self)
+//        try rhs.encode(into: &container)
+//        try lhs.encode(into: &container)
     }
 }
 
@@ -142,16 +186,18 @@ private struct _OptionalModifier<A: PCModifier>: PCModifier {
             content
         }
     }
+
+    func encode(to encoder: Encoder) throws {
+        if let modifier {
+            try modifier.encode(to: encoder)
+        }
+    }
 }
 
-extension EmptyModifier: PCModifier {
+struct PCEmptyModifier: PCModifier {
     static var name: String { fatalError() }
-    
-    public func encode(to encoder: Encoder) throws {
-        try "empty".encode(to: encoder)
-    }
 
-    public init(from decoder: Decoder) throws {
-        self = EmptyModifier()
+    func body(content: Content) -> some View {
+        content
     }
 }

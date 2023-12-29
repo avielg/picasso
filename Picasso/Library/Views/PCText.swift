@@ -11,8 +11,11 @@ struct PCText: Codable {
     let text: String
     let modifiers: PCModifiersData?
 
-    init(text: String, modifiers: PCModifiersData? = nil) {
+    init(
+        text: String,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
+    ) {
         self.text = text
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
     }
 }

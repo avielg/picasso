@@ -116,56 +116,48 @@ extension Error {
 
     @PCViewBuilder
     func scrollViewContent(extraInfo: String) -> [AnyPCView] {
-        PCText(
-            text: "Error parsing modifier data:",
-            modifiers: [
-                try! FontModifier(font: .title2.bold())
-                    .jsonData().dictionary(),
-                try! ForegroundColorModifier(foregroundColor: .red)
-                    .jsonData().dictionary()
-            ].merged
-        )
-        PCText(
-            text: title,
-            modifiers: [
-                try! FontModifier(font: .body.bold())
-                    .jsonData().dictionary(),
-                try! ForegroundColorModifier(foregroundColor: .red)
-                    .jsonData().dictionary()
-            ].merged
-        )
+        PCText(text: "Error parsing modifier data:")
+            .modifiers {
+                FontModifier(font: .title2.bold())
+                ForegroundColorModifier(foregroundColor: .red)
+            }
+        PCText(text: title)
+            .modifiers {
+                FontModifier(font: .body.bold())
+                ForegroundColorModifier(foregroundColor: .red)
+            }
         PCText(text: subtitle)
         PCText(text: debugDump)
         PCText(text: extraInfo)
     }
 
     func modifierData(extraInfo: String) -> PCModifiersData {
-        let sheetContent = PCScrollView(axes: .vertical, modifiers: [
-            try! PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))
-                .jsonData().dictionary()
-        ].merged, views: { scrollViewContent(extraInfo: extraInfo) })
+        let sheetContent = PCScrollView(axes: .vertical) {
+            scrollViewContent(extraInfo: extraInfo)
+        }
+            .modifiers {
+                PaddingModifier(padding: .init(top: 8, leading: 6, bottom: 8, trailing: 6))
+            }
+
 
         let buttonBackground = PCShapeView(
             shape: .rectangle(cornerRadius: 10),
             fill: .color(value: .red)
         )
 
-        let modifiersValues: [Encodable] = [
-            PaddingModifier(padding: .init(top: 4, leading: 4, bottom: 4, trailing: 4)),
-            FrameModifier(frame: .init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil)),
-            BackgroundModifier(content: buttonBackground),
-            SheetModifier(presentationFlag: "modifier_error", content: sheetContent),
-            ForegroundColorModifier(foregroundColor: .white)
-        ]
-        let modifiersData: [PCModifiersData] = modifiersValues.map { try! $0.jsonData().dictionary() }
-
         let button = PCButton(
             title: "Error parsing modifier data",
-            action: .toggleFlag("modifier_error"),
-            modifiers: modifiersData.merged
+            action: .toggleFlag("modifier_error")
         )
+            .modifiers {
+                PaddingModifier(padding: .init(top: 4, leading: 4, bottom: 4, trailing: 4))
+                FrameModifier(frame: .init(width: 150, height: 60, minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: nil))
+                BackgroundModifier(content: buttonBackground)
+                SheetModifier(presentationFlag: "modifier_error", content: sheetContent)
+                ForegroundColorModifier(foregroundColor: .white)
+            }
 
         let errorContent = OverlayModifier(content: button)
-        return try! errorContent.jsonData().dictionary()
+        return errorContent.data()
     }
 }

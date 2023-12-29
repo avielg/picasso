@@ -20,14 +20,14 @@ struct PCStack: Codable {
         _ axis: Axis,
         spacing: Double? = nil,
         alignment: PCAlignment? = nil,
-        modifiers: PCModifiersData? = nil,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() },
         @PCViewBuilder content: () -> [AnyPCView]
     ) {
         self.axis = axis
         self.spacing = spacing
         self.alignment = alignment
         self.content = content()
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
     }
 
     enum CodingKeys: String, CodingKey {

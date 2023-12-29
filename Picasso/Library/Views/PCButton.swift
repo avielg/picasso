@@ -69,10 +69,14 @@ struct PCButton: PCView {
         case navigate
     }
 
-    init(title: String, action: Action, modifiers: PCModifiersData? = nil) {
+    init(
+        title: String,
+        action: Action,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
+    ) {
         self.button = title
         self.action = action
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
     }
 
     init(from decoder: Decoder) throws {
@@ -116,6 +120,12 @@ struct PCButton: PCView {
                 try container.encode("\(navigation)", forKey: .navigate)
             }
         }
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(title: button, action: action, modifiers: modifiers)
     }
 }
 

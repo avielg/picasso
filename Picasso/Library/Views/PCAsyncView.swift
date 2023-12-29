@@ -39,4 +39,18 @@ struct PCAsyncView: PCView {
             try container.encode(modifiers, forKey: .modifiers)
         }
     }
+
+    init(
+        _ url: URL,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() }
+    ) {
+        self.url = url
+        self.modifiers = modifiers().data()
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(url, modifiers: modifiers)
+    }
 }

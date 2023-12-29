@@ -25,12 +25,18 @@ struct PCScrollView: PCView {
 
     init(
         axes: Axis.Set,
-        modifiers: PCModifiersData? = nil,
+        @ModifierBuilder modifiers: () -> some PCModifier = { PCEmptyModifier() },
         @PCViewBuilder views: () -> [AnyPCView]
     ) {
         self.scrollView = views()
-        self.modifiers = modifiers
+        self.modifiers = modifiers().data()
         self.axes = axes
+    }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(axes: axes ?? .vertical, modifiers: modifiers, views: { scrollView })
     }
 
     /// TODO: This should work, but waiting for bug fix in Swift parameter packs implementation

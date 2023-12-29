@@ -8,10 +8,13 @@
 import Foundation
 
 func pagesExample() -> some PCView {
-    PCPageView(modifiers: [try! BackgroundModifier(content: PCColor(color: .black)).jsonData().dictionary()].merged
-    ) {
+    PCPageView {
         PCAsyncImage(URL(string: "https://picsum.photos/200/300"))
         PCAsyncImage(URL(string: "https://picsum.photos/200/300"))
         PCAsyncImage(URL(string: "https://picsum.photos/200/300"))
+    }
+    .modifiers {
+        BackgroundModifier(content: PCColor(color: .black))
+        FontModifier(font: .headline)
     }
 }

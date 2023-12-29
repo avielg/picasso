@@ -32,4 +32,10 @@ extension PCStack: PCView {
             .modifier(Parser.shared.modifiers(from: modifiers))
         }
     }
+
+    func modifiers(
+        @ModifierBuilder modifiers: () -> some PCModifier
+    ) -> Self {
+        Self(axis, spacing: spacing, alignment: alignment, modifiers: modifiers, content: { content })
+    }
 }
