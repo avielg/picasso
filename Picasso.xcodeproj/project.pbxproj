@@ -28,8 +28,8 @@
 		305394C72B391183006AB6D6 /* MuseoModerno-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 305394B52B391182006AB6D6 /* MuseoModerno-Bold.ttf */; };
 		305394D82B391889006AB6D6 /* PicassoKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 305394D72B391889006AB6D6 /* PicassoKit.docc */; };
 		305394D92B391889006AB6D6 /* PicassoKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 305394D62B391889006AB6D6 /* PicassoKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		305394DC2B391889006AB6D6 /* PicassoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305394D42B391889006AB6D6 /* PicassoKit.framework */; };
-		305394DD2B391889006AB6D6 /* PicassoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 305394D42B391889006AB6D6 /* PicassoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		305394DC2B391889006AB6D6 /* PicassoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305394D42B391889006AB6D6 /* PicassoKit.framework */; platformFilter = ios; };
+		305394DD2B391889006AB6D6 /* PicassoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 305394D42B391889006AB6D6 /* PicassoKit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		305394E22B3918B9006AB6D6 /* PicassoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F59C222B06D8D50092D7ED /* PicassoView.swift */; };
 		305394E32B3918B9006AB6D6 /* PCText+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6D42B202DFB00E58CDE /* PCText+View.swift */; };
 		305394E42B3918B9006AB6D6 /* PCStack+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4A6CC2B2027BA00E58CDE /* PCStack+View.swift */; };
@@ -667,6 +667,7 @@
 		};
 		305394DB2B391889006AB6D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 305394D32B391889006AB6D6 /* PicassoKit */;
 			targetProxy = 305394DA2B391889006AB6D6 /* PBXContainerItemProxy */;
 		};
@@ -940,7 +941,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -982,7 +983,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
