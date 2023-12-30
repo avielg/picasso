@@ -23,7 +23,7 @@ struct PCPageView: PCView {
             }
         }
         .tabViewStyle(
-            PageTabViewStyle(indexDisplayMode: (indexDisplay ?? .automatic).converted)
+            .page(indexDisplayMode: (indexDisplay ?? .automatic).converted)
         )
         .modifier(Parser.shared.modifiers(from: modifiers))
     }
