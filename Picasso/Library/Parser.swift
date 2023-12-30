@@ -46,7 +46,7 @@ public class Parser {
         self.decoder = decoder
     }
 
-    func view(from json: String) -> AnyPCView {
+    func view(from json: String) -> some View {
         if let data = json.data(using: .utf8) {
             do {
                 return try _view(from: data)
@@ -58,7 +58,7 @@ public class Parser {
         }
     }
 
-    func view(from data: Data) -> AnyPCView {
+    func view(from data: Data) -> some View {
         do {
             return try _view(from: data)
         } catch {
@@ -127,7 +127,7 @@ public class Parser {
     }
 
     @ViewBuilder
-    private func _view(from data: Data) throws -> AnyPCView {
+    private func _view(from data: Data) throws -> some View {
         try decoder.decode(AnyPCView.self, from: data)
     }
 }
