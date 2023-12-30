@@ -45,14 +45,13 @@ else
   echo "FAILED: $returnval"
 fi
 
-
-echo -n "Building macOS..."
+echo -n "Building Mac Catalyst..."
 xcodebuild archive \
 	-project Picasso.xcodeproj \
 	-scheme PicassoKit \
-	-destination "generic/platform=macOS" \
-	-archivePath "$BUILD_DIR/PicassoKit-macOS" \
-	&> "$BUILD_DIR/report_macos.log"
+	-destination "generic/platform=macOS,variant=Mac Catalyst" \
+	-archivePath "$BUILD_DIR/PicassoKit-Mac-Catalyst" \
+	&> "$BUILD_DIR/report_mac_catalyst.log"
 	
 returnval=$?
 if [ $returnval -eq 0 ]; then
@@ -75,5 +74,5 @@ echo "Building xcframework..."
 xcodebuild -create-xcframework \
 	-archive "$BUILD_DIR/PicassoKit-iOS.xcarchive" -framework PicassoKit.framework \
 	-archive "$BUILD_DIR/PicassoKit-iOS_Simulator.xcarchive" -framework PicassoKit.framework \
-	-archive "$BUILD_DIR/PicassoKit-macOS.xcarchive" -framework PicassoKit.framework \
+	-archive "$BUILD_DIR/PicassoKit-Mac-Catalyst.xcarchive" -framework PicassoKit.framework \
 	-output "$XCF_DIR"
